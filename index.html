@@ -213,5 +213,48 @@ background: #0a111f;
 <button type="button" onclick="calculateTrade()">হিসাব করুন</button>
 <div id="tradeResult" aria-live="polite"></div>
 </section>
+<script>
+function calculateTrade() {
+const direction = document.getElementById("tradeType").value;
+const capital = Number(document.getElementById("capital").value);
+const riskPercent = Number(document.getElementById("riskPercent").value);
+const entry = Number(document.getElementById("entry").value);
+const stop = Number(document.getElementById("stop").value);
+const target = Number(document.getElementById("target").value);
+const result = document.getElementById("tradeResult");
+
+if (
+![capital, riskPercent, entry, stop, target].every(Number.isFinite) ||
+capital <= 0 || riskPercent <= 0 || riskPercent > 100 ||
+entry <= 0 || stop <= 0 || target <= 0
+) {
+result.textContent = "সঠিক Capital, Risk %, Entry, SL ও TP লিখুন।";
+return;
+}
+
+const valid = direction === "long"
+? stop < entry && target > entry
+: stop > entry && target < entry;
+
+if (!valid) {
+result.textContent = "Long হলে SL Entry-এর নিচে ও TP ওপরে দিন। Short হলে SL ওপরে ও TP নিচে দিন।";
+return;
+}
+
+const riskAmount = capital * riskPercent / 100;
+const priceRisk = Math.abs(entry - stop);
+const priceReward = Math.abs(target - entry);
+const positionSize = riskAmount * entry / priceRisk;
+const potentialProfit = positionSize * priceReward / entry;
+const rr = priceReward / priceRisk;
+
+result.textContent =
+"ঝুঁকি: " + riskAmount.toFixed(2) + " USDT | " +
+"Position Size: " + positionSize.toFixed(2) + " USDT | " +
+"সম্ভাব্য লাভ: " + potentialProfit.toFixed(2) + " USDT | " +
+"Risk/Reward: 1:" + rr.toFixed(2) +
+". ফি ও স্লিপেজ অন্তর্ভুক্ত নয়।";
+}
+</script>
 </body>
 </html>
