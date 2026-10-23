@@ -256,5 +256,54 @@ result.textContent =
 ". ফি ও স্লিপেজ অন্তর্ভুক্ত নয়।";
 }
 </script>
-</body>
+
+<section class="card" id="live-prices">
+<h2>🪙 Live Crypto Prices</h2>
+<p>Bitcoin, Ethereum ও Solana-এর বর্তমান দাম (USD)</p>
+<p id="price-status">দাম লোড হচ্ছে...</p>
+<div id="price-list"></div>
+<button type="button" onclick="loadCryptoPrices()">দাম রিফ্রেশ করুন</button>
+<p><small>দাম পরিবর্তনশীল। ট্রেড করার আগে এক্সচেঞ্জে যাচাই করুন।</small></p>
+</section>
+
+<script>
+async function loadCryptoPrices() {
+const status = document.getElementById("price-status");
+const list = document.getElementById("price-list");
+
+status.textContent = "দাম লোড হচ্ছে...";
+list.textContent = "";
+
+try {
+const response = await fetch(
+"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd"
+);
+
+if (!response.ok) throw new Error("Price service unavailable");
+
+const data = await response.json();
+const coins = [
+["Bitcoin (BTC)", "bitcoin"],
+["Ethereum (ETH)", "ethereum"],
+["Solana (SOL)", "solana"]
+];
+
+coins.forEach(([name, id]) => {
+const row = document.createElement("p");
+row.textContent = name + ": $" +
+Number(data[id].usd).toLocaleString("en-US", {
+maximumFractionDigits: 8
+});
+list.appendChild(row);
+});
+
+status.textContent = "সর্বশেষ পাওয়া দাম";
+} catch (error) {
+status.textContent =
+"দাম লোড হয়নি। ইন্টারনেট বা API সীমা পরীক্ষা করে আবার চেষ্টা করুন।";
+}
+}
+
+loadCryptoPrices();
+</script></body>
 </html>
