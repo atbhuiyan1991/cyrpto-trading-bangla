@@ -184,5 +184,34 @@ background: #0a111f;
 <footer>
 © 2026 Crypto Trading Bangla | শিক্ষাই প্রথম
 </footer>
+
+<section class="card" id="trade-calculator">
+<h2>📊 Trading Risk Calculator</h2>
+<p>Entry, Stop Loss, Take Profit ও সম্ভাব্য Risk/Reward হিসাব করুন।</p>
+
+<label for="tradeType">Trade Direction</label>
+<select id="tradeType">
+<option value="long">Long (Buy)</option>
+<option value="short">Short (Sell)</option>
+</select>
+
+<label for="capital">Capital (USDT)</label>
+<input id="capital" type="number" min="0" step="any" placeholder="যেমন 50">
+
+<label for="riskPercent">Risk (%)</label>
+<input id="riskPercent" type="number" min="0.01" max="100" step="any" value="1">
+
+<label for="entry">Entry Price</label>
+<input id="entry" type="number" min="0" step="any" placeholder="যেমন 100">
+
+<label for="stop">Stop Loss Price</label>
+<input id="stop" type="number" min="0" step="any" placeholder="যেমন 98">
+
+<label for="target">Take Profit Price</label>
+<input id="target" type="number" min="0" step="any" placeholder="যেমন 106">
+
+<button type="button" onclick="calculateTrade()">হিসাব করুন</button>
+<div id="tradeResult" aria-live="polite"></div>
+</section>
 </body>
 </html>
