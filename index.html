@@ -188,8 +188,37 @@ function updateOrderValue(){const p=$('orderSymbol').value;const price=$('orderT
 $('orderType').addEventListener('change',()=>{$('orderPrice').disabled=$('orderType').value==='Market';updateOrderValue()});
 function setSide(s){side=s;$('buyTab').className=s==='BUY'?'active buy':'';$('sellTab').className=s==='SELL'?'active sell':'';$('submitOrder').className='order-btn '+(s==='BUY'?'buy':'sell');$('submitOrder').textContent='SIMULATE '+s; }
 $('buyTab').onclick=()=>setSide('BUY');$('sellTab').onclick=()=>setSide('SELL');
-function setChartSymbol(s){$('chartSymbol').textContent=s;const tv=$('tradingView');tv.src='https://s.tradingview.com/widgetembed/?frameElementId=tradingview_widget&symbol=BINANCE%3A'+encodeURIComponent(s)+'&interval=15&hidesidetoolbar=0&symboledit=1&saveimage=1&toolbarbg=0b1220&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&locale=en';const selector=$('orderSymbol');if(selector)selector.value=s;updateOrderValue();}
-$('orderSymbol').addEventListener('change',()=>setChartSymbol($('orderSymbol').value));
+function setChartSymbol(s) {
+s = s.trim().toUpperCase();
+
+const tv = $('tradingView');
+const symbol = 'BINANCE:' + s + '.P';
+
+$('chartSymbol').textContent = s;
+
+tv.src =
+'https://s.tradingview.com/widgetembed/?' +
+'frameElementId=tradingview_widget' +
+'&symbol=' + encodeURIComponent(symbol) +
+'&interval=15' +
+'&hidesidetoolbar=0' +
+'&symboledit=1' +
+'&saveimage=1' +
+'&toolbarbg=0b1220' +
+'&theme=dark' +
+'&style=1' +
+'&timezone=Etc%2FUTC' +
+'&withdateranges=1' +
+'&hideideas=1' +
+'&locale=en';
+
+const selector = $('orderSymbol');
+if (selector) selector.value = s;
+
+updateOrderValue();
+}
+
+   $('orderSymbol').addEventListener('change',()=>setChartSymbol($('orderSymbol').value));
 $('openChart').onclick=()=>window.open('https://www.tradingview.com/chart/?symbol=BINANCE%3A'+encodeURIComponent($('chartSymbol').textContent),'_blank','noopener');
 $('gainersTab').onclick=()=>{moverMode='gainers';renderMovers()};$('losersTab').onclick=()=>{moverMode='losers';renderMovers()};
 function resizeDashboard(target,delta){const main=$('main');if(window.innerWidth<=1050){const panel=target==='chart' ? document.querySelector('.chart-panel') : document.querySelector('.bubbles-panel');const min=260,max=760;panel.style.height=Math.max(min,Math.min(max,panel.getBoundingClientRect().height+delta))+'px';return;}const rows=getComputedStyle(main).gridTemplateRows.split(' ').map(v=>parseFloat(v));if(rows.length<2||rows.some(v=>!Number.isFinite(v)))return;let first=rows[0],second=rows[1];if(target==='chart'){first+=delta;second-=delta;}else{first-=delta;second+=delta;}if(first<220||second<180)return;main.style.gridTemplateRows=`${first}px ${second}px`; }
