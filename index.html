@@ -138,7 +138,16 @@ autocomplete="off"
 <input id="targetPrice" type="number" min="0" step="any" placeholder="e.g. 106">
 </div>
 </div>
-
+<div class="row">
+<div class="field">
+<label>Potential Profit (USDT)</label>
+<strong id="potentialProfit">—</strong>
+</div>
+<div class="field">
+<label>Risk : Reward</label>
+<strong id="riskReward">—</strong>
+</div>
+</div>
   <div class="calc-grid"><div class="metric"><label>Total risk</label><strong id="riskCash">$0.50</strong><small>Maximum planned loss</small></div><div class="metric"><label>Position size</label><strong id="positionQty">—</strong><small>Coin quantity</small></div><div class="metric"><label>Position value</label><strong id="positionValue">—</strong><small>Notional value</small></div><div class="metric"><label>Leverage needed*</label><strong id="neededLeverage">—</strong><small>*Based on balance</small></div></div>
   <p class="note" style="margin-top:9px">Formula: risk amount ÷ |entry − stop loss| = quantity. Estimated leverage = position value ÷ account balance. Fees, slippage and funding are excluded.</p>
  </div>
