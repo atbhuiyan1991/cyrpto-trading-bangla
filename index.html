@@ -1,375 +1,1406 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Trading Bangla</title>
-<meta name="description" content="Crypto market charts, trading calculator and risk management tools.">
+<meta name="theme-color" content="#080d18">
+<title>Crypto Trading Bangla | Personal Trading Terminal</title>
+
 <style>
-* { box-sizing: border-box; }
-body {
+:root {
+--bg: #080d18;
+--panel: #101827;
+--panel2: #0c1422;
+--border: #233149;
+--text: #e8eef8;
+--muted: #8c9bb3;
+--green: #20c997;
+--red: #ff6174;
+--blue: #5b9cff;
+--yellow: #f5c451;
+}
+
+* {
+box-sizing: border-box;
+}
+
+html, body {
 margin: 0;
-font-family: Arial, sans-serif;
-background: #0b1120;
-color: #e8eefc;
+height: 100%;
+background: var(--bg);
+color: var(--text);
+font: 13px/1.4 Inter, system-ui, -apple-system,
+Segoe UI, Arial, sans-serif;
 }
-header {
-padding: 20px;
-background: #111b30;
-border-bottom: 1px solid #263550;
+
+body {
+overflow: hidden;
 }
-header h1 { margin: 0 0 8px; color: #55e6a5; }
-header p { margin: 0; color: #a9b8d3; }
-nav {
+
+.app {
+height: 100dvh;
+min-height: 560px;
 display: flex;
+flex-direction: column;
+}
+
+.topbar {
+height: 58px;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+gap: 18px;
+padding: 0 16px;
+border-bottom: 1px solid var(--border);
+background: #0b1220;
+}
+
+.brand {
+display: flex;
+align-items: center;
 gap: 10px;
-flex-wrap: wrap;
-padding: 12px 20px;
-background: #10182a;
+min-width: 210px;
 }
-nav a {
-color: #dce7ff;
-text-decoration: none;
-padding: 8px 12px;
-border-radius: 6px;
-background: #202e47;
-}
-main { max-width: 1100px; margin: auto; padding: 20px; }
-.grid {
+
+.logo {
+height: 32px;
+width: 32px;
+border-radius: 9px;
+background: linear-gradient(135deg, #5b9cff, #20c997);
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 16px;
+place-items: center;
+color: #07101b;
+font-weight: 900;
+font-size: 16px;
 }
-.card {
-background: #131e32;
-border: 1px solid #263550;
-border-radius: 12px;
-padding: 18px;
-margin-bottom: 18px;
+
+.brand strong {
+display: block;
+font-size: 14px;
+letter-spacing: .4px;
+}
+
+.brand small {
+color: var(--muted);
+font-size: 10px;
+letter-spacing: 1.4px;
+}
+
+.status {
+display: flex;
+align-items: center;
+gap: 7px;
+color: var(--muted);
+font-size: 11px;
+}
+
+.dot {
+height: 7px;
+width: 7px;
+background: var(--green);
+border-radius: 50%;
+box-shadow: 0 0 8px #20c99788;
+}
+
+.topstats {
+display: flex;
+gap: 20px;
+margin-left: auto;
+}
+
+.stat label {
+display: block;
+color: var(--muted);
+font-size: 10px;
+}
+
+.stat strong {
+font-size: 12px;
+}
+
+.up {
+color: var(--green);
+}
+
+.down {
+color: var(--red);
+}
+
+.btn {
+border: 1px solid var(--border);
+background: #172238;
+color: var(--text);
+border-radius: 6px;
+padding: 8px 11px;
+cursor: pointer;
+font: inherit;
+}
+
+.btn:hover {
+border-color: var(--blue);
+}
+
+.btn.primary {
+background: var(--blue);
+border-color: var(--blue);
+color: #06101f;
+font-weight: 700;
+}
+
+.main {
+flex: 1;
+min-height: 0;
+padding: 9px;
+display: grid;
+gap: 9px;
+grid-template-columns:
+minmax(220px, .78fr)
+minmax(390px, 1.8fr)
+minmax(255px, .92fr);
+grid-template-rows:
+minmax(260px, 1.45fr)
+minmax(210px, 1fr);
+}
+
+.panel {
+background: var(--panel);
+border: 1px solid var(--border);
+border-radius: 8px;
 min-width: 0;
+min-height: 0;
+display: flex;
+flex-direction: column;
+overflow: hidden;
 }
-h2 { color: #55e6a5; margin-top: 0; }
-label { display: block; margin: 12px 0 6px; color: #b8c8e4; }
-input, select, button {
-width: 100%;
-padding: 11px;
-border-radius: 7px;
-border: 1px solid #354866;
-background: #0b1425;
-color: white;
-font-size: 15px;
+
+.panel-head {
+height: 37px;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 11px;
+border-bottom: 1px solid var(--border);
+font-size: 11px;
+font-weight: 750;
+letter-spacing: .55px;
+text-transform: uppercase;
 }
-button {
-margin-top: 14px;
+
+.panel-head .sub {
+font-size: 10px;
+color: var(--muted);
+font-weight: 500;
+text-transform: none;
+letter-spacing: 0;
+}
+
+.panel-body {
+padding: 10px;
+min-height: 0;
+overflow: auto;
+flex: 1;
+}
+
+.order-panel {
+grid-column: 1;
+grid-row: 1;
+}
+
+.chart-panel {
+grid-column: 2;
+grid-row: 1;
+}
+
+.right-top {
+grid-column: 3;
+grid-row: 1;
+}
+
+.risk-panel {
+grid-column: 1;
+grid-row: 2;
+}
+
+.history-panel {
+grid-column: 2;
+grid-row: 2;
+}
+
+.bubbles-panel {
+grid-column: 3;
+grid-row: 2;
+}
+
+.tabs {
+display: flex;
+background: var(--panel2);
+padding: 3px;
+border-radius: 6px;
+gap: 4px;
+margin-bottom: 10px;
+}
+
+.tabs button {
+flex: 1;
 border: 0;
-background: #16a875;
-color: #061b15;
-font-weight: bold;
+background: transparent;
+color: var(--muted);
+padding: 7px 4px;
+border-radius: 4px;
+cursor: pointer;
+font-weight: 700;
+}
+
+.tabs button.active.buy {
+background: #123e39;
+color: var(--green);
+}
+
+.tabs button.active.sell {
+background: #49232e;
+color: var(--red);
+}
+
+.tabs button.active.neutral {
+background: #1b2b45;
+color: var(--text);
+}
+
+.field {
+display: flex;
+flex-direction: column;
+gap: 4px;
+margin-bottom: 9px;
+}
+
+.field label {
+font-size: 10px;
+color: var(--muted);
+}
+
+.field input,
+.field select {
+width: 100%;
+min-width: 0;
+background: #0a1220;
+color: var(--text);
+border: 1px solid var(--border);
+border-radius: 5px;
+padding: 8px;
+font: inherit;
+outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+border-color: var(--blue);
+}
+
+.row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+}
+
+.order-btn {
+width: 100%;
+padding: 10px;
+border: 0;
+border-radius: 5px;
+font-weight: 800;
 cursor: pointer;
 }
-button:hover { background: #55e6a5; }
-.result {
-margin-top: 14px;
-padding: 12px;
-border-radius: 7px;
-background: #202e47;
-overflow-wrap: anywhere;
-line-height: 1.8;
+
+.order-btn.buy {
+background: var(--green);
+color: #05251f;
 }
-.muted { color: #a9b8d3; }
-.chart {
+
+.order-btn.sell {
+background: var(--red);
+color: #300a13;
+}
+
+.note {
+font-size: 10px;
+color: var(--muted);
+line-height: 1.5;
+}
+
+.warning {
+padding: 8px;
+border: 1px solid #66552b;
+background: #2a2416;
+border-radius: 5px;
+color: #f1d48a;
+font-size: 10px;
+margin-bottom: 9px;
+}
+
+.chart-tools {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.symbol {
+font-size: 12px;
+color: var(--blue);
+font-weight: 800;
+}
+
+.chart-frame {
+flex: 1;
+min-height: 0;
+background: #0b1220;
+}
+
+.chart-frame iframe {
 width: 100%;
-height: 520px;
+height: 100%;
 border: 0;
-border-radius: 8px;
-background: #131e32;
 }
-footer {
+
+.ticker-list {
+overflow: auto;
+flex: 1;
+}
+
+.ticker-row {
+display: grid;
+grid-template-columns: 24px 1fr auto;
+align-items: center;
+gap: 8px;
+padding: 9px 10px;
+border-bottom: 1px solid #1c293c;
+}
+
+.coin-icon {
+height: 23px;
+width: 23px;
+border-radius: 50%;
+background: #1b2b45;
+display: grid;
+place-items: center;
+font-size: 10px;
+font-weight: 800;
+color: #cbd9f0;
+}
+
+.coin-name {
+font-weight: 750;
+font-size: 11px;
+}
+
+.coin-pair {
+font-size: 9px;
+color: var(--muted);
+}
+
+.coin-price {
+text-align: right;
+font-variant-numeric: tabular-nums;
+font-weight: 700;
+font-size: 11px;
+}
+
+.coin-change {
+text-align: right;
+font-size: 10px;
+margin-top: 2px;
+}
+
+.calc-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+}
+
+.metric {
+background: #0b1321;
+border: 1px solid #1e2b40;
+padding: 9px;
+border-radius: 6px;
+}
+
+.metric label {
+display: block;
+color: var(--muted);
+font-size: 10px;
+}
+
+.metric strong {
+display: block;
+font-size: 15px;
+margin-top: 3px;
+}
+
+.metric small {
+color: var(--muted);
+font-size: 9px;
+}
+
+.section-label {
+font-size: 10px;
+text-transform: uppercase;
+color: var(--muted);
+letter-spacing: .7px;
+margin: 10px 0 6px;
+}
+
+.table-wrap {
+overflow: auto;
+flex: 1;
+}
+
+.table {
+width: 100%;
+border-collapse: collapse;
+white-space: nowrap;
+font-size: 11px;
+}
+
+.table th {
+color: var(--muted);
+font-weight: 600;
+text-align: left;
+background: #0d1524;
+position: sticky;
+top: 0;
+}
+
+.table th,
+.table td {
+padding: 9px 10px;
+border-bottom: 1px solid #1c293c;
+}
+
+.empty {
 text-align: center;
-padding: 24px;
-color: #a9b8d3;
-border-top: 1px solid #263550;
+color: var(--muted);
+padding: 22px 10px !important;
 }
-@media (max-width: 500px) {
-main { padding: 12px; }
-header { padding: 16px; }
-.chart { height: 420px; }
+
+.small-btn {
+padding: 4px 7px;
+font-size: 10px;
+}
+
+.bubble-frame {
+flex: 1;
+min-height: 0;
+background: #0b1220;
+}
+
+.bubble-frame iframe {
+width: 100%;
+height: 100%;
+border: 0;
+}
+
+.footer {
+height: 23px;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 13px;
+color: #71819a;
+font-size: 9px;
+border-top: 1px solid #182438;
+background: #0a101c;
+}
+
+@media (max-width: 1050px) {
+body {
+overflow: auto;
+}
+
+.app {
+height: auto;
+min-height: 100vh;
+}
+
+.topstats {
+gap: 10px;
+}
+
+.main {
+grid-template-columns:
+minmax(220px, 1fr)
+minmax(300px, 1.4fr);
+grid-template-rows: 420px 320px 300px 280px;
+}
+
+.order-panel {
+grid-column: 1;
+grid-row: 1;
+}
+
+.chart-panel {
+grid-column: 2;
+grid-row: 1;
+}
+
+.right-top {
+grid-column: 1;
+grid-row: 2;
+}
+
+.risk-panel {
+grid-column: 2;
+grid-row: 2;
+}
+
+.history-panel {
+grid-column: 1 / span 2;
+grid-row: 3;
+}
+
+.bubbles-panel {
+grid-column: 1 / span 2;
+grid-row: 4;
+}
+
+.footer {
+position: static;
+}
+}
+
+@media (max-width: 650px) {
+.topbar {
+height: auto;
+min-height: 58px;
+flex-wrap: wrap;
+padding: 10px;
+}
+
+.brand {
+min-width: 0;
+}
+
+.topstats {
+display: none;
+}
+
+.main {
+display: flex;
+flex-direction: column;
+}
+
+.panel {
+min-height: 280px;
+}
+
+.chart-panel {
+height: 420px;
+order: 0;
+}
+
+.order-panel {
+order: 1;
+}
+
+.right-top {
+height: 330px;
+order: 2;
+}
+
+.risk-panel {
+order: 3;
+}
+
+.history-panel {
+height: 300px;
+order: 4;
+}
+
+.bubbles-panel {
+height: 320px;
+order: 5;
+}
+
+.footer {
+gap: 8px;
+height: auto;
+padding: 7px;
+flex-wrap: wrap;
+}
 }
 </style>
 </head>
+
 <body>
-<header>
-<h1>Crypto Trading Bangla</h1>
-<p>ক্রিপ্টো মার্কেট, চার্ট ও ট্রেডিং হিসাব — এক জায়গায়</p>
+<div class="app">
+
+<header class="topbar">
+<div class="brand">
+<div class="logo">₿</div>
+<div>
+<strong>CRYPTO TERMINAL</strong>
+<small>TRADING BANGLA • PERSONAL DESK</small>
+</div>
+</div>
+
+<div class="status">
+<span class="dot"></span>
+<span id="connection">Connecting to Binance public market…</span>
+</div>
+
+<div class="topstats">
+<div class="stat">
+<label>BTC / USDT</label>
+<strong id="topBtc">Loading…</strong>
+</div>
+<div class="stat">
+<label>ETH / USDT</label>
+<strong id="topEth">Loading…</strong>
+</div>
+<div class="stat">
+<label>MODE</label>
+<strong class="up">PAPER TRADING</strong>
+</div>
+</div>
+
+<button class="btn" id="refreshBtn">↻ Refresh</button>
 </header>
 
-<nav>
-<a href="#market">Market</a>
-<a href="#chart">Live Chart</a>
-<a href="#calculator">Calculator</a>
-<a href="#risk">Risk Management</a>
-</nav>
+<main class="main">
 
-<main>
-<section class="card" id="market">
-<h2>Crypto Market</h2>
-<p class="muted">লাইভ মার্কেটের তথ্য দেখতে নিচের চার্ট ব্যবহার করো।</p>
-<div class="grid">
-<div>
-<strong>Bitcoin (BTC)</strong>
-<p class="muted">BTCUSDT মার্কেট চার্ট</p>
+<section class="panel order-panel">
+<div class="panel-head">
+<span>Order Panel</span>
+<span class="sub">Simulation only</span>
 </div>
-<div>
-<strong>Altcoins</strong>
-<p class="muted">বিভিন্ন কয়েনের চার্ট নির্বাচন করা যাবে।</p>
+
+<div class="panel-body">
+
+<div class="warning">
+Paper Trading mode: orders are simulated.
+No real funds or Binance account are connected.
 </div>
+
+<div class="tabs">
+<button id="buyTab" class="active buy" type="button">
+BUY / LONG
+</button>
+<button id="sellTab" type="button">
+SELL / SHORT
+</button>
+</div>
+
+<div class="row">
+<div class="field">
+<label>Symbol</label>
+<select id="orderSymbol">
+<option>BTCUSDT</option>
+<option>ETHUSDT</option>
+<option>BNBUSDT</option>
+<option>SOLUSDT</option>
+<option>XRPUSDT</option>
+<option>DOGEUSDT</option>
+<option>ADAUSDT</option>
+<option>AVAXUSDT</option>
+<option>LINKUSDT</option>
+<option>TRXUSDT</option>
+</select>
+</div>
+
+<div class="field">
+<label>Order type</label>
+<select id="orderType">
+<option>Market</option>
+<option>Limit</option>
+</select>
+</div>
+</div>
+
+<div class="field">
+<label>Price (USDT) — Market uses latest price</label>
+<input
+id="orderPrice"
+type="number"
+min="0"
+step="any"
+placeholder="Auto from market"
+>
+</div>
+
+<div class="field">
+<label>Quantity (coin)</label>
+<input
+id="orderQty"
+type="number"
+min="0"
+step="any"
+placeholder="e.g. 0.001"
+>
+</div>
+
+<div class="row">
+<div class="field">
+<label>Leverage (simulation)</label>
+<select id="orderLeverage">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>5</option>
+<option>10</option>
+<option>20</option>
+</select>
+</div>
+
+<div class="field">
+<label>Est. order value</label>
+<input id="orderValue" readonly placeholder="—">
+</div>
+</div>
+
+<button id="submitOrder" class="order-btn buy">
+SIMULATE BUY
+</button>
+
+<p class="note" style="margin-top:9px">
+Limit orders are recorded as simulated limit orders; they are not
+sent to an exchange. Check position size and stop loss before any
+real trade.
+</p>
+
 </div>
 </section>
-  <div class="card" id="binance-market">
-<h2>Binance Live Market</h2>
-<input
-id="coinSearch"
-type="text"
-placeholder="কয়েন খুঁজুন, যেমন BTC, ETH, SOL..."
-oninput="filterCoins()"
->
-<p id="marketStatus" class="muted">মার্কেট ডেটা লোড হচ্ছে...</p>
-<div style="overflow-x:auto">
-<table style="width:100%;border-collapse:collapse;text-align:left">
-<thead>
-<tr>
-<th style="padding:10px">Coin</th>
-<th style="padding:10px">Price (USDT)</th>
-<th style="padding:10px">24h Change</th>
-</tr>
-</thead>
-<tbody id="coinRows"></tbody>
-</table>
+
+<section class="panel chart-panel">
+<div class="panel-head">
+<span>
+Advanced Chart
+<span class="symbol" id="chartSymbol">BTCUSDT</span>
+</span>
+
+<div class="chart-tools">
+<span class="sub">TradingView</span>
+<button class="btn small-btn" id="openChart">Open ↗</button>
 </div>
 </div>
 
-<script>
-let liveCoins = [];
-
-async function loadBinanceMarket() {
-const status = document.getElementById("marketStatus");
-
-try {
-const response = await fetch(
-"https://api.binance.com/api/v3/ticker/24hr"
-);
-
-if (!response.ok) throw new Error("API unavailable");
-
-const data = await response.json();
-
-liveCoins = data
-.filter(c => c.symbol.endsWith("USDT"))
-.filter(c => Number(c.lastPrice) > 0)
-.sort((a, b) => Number(b.quoteVolume) - Number(a.quoteVolume));
-
-status.textContent =
-"লাইভ ডেটা পাওয়া গেছে • আপডেট: " +
-new Date().toLocaleTimeString();
-
-filterCoins();
-} catch (error) {
-status.textContent =
-"ডেটা লোড হয়নি। ইন্টারনেট বা Binance API সংযোগ পরীক্ষা করুন।";
-}
-}
-
-function filterCoins() {
-const query = document.getElementById("coinSearch")
-.value.trim().toUpperCase();
-
-const filtered = liveCoins
-.filter(c => c.symbol.includes(query))
-.slice(0, 100);
-
-document.getElementById("coinRows").innerHTML =
-filtered.map(c => {
-const change = Number(c.priceChangePercent);
-const color = change >= 0 ? "#55e6a5" : "#ff7070";
-const coin = c.symbol.replace(/USDT$/, "");
-
-return `<tr style="border-top:1px solid #263550">
-<td style="padding:10px">
-<strong>${coin}</strong>
-</td>
-<td style="padding:10px">${Number(c.lastPrice).toPrecision(8)}</td>
-<td style="padding:10px;color:${color}">
-${change >= 0 ? "+" : ""}${change.toFixed(2)}%
-</td>
-</tr>`;
-}).join("");
-
-if (!filtered.length && liveCoins.length) {
-document.getElementById("coinRows").innerHTML =
-'<tr><td colspan="3" style="padding:10px">কোনো কয়েন পাওয়া যায়নি।</td></tr>';
-}
-}
-
-loadBinanceMarket();
-setInterval(loadBinanceMarket, 30000);
-</script>
-
-
-<section class="card" id="chart">
-<h2>Live TradingView Chart</h2>
-<label for="symbol">কয়েন নির্বাচন করো</label>
-<select id="symbol" onchange="changeChart()">
-<option value="BINANCE:BTCUSDT">Bitcoin (BTC)</option>
-<option value="BINANCE:ETHUSDT">Ethereum (ETH)</option>
-<option value="BINANCE:BNBUSDT">BNB</option>
-<option value="BINANCE:SOLUSDT">Solana (SOL)</option>
-<option value="BINANCE:XRPUSDT">XRP</option>
-<option value="BINANCE:DOGEUSDT">Dogecoin (DOGE)</option>
-<option value="BINANCE:SUIUSDT">SUI</option>
-<option value="BINANCE:APTUSDT">Aptos (APT)</option>
-</select>
-<div style="margin-top:16px">
-<iframe id="chartFrame" class="chart"
-title="TradingView Crypto Chart"
-src="https://s.tradingview.com/widgetembed/?frameElementId=tvchart&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=0&symboledit=1&saveimage=1&toolbarbg=131e32&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&studies=%5B%5D"
-allowfullscreen>
+<div class="chart-frame">
+<iframe
+id="tradingView"
+title="TradingView Advanced Chart"
+loading="lazy"
+allowtransparency="true"
+src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_widget&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=0&symboledit=1&saveimage=1&toolbarbg=0b1220&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&studies=%5B%5D&locale=en">
 </iframe>
 </div>
 </section>
 
-<section class="card" id="calculator">
-<h2>Trade Calculator</h2>
-<p class="muted">Entry, Stop Loss ও Take Profit দিয়ে সম্ভাব্য লাভ-ক্ষতি হিসাব করো।</p>
+<section class="panel right-top">
+<div class="panel-head">
+<span>Live Market Ticker</span>
+<span class="sub">Binance • 10 pairs</span>
+</div>
 
-<label for="side">Trade Direction</label>
-<select id="side">
-<option value="long">Long</option>
-<option value="short">Short</option>
-</select>
-
-<label for="entry">Entry Price (USDT)</label>
-<input id="entry" type="number" min="0" step="any" placeholder="যেমন 1.25">
-
-<label for="sl">Stop Loss Price</label>
-<input id="sl" type="number" min="0" step="any" placeholder="যেমন 1.20">
-
-<label for="tp">Take Profit Price</label>
-<input id="tp" type="number" min="0" step="any" placeholder="যেমন 1.40">
-
-<label for="capital">Position Size (USDT)</label>
-<input id="capital" type="number" min="0" step="any" placeholder="যেমন 50">
-
-<button onclick="calculateTrade()">Calculate Trade</button>
-<div id="tradeResult" class="result" aria-live="polite">
-তোমার ট্রেডের হিসাব এখানে দেখাবে।
+<div class="ticker-list" id="tickerList">
+<div class="empty">Loading live prices…</div>
 </div>
 </section>
 
-<section class="card" id="risk">
-<h2>Risk Management Calculator</h2>
-
-<label for="balance">Account Balance (USDT)</label>
-<input id="balance" type="number" min="0" step="any" placeholder="যেমন 50">
-
-<label for="riskPercent">Risk per Trade (%)</label>
-<input id="riskPercent" type="number" min="0.01" max="100" step="any" value="1">
-
-<label for="stopPercent">Stop Loss Distance (%)</label>
-<input id="stopPercent" type="number" min="0.01" max="100" step="any" placeholder="যেমন 2">
-
-<button onclick="calculateRisk()">Calculate Position Size</button>
-<div id="riskResult" class="result" aria-live="polite">
-তোমার ঝুঁকি ও পজিশন সাইজ এখানে দেখাবে।
+<section class="panel risk-panel">
+<div class="panel-head">
+<span>Risk & Position Size</span>
+<span class="sub">USDT</span>
 </div>
-</section>
 
-<section class="card">
-<h2>Risk Warning</h2>
-<p class="muted">
-ক্রিপ্টো ট্রেডিংয়ে মূলধন হারানোর ঝুঁকি আছে।
-Futures-এ leverage ব্যবহার করলে ক্ষতি দ্রুত বাড়তে পারে।
-এই ক্যালকুলেটর আনুমানিক হিসাব দেয়; ফি, funding ও slippage এতে অন্তর্ভুক্ত নয়।
-এটি আর্থিক পরামর্শ নয়।
+<div class="panel-body">
+
+<div class="row">
+<div class="field">
+<label>Account balance ($)</label>
+<input
+id="balance"
+type="number"
+min="0"
+step="any"
+value="50"
+>
+</div>
+
+<div class="field">
+<label>Risk (%)</label>
+<input
+id="riskPercent"
+type="number"
+min="0"
+max="100"
+step="any"
+value="1"
+>
+</div>
+</div>
+
+<div class="row">
+<div class="field">
+<label>Entry price ($)</label>
+<input
+id="entryPrice"
+type="number"
+min="0"
+step="any"
+placeholder="e.g. 100"
+>
+</div>
+
+<div class="field">
+<label>Stop loss ($)</label>
+<input
+id="stopPrice"
+type="number"
+min="0"
+step="any"
+placeholder="e.g. 98"
+>
+</div>
+</div>
+
+<div class="calc-grid">
+<div class="metric">
+<label>Total risk</label>
+<strong id="riskCash">$0.50</strong>
+<small>Maximum planned loss</small>
+</div>
+
+<div class="metric">
+<label>Position size</label>
+<strong id="positionQty">—</strong>
+<small>Coin quantity</small>
+</div>
+
+<div class="metric">
+<label>Position value</label>
+<strong id="positionValue">—</strong>
+<small>Notional value</small>
+</div>
+
+<div class="metric">
+<label>Leverage needed*</label>
+<strong id="neededLeverage">—</strong>
+<small>*Based on balance</small>
+</div>
+</div>
+
+<p class="note" style="margin-top:9px">
+Formula: risk amount ÷ |entry − stop loss| = quantity.
+Estimated leverage = position value ÷ account balance.
+Fees, slippage and funding are excluded.
 </p>
+
+</div>
 </section>
+
+<section class="panel history-panel">
+<div class="panel-head">
+<span>Open Positions & Order History</span>
+<button class="btn small-btn" id="clearHistory">
+Clear paper history
+</button>
+</div>
+
+<div class="table-wrap">
+<table class="table">
+<thead>
+<tr>
+<th>TIME</th>
+<th>SYMBOL</th>
+<th>SIDE</th>
+<th>TYPE</th>
+<th>QTY</th>
+<th>PRICE</th>
+<th>VALUE</th>
+<th>STATUS</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody id="historyBody">
+<tr>
+<td colspan="9" class="empty">
+No paper orders yet. Simulate an order to begin.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="panel bubbles-panel">
+<div class="panel-head">
+<span>Crypto Bubbles</span>
+<a
+href="https://cryptobubbles.net/"
+target="_blank"
+rel="noopener noreferrer"
+class="sub"
+>
+Open site ↗
+</a>
+</div>
+
+<div class="bubble-frame">
+<iframe
+title="Crypto Bubbles market visualization"
+loading="lazy"
+src="https://cryptobubbles.net/"
+referrerpolicy="no-referrer">
+</iframe>
+</div>
+</section>
+
 </main>
 
-<footer>
-Crypto Trading Bangla · Learn · Analyze · Manage Risk
+<footer class="footer">
+<span>PERSONAL CRYPTO TERMINAL • Public market data only</span>
+<span>Not financial advice • Paper orders are not real exchange orders</span>
+<span id="lastUpdate">Waiting for market data</span>
 </footer>
 
+</div>
+
 <script>
-function changeChart() {
-const symbol = document.getElementById("symbol").value;
-const url = "https://s.tradingview.com/widgetembed/?frameElementId=tvchart"
-+ "&symbol=" + encodeURIComponent(symbol)
-+ "&interval=15&hidesidetoolbar=0&symboledit=1&saveimage=1"
-+ "&toolbarbg=131e32&theme=dark&style=1&timezone=Etc%2FUTC"
-+ "&withdateranges=1&hideideas=1";
-document.getElementById("chartFrame").src = url;
+const pairs = [
+'BTCUSDT',
+'ETHUSDT',
+'BNBUSDT',
+'SOLUSDT',
+'XRPUSDT',
+'DOGEUSDT',
+'ADAUSDT',
+'AVAXUSDT',
+'LINKUSDT',
+'TRXUSDT'
+];
+
+const icons = {
+BTC: '₿',
+ETH: 'Ξ',
+BNB: '◆',
+SOL: '◎',
+XRP: 'X',
+DOGE: 'Ð',
+ADA: 'A',
+AVAX: '▲',
+LINK: '⬡',
+TRX: 'T'
+};
+
+const prices = {};
+
+let side = 'BUY';
+let orders = [];
+let ws = null;
+let reconnectTimer = null;
+
+const $ = id => document.getElementById(id);
+
+const fmt = (n, d = 2) =>
+Number.isFinite(Number(n))
+? Number(n).toLocaleString('en-US', {
+minimumFractionDigits: d,
+maximumFractionDigits: d
+})
+: '—';
+
+const money = n =>
+Number.isFinite(Number(n))
+? '$' + fmt(n, 2)
+: '—';
+
+
+function renderTicker() {
+$('tickerList').innerHTML = pairs.map(p => {
+const base = p.replace('USDT', '');
+const v = prices[p] || {};
+const change = Number(v.change || 0);
+
+return `
+<div class="ticker-row">
+<div class="coin-icon">${icons[base] || base[0]}</div>
+
+<div>
+<div class="coin-name">${base}</div>
+<div class="coin-pair">${p}</div>
+</div>
+
+<div>
+<div class="coin-price">
+${
+v.price
+? fmt(v.price, v.price < 1 ? 5 : 2)
+: 'Connecting…'
+}
+</div>
+
+<div class="coin-change ${change >= 0 ? 'up' : 'down'}">
+${
+v.price
+? (change >= 0 ? '+' : '') + fmt(change, 2) + '%'
+: '—'
+}
+</div>
+</div>
+</div>
+`;
+}).join('');
+
+$('topBtc').textContent = prices.BTCUSDT?.price
+? '$' + fmt(prices.BTCUSDT.price, 2)
+: 'Loading…';
+
+$('topEth').textContent = prices.ETHUSDT?.price
+? '$' + fmt(prices.ETHUSDT.price, 2)
+: 'Loading…';
+
+$('lastUpdate').textContent =
+'Updated ' + new Date().toLocaleTimeString();
+
+updateOrderValue();
 }
 
-function numberValue(id) {
-return Number(document.getElementById(id).value);
+
+async function fetchPrices() {
+try {
+const r = await fetch(
+'https://api.binance.com/api/v3/ticker/24hr?symbols=' +
+encodeURIComponent(JSON.stringify(pairs))
+);
+
+if (!r.ok) {
+throw new Error('HTTP ' + r.status);
 }
 
-function calculateTrade() {
-const entry = numberValue("entry");
-const sl = numberValue("sl");
-const tp = numberValue("tp");
-const size = numberValue("capital");
-const side = document.getElementById("side").value;
-const result = document.getElementById("tradeResult");
+const data = await r.json();
 
-if (![entry, sl, tp, size].every(Number.isFinite) ||
-entry <= 0 || sl <= 0 || tp <= 0 || size <= 0) {
-result.textContent = "সঠিক Entry, SL, TP এবং Position Size দাও।";
+data.forEach(x => {
+prices[x.symbol] = {
+price: Number(x.lastPrice),
+change: Number(x.priceChangePercent)
+};
+});
+
+renderTicker();
+
+$('connection').textContent =
+'Binance public market connected';
+
+$('connection').previousElementSibling.style.background =
+'var(--green)';
+
+} catch (e) {
+$('connection').textContent =
+'REST market data unavailable — retrying';
+}
+}
+
+
+function connectWS() {
+try {
+if (ws) {
+ws.close();
+}
+
+const streams = pairs
+.map(p => p.toLowerCase() + '@ticker')
+.join('/');
+
+ws = new WebSocket(
+'wss://stream.binance.com:9443/stream?streams=' + streams
+);
+
+ws.onopen = () => {
+$('connection').textContent = 'Binance WebSocket live';
+};
+
+ws.onmessage = e => {
+try {
+const msg = JSON.parse(e.data).data;
+
+if (msg?.s) {
+prices[msg.s] = {
+price: Number(msg.c),
+change: Number(msg.P)
+};
+
+renderTicker();
+}
+} catch (_) {}
+};
+
+ws.onerror = () => {
+$('connection').textContent = 'WebSocket reconnecting';
+};
+
+ws.onclose = () => {
+clearTimeout(reconnectTimer);
+
+reconnectTimer = setTimeout(connectWS, 5000);
+};
+
+} catch (e) {
+setTimeout(connectWS, 5000);
+}
+}
+
+
+function calcRisk() {
+const bal = Number($('balance').value);
+const pct = Number($('riskPercent').value);
+const entry = Number($('entryPrice').value);
+const stop = Number($('stopPrice').value);
+
+const risk = bal * pct / 100;
+const dist = Math.abs(entry - stop);
+
+const qty =
+entry > 0 && stop > 0 && dist > 0 && bal > 0
+? risk / dist
+: NaN;
+
+const val = qty * entry;
+const lev = val / bal;
+
+$('riskCash').textContent =
+money(Number.isFinite(risk) ? risk : 0);
+
+$('positionQty').textContent =
+Number.isFinite(qty) ? fmt(qty, 6) : '—';
+
+$('positionValue').textContent =
+Number.isFinite(val) ? money(val) : '—';
+
+$('neededLeverage').textContent =
+Number.isFinite(lev) ? fmt(lev, 2) + '×' : '—';
+}
+
+
+[
+'balance',
+'riskPercent',
+'entryPrice',
+'stopPrice'
+].forEach(id => {
+$(id).addEventListener('input', calcRisk);
+});
+
+
+function updateOrderValue() {
+const p = $('orderSymbol').value;
+
+const price =
+$('orderType').value === 'Market'
+? (prices[p]?.price || 0)
+: Number($('orderPrice').value);
+
+const qty = Number($('orderQty').value);
+
+$('orderValue').value =
+price > 0 && qty > 0
+? money(price * qty)
+: '—';
+}
+
+
+[
+'orderSymbol',
+'orderType',
+'orderPrice',
+'orderQty',
+'orderLeverage'
+].forEach(id => {
+$(id).addEventListener('input', updateOrderValue);
+});
+
+
+$('orderType').addEventListener('change', () => {
+$('orderPrice').disabled =
+$('orderType').value === 'Market';
+
+updateOrderValue();
+});
+
+
+function setSide(s) {
+side = s;
+
+$('buyTab').className =
+s === 'BUY' ? 'active buy' : '';
+
+$('sellTab').className =
+s === 'SELL' ? 'active sell' : '';
+
+$('submitOrder').className =
+'order-btn ' + (s === 'BUY' ? 'buy' : 'sell');
+
+$('submitOrder').textContent =
+'SIMULATE ' + s;
+}
+
+
+$('buyTab').onclick = () => setSide('BUY');
+$('sellTab').onclick = () => setSide('SELL');
+
+
+$('orderSymbol').addEventListener('change', () => {
+const s = $('orderSymbol').value;
+
+$('chartSymbol').textContent = s;
+
+const tv = $('tradingView');
+
+tv.src =
+'https://s.tradingview.com/widgetembed/?' +
+'frameElementId=tradingview_widget' +
+'&symbol=BINANCE%3A' + encodeURIComponent(s) +
+'&interval=15' +
+'&hidesidetoolbar=0' +
+'&symboledit=1' +
+'&saveimage=1' +
+'&toolbarbg=0b1220' +
+'&theme=dark' +
+'&style=1' +
+'&timezone=Etc%2FUTC' +
+'&withdateranges=1' +
+'&hideideas=1' +
+'&locale=en';
+
+updateOrderValue();
+});
+
+
+$('openChart').onclick = () => {
+window.open(
+'https://www.tradingview.com/chart/?symbol=BINANCE%3A' +
+encodeURIComponent($('orderSymbol').value),
+'_blank',
+'noopener'
+);
+};
+
+
+function renderOrders() {
+const body = $('historyBody');
+
+if (!orders.length) {
+body.innerHTML = `
+<tr>
+<td colspan="9" class="empty">
+No paper orders yet. Simulate an order to begin.
+</td>
+</tr>
+`;
+
 return;
 }
 
-const valid = side === "long"
-? sl < entry && tp > entry
-: sl > entry && tp < entry;
+body.innerHTML = orders.map(o => `
+<tr>
+<td>${o.time}</td>
+<td><b>${o.symbol}</b></td>
+<td class="${o.side === 'BUY' ? 'up' : 'down'}">
+${o.side}
+</td>
+<td>${o.type}</td>
+<td>${fmt(o.qty, 6)}</td>
+<td>${fmt(o.price, o.price < 1 ? 6 : 2)}</td>
+<td>${money(o.value)}</td>
+<td>${o.type === 'Limit' ? 'PAPER LIMIT' : 'SIMULATED'}</td>
+<td>
+<button class="btn small-btn" data-remove="${o.id}">
+Remove
+</button>
+</td>
+</tr>
+`).join('');
 
-if (!valid) {
-result.textContent = "Long হলে SL Entry-এর নিচে ও TP ওপরে দাও। Short হলে উল্টো হবে।";
+body.querySelectorAll('[data-remove]').forEach(b => {
+b.onclick = () => {
+orders = orders.filter(
+o => o.id !== Number(b.dataset.remove)
+);
+
+renderOrders();
+};
+});
+}
+
+
+$('submitOrder').onclick = () => {
+const symbol = $('orderSymbol').value;
+const type = $('orderType').value;
+const qty = Number($('orderQty').value);
+
+const price =
+type === 'Market'
+? (prices[symbol]?.price || 0)
+: Number($('orderPrice').value);
+
+if (!(qty > 0)) {
+alert('Please enter a quantity greater than zero.');
 return;
 }
 
-const quantity = size / entry;
-const loss = Math.abs(entry - sl) * quantity;
-const profit = Math.abs(tp - entry) * quantity;
-const rr = profit / loss;
+if (!(price > 0)) {
+alert(
+type === 'Market'
+? 'Live market price is not available yet. Try again shortly.'
+: 'Please enter a valid limit price.'
+);
 
-result.innerHTML =
-"Coin Quantity: " + quantity.toFixed(6) +
-"<br>সম্ভাব্য ক্ষতি: " + loss.toFixed(4) + " USDT" +
-"<br>সম্ভাব্য লাভ: " + profit.toFixed(4) + " USDT" +
-"<br>Risk : Reward = 1 : " + rr.toFixed(2) +
-"<br><span class='muted'>ফি ও slippage বাদে; leverage ও liquidation আলাদাভাবে বিবেচনা করো।</span>";
-}
-
-function calculateRisk() {
-const balance = numberValue("balance");
-const riskPercent = numberValue("riskPercent");
-const stopPercent = numberValue("stopPercent");
-const result = document.getElementById("riskResult");
-
-if (![balance, riskPercent, stopPercent].every(Number.isFinite) ||
-balance <= 0 || riskPercent <= 0 || riskPercent > 100 ||
-stopPercent <= 0 || stopPercent > 100) {
-result.textContent = "Balance এবং বৈধ Risk ও Stop Loss শতাংশ দাও।";
 return;
 }
 
-const riskAmount = balance * riskPercent / 100;
-const positionSize = riskAmount / (stopPercent / 100);
+const order = {
+id: Date.now(),
+time: new Date().toLocaleTimeString(),
+symbol,
+side,
+type,
+qty,
+price,
+value: qty * price
+};
 
-result.innerHTML =
-"সর্বোচ্চ পরিকল্পিত ঝুঁকি: " + riskAmount.toFixed(4) + " USDT" +
-"<br>আনুমানিক Position Size: " + positionSize.toFixed(4) + " USDT" +
-"<br><span class='muted'>এই হিসাব ফি বাদে। এটি margin নয়, position-এর মোট মূল্য; leverage অনুযায়ী margin আলাদা হবে।</span>";
+orders.unshift(order);
+
+renderOrders();
+
+$('orderQty').value = '';
+
+updateOrderValue();
+};
+
+
+$('clearHistory').onclick = () => {
+if (confirm('Clear all simulated paper orders?')) {
+orders = [];
+renderOrders();
 }
+};
+
+
+$('refreshBtn').onclick = () => {
+fetchPrices();
+updateOrderValue();
+};
+
+
+calcRisk();
+
+$('orderPrice').disabled = true;
+
+fetchPrices();
+connectWS();
+
+setInterval(fetchPrices, 30000);
 </script>
+
 </body>
 </html>
