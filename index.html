@@ -122,7 +122,23 @@ autocomplete="off"
  <div class="panel-head"><span>Risk & Position Size</span><span class="sub">USDT</span></div>
  <div class="panel-body">
   <div class="row"><div class="field"><label>Account balance ($)</label><input id="balance" type="number" min="0" step="any" value="50"></div><div class="field"><label>Risk (%)</label><input id="riskPercent" type="number" min="0" max="100" step="any" value="1"></div></div>
-  <div class="row"><div class="field"><label>Entry price ($)</label><input id="entryPrice" type="number" min="0" step="any" placeholder="e.g. 100"></div><div class="field"><label>Stop loss ($)</label><input id="stopPrice" type="number" min="0" step="any" placeholder="e.g. 98"></div></div>
+  <div class="row">
+<div class="field">
+<label>Entry price ($)</label>
+<input id="entryPrice" type="number" min="0" step="any" placeholder="e.g. 100">
+</div>
+<div class="field">
+<label>Stop loss ($)</label>
+<input id="stopPrice" type="number" min="0" step="any" placeholder="e.g. 98">
+</div>
+</div>
+<div class="row">
+<div class="field">
+<label>Take Profit Price ($)</label>
+<input id="targetPrice" type="number" min="0" step="any" placeholder="e.g. 106">
+</div>
+</div>
+
   <div class="calc-grid"><div class="metric"><label>Total risk</label><strong id="riskCash">$0.50</strong><small>Maximum planned loss</small></div><div class="metric"><label>Position size</label><strong id="positionQty">—</strong><small>Coin quantity</small></div><div class="metric"><label>Position value</label><strong id="positionValue">—</strong><small>Notional value</small></div><div class="metric"><label>Leverage needed*</label><strong id="neededLeverage">—</strong><small>*Based on balance</small></div></div>
   <p class="note" style="margin-top:9px">Formula: risk amount ÷ |entry − stop loss| = quantity. Estimated leverage = position value ÷ account balance. Fees, slippage and funding are excluded.</p>
  </div>
