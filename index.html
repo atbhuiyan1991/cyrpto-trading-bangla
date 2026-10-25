@@ -45,6 +45,37 @@ body{overflow:auto}.app{height:100dvh;min-height:560px;display:flex;flex-directi
 .bubble-frame{flex:1;min-height:0;background:#0b1220}.bubble-frame iframe{width:100%;height:100%;border:0}.footer{height:23px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 13px;color:#71819a;font-size:9px;border-top:1px solid #182438;background:#0a101c}
 @media(max-width:1050px){body{overflow:auto}.app{height:auto;min-height:100vh}.topstats{gap:10px}.main{grid-template-columns:minmax(0,2fr) minmax(240px,1fr);grid-template-rows:minmax(380px,55vh) minmax(280px,40vh)}.chart-panel{grid-column:1;grid-row:1}.right-top{grid-column:2;grid-row:1}.risk-panel{grid-column:2;grid-row:2}.bubbles-panel{grid-column:1;grid-row:2}.footer{position:static}}
 @media(max-width:650px){.topbar{height:auto;min-height:58px;flex-wrap:wrap;padding:10px}.brand{min-width:0}.topstats{display:none}.main{display:flex;flex-direction:column}.panel{min-height:280px}.chart-panel{height:65vh;min-height:420px;order:0}.right-top{height:330px;order:1}.bubbles-panel{height:55vh;min-height:340px;order:2}.risk-panel{order:3}.footer{gap:8px;height:auto;padding:7px;flex-wrap:wrap}}
+.mover-search {
+position: relative;
+padding: 10px;
+}
+
+#moverSearchResults,
+#futuresSearchResults {
+max-height: 260px;
+overflow-y: auto;
+}
+
+#futuresCoinSearch {
+width: 100%;
+box-sizing: border-box;
+padding: 11px 12px;
+border: 1px solid #334155;
+border-radius: 8px;
+background: #0b1220;
+color: #ffffff;
+font-size: 14px;
+outline: none;
+}
+
+#futuresCoinSearch:focus {
+border-color: #3b82f6;
+}
+
+#futuresCoinSearch::placeholder {
+color: #94a3b8;
+}
+
 </style>
 </head>
 <body>
@@ -75,7 +106,16 @@ body{overflow:auto}.app{height:100dvh;min-height:560px;display:flex;flex-directi
 </section>
 <section class="panel right-top">
  <div class="panel-head"><span>Binance Market Movers</span><span class="sub">24h change</span></div>
- <div class="mover-tabs"><button class="btn active-gain" id="gainersTab" type="button">Top Gainers</button><button class="btn" id="losersTab" type="button">Top Losers</button></div>
+ <div class="mover-search">
+<input
+type="search"
+id="futuresCoinSearch"
+placeholder="Search Binance Futures (e.g. BTC, SOL)"
+autocomplete="off"
+>
+<div id="futuresSearchResults"></div>
+</div>
+   <div class="mover-tabs"><button class="btn active-gain" id="gainersTab" type="button">Top Gainers</button><button class="btn" id="losersTab" type="button">Top Losers</button></div>
  <div class="mover-list" id="moverList"><div class="empty">Loading Binance rankings…</div></div>
 </section>
 <section class="panel risk-panel">
@@ -172,7 +212,66 @@ $('submitOrder').onclick=()=>{
 };
 $('clearHistory').onclick=()=>{if(confirm('Clear all simulated paper orders?')){orders=[];renderOrders()}};
 $('refreshBtn').onclick=()=>{fetchPrices();fetchMovers();updateOrderValue()};
-calcRisk();$('orderPrice').disabled=true;fetchPrices();fetchMovers();connectWS();setInterval(fetchPrices,30000);setInterval(fetchMovers,60000);
+// Binance USD-M Futures coin search
+let futuresSymbols = [];
+
+async function loadFuturesSymbols() {
+try {
+const response = await fetch(
+'https://fapi.binance.com/fapi/v1/exchangeInfo'
+);
+if (!response.ok) throw new Error('Futures API unavailable');
+
+const data = await response.json();
+futuresSymbols = data.symbols.filter(s =>
+s.status === 'TRADING' &&
+s.quoteAsset === 'USDT' &&
+s.contractType === 'PERPETUAL'
+);
+
+renderFuturesSearch();
+} catch (error) {
+$('futuresSearchResults').innerHTML =
+'<div class="empty">Futures search unavailable. Please try again.</div>';
+}
+}
+
+function renderFuturesSearch() {
+const box = $('futuresSearchResults');
+const query = $('futuresCoinSearch').value.trim().toUpperCase();
+
+if (!query) {
+box.innerHTML = '';
+return;
+}
+
+const matches = futuresSymbols
+.filter(s => s.symbol.includes(query) || s.baseAsset.includes(query))
+.slice(0, 12);
+
+box.innerHTML = matches.length
+? matches.map(s =>
+`<button type="button" class="btn futures-result"
+data-futures-symbol="${s.symbol}"
+style="display:block;width:100%;text-align:left;margin-top:4px">
+${s.baseAsset} / USDT <span class="sub">${s.symbol}</span>
+</button>`
+).join('')
+: '<div class="empty">No matching USDT Futures pair found.</div>';
+
+box.querySelectorAll('[data-futures-symbol]').forEach(button => {
+button.onclick = () => {
+const symbol = button.dataset.futuresSymbol;
+setChartSymbol(symbol);
+$('futuresCoinSearch').value = symbol;
+box.innerHTML = '';
+};
+});
+}
+
+$('futuresCoinSearch').addEventListener('input', renderFuturesSearch);
+loadFuturesSymbols();
+   calcRisk();$('orderPrice').disabled=true;fetchPrices();fetchMovers();connectWS();setInterval(fetchPrices,30000);setInterval(fetchMovers,60000);
 </script>
 <section id="trading-journal" style="background:#111827;color:#f9fafb;padding:20px;margin:20px 0;border-radius:12px;font-family:Arial,sans-serif;">
 <h2>📒 Trading Journal</h2>
