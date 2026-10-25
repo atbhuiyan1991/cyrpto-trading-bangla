@@ -174,6 +174,216 @@ $('clearHistory').onclick=()=>{if(confirm('Clear all simulated paper orders?')){
 $('refreshBtn').onclick=()=>{fetchPrices();fetchMovers();updateOrderValue()};
 calcRisk();$('orderPrice').disabled=true;fetchPrices();fetchMovers();connectWS();setInterval(fetchPrices,30000);setInterval(fetchMovers,60000);
 </script>
+<section id="trading-journal" style="background:#111827;color:#f9fafb;padding:20px;margin:20px 0;border-radius:12px;font-family:Arial,sans-serif;">
+<h2>📒 Trading Journal</h2>
+<p>Record your trades and track your performance.</p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
+<label>Coin / Pair
+<input id="tj-coin" placeholder="BTCUSDT" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
+</label>
+<label>Market
+<select id="tj-market" style="display:block;width:100%;padding:10px;margin-top:5px;">
+<option>Futures</option>
+<option>Spot</option>
+</select>
+</label>
+<label>Direction
+<select id="tj-side" style="display:block;width:100%;padding:10px;margin-top:5px;">
+<option>Long</option>
+<option>Short</option>
+<option>Spot Buy</option>
+</select>
+</label>
+<label>Entry Price
+<input id="tj-entry" type="number" step="any" placeholder="0.00" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
+</label>
+<label>Exit Price
+<input id="tj-exit" type="number" step="any" placeholder="0.00" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
+</label>
+<label>Quantity (coin)
+<input id="tj-qty" type="number" step="any" placeholder="0.00" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
+</label>
+<label>Fees (USDT)
+<input id="tj-fees" type="number" min="0" step="any" value="0" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
+</label>
+<label>Notes
+<input id="tj-notes" placeholder="Trade reason / mistake" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
+</label>
+</div>
+
+<button id="tj-add" type="button" style="padding:12px 18px;margin:15px 8px 15px 0;background:#16a34a;color:white;border:0;border-radius:8px;cursor:pointer;">＋ Save Trade</button>
+<button id="tj-export" type="button" style="padding:12px 18px;background:#2563eb;color:white;border:0;border-radius:8px;cursor:pointer;">Export CSV</button>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;margin:15px 0;">
+<div>Total Trades: <strong id="tj-total">0</strong></div>
+<div>Net P&amp;L: <strong id="tj-pnl">0.00 USDT</strong></div>
+<div>Win Rate: <strong id="tj-winrate">0%</strong></div>
+</div>
+
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;min-width:750px;">
+<thead>
+<tr style="text-align:left;background:#1f2937;">
+<th style="padding:10px;">Date</th>
+<th style="padding:10px;">Pair</th>
+<th style="padding:10px;">Side</th>
+<th style="padding:10px;">Entry</th>
+<th style="padding:10px;">Exit</th>
+<th style="padding:10px;">Qty</th>
+<th style="padding:10px;">Net P&amp;L</th>
+<th style="padding:10px;">Notes / Action</th>
+</tr>
+</thead>
+<tbody id="tj-rows"></tbody>
+</table>
+</div>
+<p id="tj-status" role="status">Trades are saved in this browser.</p>
+</section>
+
+<script>
+(function () {
+const $ = id => document.getElementById(id);
+const key = 'cryptoTradingBanglaJournalV1';
+let trades = [];
+
+try {
+const saved = localStorage.getItem(key);
+trades = saved ? JSON.parse(saved) : [];
+if (!Array.isArray(trades)) trades = [];
+} catch (e) {
+trades = [];
+}
+
+function save() {
+try {
+localStorage.setItem(key, JSON.stringify(trades));
+$('tj-status').textContent = 'Saved in this browser.';
+return true;
+} catch (e) {
+$('tj-status').textContent = 'Could not save. Check browser storage settings.';
+return false;
+}
+}
+
+function cell(text) {
+const td = document.createElement('td');
+td.style.cssText = 'padding:10px;border-bottom:1px solid #374151;';
+td.textContent = text;
+return td;
+}
+
+function render() {
+const body = $('tj-rows');
+body.replaceChildren();
+let net = 0, wins = 0;
+
+trades.forEach((t, i) => {
+net += t.pnl;
+if (t.pnl > 0) wins++;
+
+const tr = document.createElement('tr');
+tr.append(
+cell(t.date),
+cell(t.coin),
+cell(t.side),
+cell(String(t.entry)),
+cell(String(t.exit)),
+cell(String(t.qty)),
+cell(t.pnl.toFixed(4) + ' USDT'),
+cell(t.notes)
+);
+
+const actionCell = document.createElement('td');
+actionCell.style.cssText = 'padding:10px;border-bottom:1px solid #374151;';
+const del = document.createElement('button');
+del.type = 'button';
+del.textContent = 'Delete';
+del.onclick = () => {
+if (!confirm('Delete this trade?')) return;
+trades.splice(i, 1);
+save();
+render();
+};
+actionCell.appendChild(del);
+tr.appendChild(actionCell);
+body.appendChild(tr);
+});
+
+$('tj-total').textContent = String(trades.length);
+$('tj-pnl').textContent = net.toFixed(4) + ' USDT';
+$('tj-winrate').textContent =
+(trades.length ? (wins / trades.length * 100).toFixed(1) : '0') + '%';
+}
+
+$('tj-add').addEventListener('click', () => {
+const coin = $('tj-coin').value.trim().toUpperCase();
+const market = $('tj-market').value;
+const side = $('tj-side').value;
+const entry = Number($('tj-entry').value);
+const exit = Number($('tj-exit').value);
+const qty = Number($('tj-qty').value);
+const fees = Number($('tj-fees').value || 0);
+const notes = $('tj-notes').value.trim();
+
+if (!coin || !Number.isFinite(entry) || entry <= 0 ||
+!Number.isFinite(exit) || exit <= 0 ||
+!Number.isFinite(qty) || qty <= 0 ||
+!Number.isFinite(fees) || fees < 0) {
+$('tj-status').textContent = 'Enter a pair, valid entry/exit prices, quantity and fees.';
+return;
+}
+
+let pnl;
+if (side === 'Short') {
+pnl = (entry - exit) * qty;
+} else {
+pnl = (exit - entry) * qty;
+}
+pnl -= fees;
+
+trades.unshift({
+date: new Date().toLocaleDateString(),
+coin: coin,
+market: market,
+side: side,
+entry: entry,
+exit: exit,
+qty: qty,
+fees: fees,
+pnl: pnl,
+notes: notes
+});
+
+save();
+render();
+$('tj-status').textContent = 'Trade added. Net P&L: ' + pnl.toFixed(4) + ' USDT';
+['tj-coin','tj-entry','tj-exit','tj-qty','tj-notes'].forEach(id => $(id).value = '');
+$('tj-fees').value = '0';
+});
+
+$('tj-export').addEventListener('click', () => {
+const header = ['Date','Pair','Market','Side','Entry','Exit','Quantity','Fees','Net P&L','Notes'];
+const rows = trades.map(t => [
+t.date,t.coin,t.market,t.side,t.entry,t.exit,t.qty,t.fees,t.pnl,t.notes
+]);
+const csv = [header, ...rows].map(row =>
+row.map(value => '"' + String(value).replace(/"/g, '""') + '"').join(',')
+).join('\r\n');
+
+const blob = new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8;'});
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = 'crypto-trading-journal.csv';
+a.click();
+URL.revokeObjectURL(url);
+});
+
+render();
+})();
+</script>
+
 </body>
 </html>
 Displaying index.html.
