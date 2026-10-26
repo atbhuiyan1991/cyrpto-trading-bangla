@@ -1,542 +1,145 @@
-None selected 
-
-Skip to content
-Using Gmail with screen readers
-Enable desktop notifications for Gmail.
-   OK  No thanks
-1 of 774
-index
-Inbox
-
-talab feni
-Attachments
-9:33 AM (0 minutes ago)
-to me
-
- One attachment
-  •  Scanned by Gmail
-index.html
-100%
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d18">
-<title>Crypto Trading Bangla | Personal Trading Terminal</title>
+<title>Crypto Trading Bangla - Hybrid Pro Terminal</title>
+<!-- Tailwind CSS for styling -->
+<script src="https://tailwindcss.com"></script>
+<!-- Chart.js for live-like trading chart -->
+<script src="https://jsdelivr.net"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com"></script>
 <style>
-:root{--bg:#080d18;--panel:#101827;--panel2:#0c1422;--border:#233149;--text:#e8eef8;--muted:#8c9bb3;--green:#20c997;--red:#ff6174;--blue:#5b9cff;--yellow:#f5c451}
-*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:13px/1.4 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
-body{overflow:auto}.app{height:100dvh;min-height:560px;display:flex;flex-direction:column}
-.topbar{height:58px;flex-shrink:0;display:flex;align-items:center;gap:18px;padding:0 16px;border-bottom:1px solid var(--border);background:#0b1220}
-.brand{display:flex;align-items:center;gap:10px;min-width:210px}.logo{height:32px;width:32px;border-radius:9px;background:linear-gradient(135deg,#5b9cff,#20c997);display:grid;place-items:center;color:#07101b;font-weight:900;font-size:16px}.brand strong{display:block;font-size:14px;letter-spacing:.4px}.brand small{color:var(--muted);font-size:10px;letter-spacing:1.4px}
-.status{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px}.dot{height:7px;width:7px;background:var(--green);border-radius:50%;box-shadow:0 0 8px #20c99788}
-.topstats{display:flex;gap:20px;margin-left:auto}.stat label{display:block;color:var(--muted);font-size:10px}.stat strong{font-size:12px}.up{color:var(--green)}.down{color:var(--red)}
-.btn{border:1px solid var(--border);background:#172238;color:var(--text);border-radius:6px;padding:8px 11px;cursor:pointer;font:inherit}.btn:hover{border-color:var(--blue)}.btn.primary{background:var(--blue);border-color:var(--blue);color:#06101f;font-weight:700}
-.main{flex:1;min-height:0;padding:9px;display:grid;gap:9px;grid-template-columns:minmax(0,3fr) minmax(280px,1fr);grid-template-rows:minmax(360px,1.35fr) minmax(250px,.85fr)}
-.order-panel,.history-panel{display:none!important}.chart-panel{grid-column:1;grid-row:1}.right-top{grid-column:2;grid-row:1}.bubbles-panel{grid-column:1;grid-row:2}.risk-panel{grid-column:2;grid-row:2}.mover-row{cursor:pointer}.mover-row:hover{background:#17243a}.mover-row:focus{outline:1px solid var(--blue)}
-.panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}.panel:fullscreen{background:var(--bg);border-radius:0}.panel:fullscreen .chart-frame,.panel:fullscreen .bubble-frame{height:calc(100vh - 40px);min-height:0}.panel-head{height:37px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 11px;border-bottom:1px solid var(--border);font-size:11px;font-weight:750;letter-spacing:.55px;text-transform:uppercase}.panel-head .sub{font-size:10px;color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0}.panel-body{padding:10px;min-height:0;overflow:auto;flex:1}
-.tabs{display:flex;background:var(--panel2);padding:3px;border-radius:6px;gap:4px;margin-bottom:10px}.tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:7px 4px;border-radius:4px;cursor:pointer;font-weight:700}.tabs button.active.buy{background:#123e39;color:var(--green)}.tabs button.active.sell{background:#49232e;color:var(--red)}.tabs button.active.neutral{background:#1b2b45;color:var(--text)}
-.field{display:flex;flex-direction:column;gap:4px;margin-bottom:9px}.field label{font-size:10px;color:var(--muted)}.field input,.field select{width:100%;min-width:0;background:#0a1220;color:var(--text);border:1px solid var(--border);border-radius:5px;padding:8px;font:inherit;outline:none}.field input:focus,.field select:focus{border-color:var(--blue)}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.order-btn{width:100%;padding:10px;border:0;border-radius:5px;font-weight:800;cursor:pointer}.order-btn.buy{background:var(--green);color:#05251f}.order-btn.sell{background:var(--red);color:#300a13}.note{font-size:10px;color:var(--muted);line-height:1.5}.warning{padding:8px;border:1px solid #66552b;background:#2a2416;border-radius:5px;color:#f1d48a;font-size:10px;margin-bottom:9px}
-.chart-tools{display:flex;align-items:center;gap:6px}.symbol{font-size:12px;color:var(--blue);font-weight:800}.chart-frame{flex:1;min-height:0;background:#0b1220}.chart-frame iframe{width:100%;height:100%;border:0}.resize-tools{display:flex;align-items:center;gap:4px}.resize-btn{padding:3px 7px;font-size:11px;line-height:1.2}.mover-tabs{display:flex;gap:5px;padding:7px 9px;border-bottom:1px solid var(--border)}.mover-tabs .btn{flex:1;padding:6px;font-size:10px}.mover-tabs .active-gain{color:var(--green);border-color:#1d6d57;background:#102b27}.mover-tabs .active-loss{color:var(--red);border-color:#713343;background:#2c1720}.mover-list{overflow:auto;flex:1}.mover-row{display:grid;grid-template-columns:23px minmax(0,1fr) auto;gap:7px;align-items:center;padding:8px 9px;border-bottom:1px solid #1c293c}.mover-rank{font-size:10px;color:var(--muted);text-align:center}.mover-name{font-size:11px;font-weight:750}.mover-volume{font-size:9px;color:var(--muted)}.mover-price{text-align:right;font-size:10px;font-weight:700}.mover-change{text-align:right;font-size:10px;margin-top:2px}
-.ticker-list{overflow:auto;flex:1}.ticker-row{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:8px;padding:9px 10px;border-bottom:1px solid #1c293c}.coin-icon{height:23px;width:23px;border-radius:50%;background:#1b2b45;display:grid;place-items:center;font-size:10px;font-weight:800;color:#cbd9f0}.coin-name{font-weight:750;font-size:11px}.coin-pair{font-size:9px;color:var(--muted)}.coin-price{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-size:11px}.coin-change{text-align:right;font-size:10px;margin-top:2px}
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metric{background:#0b1321;border:1px solid #1e2b40;padding:9px;border-radius:6px}.metric label{display:block;color:var(--muted);font-size:10px}.metric strong{display:block;font-size:15px;margin-top:3px}.metric small{color:var(--muted);font-size:9px}.section-label{font-size:10px;text-transform:uppercase;color:var(--muted);letter-spacing:.7px;margin:10px 0 6px}
-.table-wrap{overflow:auto;flex:1}.table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:11px}.table th{color:var(--muted);font-weight:600;text-align:left;background:#0d1524;position:sticky;top:0}.table th,.table td{padding:9px 10px;border-bottom:1px solid #1c293c}.empty{text-align:center;color:var(--muted);padding:22px 10px!important}.small-btn{padding:4px 7px;font-size:10px}
-.bubble-frame{flex:1;min-height:0;background:#0b1220}.bubble-frame iframe{width:100%;height:100%;border:0}.footer{height:23px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 13px;color:#71819a;font-size:9px;border-top:1px solid #182438;background:#0a101c}
-@media(max-width:1050px){body{overflow:auto}.app{height:auto;min-height:100vh}.topstats{gap:10px}.main{grid-template-columns:minmax(0,2fr) minmax(240px,1fr);grid-template-rows:minmax(380px,55vh) minmax(280px,40vh)}.chart-panel{grid-column:1;grid-row:1}.right-top{grid-column:2;grid-row:1}.risk-panel{grid-column:2;grid-row:2}.bubbles-panel{grid-column:1;grid-row:2}.footer{position:static}}
-@media(max-width:650px){.topbar{height:auto;min-height:58px;flex-wrap:wrap;padding:10px}.brand{min-width:0}.topstats{display:none}.main{display:flex;flex-direction:column}.panel{min-height:280px}.chart-panel{height:65vh;min-height:420px;order:0}.right-top{height:330px;order:1}.bubbles-panel{height:55vh;min-height:340px;order:2}.risk-panel{order:3}.footer{gap:8px;height:auto;padding:7px;flex-wrap:wrap}}
-.mover-search {
-position: relative;
-padding: 10px;
-}
-
-#moverSearchResults,
-#futuresSearchResults {
-max-height: 260px;
-overflow-y: auto;
-}
-
-#futuresCoinSearch {
-width: 100%;
-box-sizing: border-box;
-padding: 11px 12px;
-border: 1px solid #334155;
-border-radius: 8px;
-background: #0b1220;
-color: #ffffff;
-font-size: 14px;
-outline: none;
-}
-
-#futuresCoinSearch:focus {
-border-color: #3b82f6;
-}
-
-#futuresCoinSearch::placeholder {
-color: #94a3b8;
-}
-
+body { background-color: #0b0e14; color: #eaeaea; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.card-bg { background-color: #12161f; border: 1px solid #1e2530; }
+.accent-green { color: #2ebd85; }
+.accent-red { color: #f6465d; }
+.btn-green { background-color: #2ebd85; color: #ffffff; }
+.btn-green:hover { background-color: #259b6d; }
 </style>
 </head>
-<body>
-<div class="app">
-<header class="topbar">
-  <div class="brand"><div class="logo">₿</div><div><strong>CRYPTO TERMINAL</strong><small>TRADING BANGLA • PERSONAL DESK</small></div></div>
-  <div class="status"><span class="dot"></span><span id="connection">Connecting to Binance public market…</span></div>
-  <div class="topstats"><div class="stat"><label>BTC / USDT</label><strong id="topBtc">Loading…</strong></div><div class="stat"><label>ETH / USDT</label><strong id="topEth">Loading…</strong></div><div class="stat"><label>MODE</label><strong class="up">PAPER TRADING</strong></div></div>
-  <button class="btn" id="refreshBtn">↻ Refresh</button>
+<body class="min-h-screen text-xs select-none">
+
+<!-- Top Navigation Bar -->
+<header class="w-full h-14 card-bg border-b flex items-center justify-between px-4 z-50 sticky top-0">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-amber-500 rounded flex items-center justify-center font-bold text-black text-sm">₿</div>
+<div>
+<h1 class="text-sm font-bold text-white tracking-wide">Crypto Trading Bangla</h1>
+<p class="text-[10px] text-amber-500 font-semibold tracking-widest uppercase">Hybrid Pro Terminal</p>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex space-x-1 bg-gray-800 p-1 rounded text-[10px]">
+<button class="px-2 py-0.5 bg-gray-700 text-white rounded">বাংলা</button>
+<button class="px-2 py-0.5 text-gray-400">EN</button>
+</div>
+<div class="relative w-64">
+<i data-lucide="search" class="absolute left-2.5 top-2 w-4 h-4 text-gray-500"></i>
+<input type="text" placeholder="Search coin, pair, or symbol..." class="w-full bg-gray-900 border border-gray-700 rounded-md pl-9 pr-3 py-1.5 focus:outline-none focus:border-amber-500 text-white text-[11px]">
+</div>
+<div class="flex items-center space-x-3 text-gray-400">
+<button class="hover:text-white"><i data-lucide="bell" class="w-4 h-4"></i></button>
+<button class="hover:text-white"><i data-lucide="sun" class="w-4 h-4"></i></button>
+<div class="flex items-center space-x-1 border border-gray-700 px-2 py-1 rounded bg-gray-900 text-white cursor-pointer">
+<i data-lucide="user" class="w-3.5 h-3.5 text-amber-500"></i>
+<span class="text-[11px]">Trader</span>
+<i data-lucide="chevron-down" class="w-3 h-3"></i>
+</div>
+</div>
+</div>
 </header>
-<main class="main">
-<section class="panel order-panel">
- <div class="panel-head"><span>Order Panel</span><span class="sub">Simulation only</span></div>
- <div class="panel-body">
-  <div class="warning">Paper Trading mode: orders are simulated. No real funds or Binance account are connected.</div>
-  <div class="tabs"><button id="buyTab" class="active buy" type="button">BUY / LONG</button><button id="sellTab" type="button">SELL / SHORT</button></div>
-  <div class="row"><div class="field"><label>Symbol</label><select id="orderSymbol"><option>BTCUSDT</option><option>ETHUSDT</option><option>BNBUSDT</option><option>SOLUSDT</option><option>XRPUSDT</option><option>DOGEUSDT</option><option>ADAUSDT</option><option>AVAXUSDT</option><option>LINKUSDT</option><option>TRXUSDT</option></select></div><div class="field"><label>Order type</label><select id="orderType"><option>Market</option><option>Limit</option></select></div></div>
-  <div class="field"><label>Price (USDT) — Market uses latest price</label><input id="orderPrice" type="number" min="0" step="any" placeholder="Auto from market"></div>
-  <div class="field"><label>Quantity (coin)</label><input id="orderQty" type="number" min="0" step="any" placeholder="e.g. 0.001"></div>
-  <div class="row"><div class="field"><label>Leverage (simulation)</label><select id="orderLeverage"><option>1</option><option>2</option><option>3</option><option>5</option><option>10</option><option>20</option></select></div><div class="field"><label>Est. order value</label><input id="orderValue" readonly placeholder="—"></div></div>
-  <button id="submitOrder" class="order-btn buy">SIMULATE BUY</button>
-  <p class="note" style="margin-top:9px">Limit orders are recorded as simulated limit orders; they are not sent to an exchange. Check position size and stop loss before any real trade.</p>
- </div>
-</section>
-<section class="panel chart-panel">
- <div class="panel-head"><span>Advanced Chart <span class="symbol" id="chartSymbol">BTCUSDT</span></span><div class="chart-tools"><span class="sub">TradingView</span><div class="resize-tools"><button class="btn resize-btn" id="chartSmaller" aria-label="Make chart area smaller">−</button><button class="btn resize-btn" id="chartLarger" aria-label="Make chart area larger">+</button></div><button class="btn small-btn" id="chartFullscreen" type="button">⛶ Fullscreen</button><button class="btn small-btn" id="openChart">Open ↗</button></div></div>
- <div class="chart-frame"><iframe id="tradingView" title="TradingView Advanced Chart" loading="lazy" allowtransparency="true" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_widget&symbol=BINANCE%3ABTCUSDT&interval=15&hidesidetoolbar=0&symboledit=1&saveimage=1&toolbarbg=0b1220&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&studies=%5B%5D&locale=en"></iframe></div>
-</section>
-<section class="panel right-top">
- <div class="panel-head"><span>Binance Market Movers</span><span class="sub">24h change</span></div>
- <div class="mover-search">
-<input
-type="search"
-id="futuresCoinSearch"
-placeholder="Search Binance Futures (e.g. BTC, SOL)"
-autocomplete="off"
->
-<div id="futuresSearchResults"></div>
-</div>
-   <div class="mover-tabs"><button class="btn active-gain" id="gainersTab" type="button">Top Gainers</button><button class="btn" id="losersTab" type="button">Top Losers</button></div>
- <div class="mover-list" id="moverList"><div class="empty">Loading Binance rankings…</div></div>
-</section>
-<section class="panel risk-panel">
- <div class="panel-head"><span>Risk & Position Size</span><span class="sub">USDT</span></div>
- <div class="panel-body">
-  <div class="row"><div class="field"><label>Account balance ($)</label><input id="balance" type="number" min="0" step="any" value="50"></div><div class="field"><label>Risk (%)</label><input id="riskPercent" type="number" min="0" max="100" step="any" value="1"></div></div>
-  <div class="row">
-<div class="field">
-<label>Entry price ($)</label>
-<input id="entryPrice" type="number" min="0" step="any" placeholder="e.g. 100">
-</div>
-<div class="field">
-<label>Stop loss ($)</label>
-<input id="stopPrice" type="number" min="0" step="any" placeholder="e.g. 98">
-</div>
-</div>
-<div class="row">
-<div class="field">
-<label>Take Profit Price ($)</label>
-<input id="targetPrice" type="number" min="0" step="any" placeholder="e.g. 106">
-</div>
-</div>
-<div class="row">
-<div class="field">
-<label>Potential Profit (USDT)</label>
-<strong id="potentialProfit">—</strong>
-</div>
-<div class="field">
-<label>Risk : Reward</label>
-<strong id="riskReward">—</strong>
-</div>
-</div>
-  <div class="calc-grid"><div class="metric"><label>Total risk</label><strong id="riskCash">$0.50</strong><small>Maximum planned loss</small></div><div class="metric"><label>Position size</label><strong id="positionQty">—</strong><small>Coin quantity</small></div><div class="metric"><label>Position value</label><strong id="positionValue">—</strong><small>Notional value</small></div><div class="metric"><label>Leverage needed*</label><strong id="neededLeverage">—</strong><small>*Based on balance</small></div></div>
-  <p class="note" style="margin-top:9px">Formula: risk amount ÷ |entry − stop loss| = quantity. Estimated leverage = position value ÷ account balance. Fees, slippage and funding are excluded.</p>
- </div>
-</section>
-<section class="panel history-panel">
- <div class="panel-head"><span>Open Positions & Order History</span><button class="btn small-btn" id="clearHistory">Clear paper history</button></div>
- <div class="table-wrap"><table class="table"><thead><tr><th>TIME</th><th>SYMBOL</th><th>SIDE</th><th>TYPE</th><th>QTY</th><th>PRICE</th><th>VALUE</th><th>STATUS</th><th></th></tr></thead><tbody id="historyBody"><tr><td colspan="9" class="empty">No paper orders yet. Simulate an order to begin.</td></tr></tbody></table></div>
-</section>
-<section class="panel bubbles-panel">
- <div class="panel-head"><span>Crypto Bubbles</span><div class="chart-tools"><div class="resize-tools"><button class="btn resize-btn" id="bubblesSmaller" aria-label="Make bubbles area smaller">−</button><button class="btn resize-btn" id="bubblesLarger" aria-label="Make bubbles area larger">+</button></div><button class="btn small-btn" id="bubblesFullscreen" type="button">⛶ Fullscreen</button><a href="https://cryptobubbles.net/" target="_blank" rel="noopener noreferrer" class="sub">Open site ↗</a></div></div>
- <div class="bubble-frame"><iframe title="Crypto Bubbles market visualization" loading="lazy" src="https://cryptobubbles.net/" referrerpolicy="no-referrer"></iframe></div>
-</section>
-</main>
-<footer class="footer"><span>PERSONAL CRYPTO TERMINAL • Public market data only</span><span>Not financial advice • Paper orders are not real exchange orders</span><span id="lastUpdate">Waiting for market data</span></footer>
-</div>
-<script>
-const pairs=['BTCUSDT','ETHUSDT','BNBUSDT','SOLUSDT','XRPUSDT','DOGEUSDT','ADAUSDT','AVAXUSDT','LINKUSDT','TRXUSDT'];
-const icons={BTC:'₿',ETH:'Ξ',BNB:'◆',SOL:'◎',XRP:'X',DOGE:'Ð',ADA:'A',AVAX:'▲',LINK:'⬡',TRX:'T'};
-const prices={}; let side='BUY', orders=[], ws=null, reconnectTimer=null, movers=[], moverMode='gainers';
-const $=id=>document.getElementById(id);
-const fmt=(n,d=2)=>Number.isFinite(Number(n))?Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}):'—';
-const money=n=>Number.isFinite(Number(n))?'$'+fmt(n,2):'—';
-function renderTicker(){
- $('topBtc').textContent=prices.BTCUSDT?.price?'$'+fmt(prices.BTCUSDT.price,2):'Loading…';
- $('topEth').textContent=prices.ETHUSDT?.price?'$'+fmt(prices.ETHUSDT.price,2):'Loading…';
- $('lastUpdate').textContent='Updated '+new Date().toLocaleTimeString();
-}
-function renderMovers(){
- const list=$('moverList');
- if(!movers.length){list.innerHTML='<div class="empty">Waiting for Binance 24h market data…</div>';return;}
- const ranked=[...movers].sort((a,b)=>moverMode==='gainers'?Number(b.priceChangePercent)-Number(a.priceChangePercent):Number(a.priceChangePercent)-Number(b.priceChangePercent)).slice(0,10);
- list.innerHTML=ranked.map((x,i)=>{const base=x.symbol.slice(0,-4),change=Number(x.priceChangePercent),price=Number(x.lastPrice),vol=Number(x.quoteVolume);return `<div class="mover-row" data-symbol="${x.symbol}" role="button" tabindex="0" title="Click to open ${base}/USDT in TradingView"><div class="mover-rank">${i+1}</div><div><div class="mover-name">${base}/USDT</div><div class="mover-volume">24h vol $${fmt(vol>=1e9?vol/1e9:vol>=1e6?vol/1e6:vol/1e3,2)}${vol>=1e9?'B':vol>=1e6?'M':'K'}</div></div><div><div class="mover-price">${fmt(price,price<1?6:2)}</div><div class="mover-change ${change>=0?'up':'down'}">${change>=0?'+':''}${fmt(change,2)}%</div></div></div>`}).join('');
- list.querySelectorAll('[data-symbol]').forEach(row=>{const open=()=>setChartSymbol(row.dataset.symbol);row.addEventListener('click',open);row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}})});
- $('gainersTab').className='btn'+(moverMode==='gainers'?' active-gain':'');$('losersTab').className='btn'+(moverMode==='losers'?' active-loss':'');
-}
-async function fetchMovers(){
- try{const r=await fetch('https://api.binance.com/api/v3/ticker/24hr');if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();const excluded=/(UP|DOWN|BULL|BEAR)USDT$/;movers=data.filter(x=>x.symbol.endsWith('USDT')&&!excluded.test(x.symbol)&&Number(x.quoteVolume)>100000).filter(x=>Number.isFinite(Number(x.priceChangePercent)));renderMovers();}
- catch(e){$('moverList').innerHTML='<div class="empty">Could not load rankings. Tap Refresh to try again.</div>';}
-}
-async function fetchPrices(){
- try{const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(pairs)));if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();data.forEach(x=>prices[x.symbol]={price:Number(x.lastPrice),change:Number(x.priceChangePercent)});renderTicker();$('connection').textContent='Binance public market connected';$('connection').previousElementSibling.style.background='var(--green)';}
- catch(e){$('connection').textContent='REST market data unavailable — retrying';}
-}
-function connectWS(){
- try{if(ws)ws.close();const streams=pairs.map(p=>p.toLowerCase()+'@ticker').join('/');ws=new WebSocket('wss://stream.binance.com:9443/stream?streams='+streams);
- ws.onopen=()=>{$('connection').textContent='Binance WebSocket live';};
- ws.onmessage=e=>{try{const msg=JSON.parse(e.data).data;if(msg?.s)prices[msg.s]={price:Number(msg.c),change:Number(msg.P)};renderTicker();}catch(_){}};
- ws.onerror=()=>{$('connection').textContent='WebSocket reconnecting';};
- ws.onclose=()=>{clearTimeout(reconnectTimer);reconnectTimer=setTimeout(connectWS,5000);};
- }catch(e){setTimeout(connectWS,5000);}
-}
-function calcRisk(){
- const bal=Number($('balance').value),pct=Number($('riskPercent').value),entry=Number($('entryPrice').value),stop=Number($('stopPrice').value);
- const risk=bal*pct/100,dist=Math.abs(entry-stop),qty=entry>0&&stop>0&&dist>0?risk/dist:NaN,val=qty*entry,lev=val/bal;
- $('riskCash').textContent=money(Number.isFinite(risk)?risk:0);
- $('positionQty').textContent=Number.isFinite(qty)?fmt(qty,6):'—';
- $('positionValue').textContent=Number.isFinite(val)?money(val):'—';
- $('neededLeverage').textContent=Number.isFinite(lev)?fmt(lev,2)+'×':'—';
-}
-['balance','riskPercent','entryPrice','stopPrice'].forEach(id=>$(id).addEventListener('input',calcRisk));
-function updateOrderValue(){const p=$('orderSymbol').value;const price=$('orderType').value==='Market'?(prices[p]?.price||0):Number($('orderPrice').value);const qty=Number($('orderQty').value);$('orderValue').value=price>0&&qty>0?money(price*qty):'—';}
-['orderSymbol','orderType','orderPrice','orderQty','orderLeverage'].forEach(id=>$(id).addEventListener('input',updateOrderValue));
-$('orderType').addEventListener('change',()=>{$('orderPrice').disabled=$('orderType').value==='Market';updateOrderValue()});
-function setSide(s){side=s;$('buyTab').className=s==='BUY'?'active buy':'';$('sellTab').className=s==='SELL'?'active sell':'';$('submitOrder').className='order-btn '+(s==='BUY'?'buy':'sell');$('submitOrder').textContent='SIMULATE '+s; }
-$('buyTab').onclick=()=>setSide('BUY');$('sellTab').onclick=()=>setSide('SELL');
-function setChartSymbol(s) {
-s = s.trim().toUpperCase();
 
-const tv = $('tradingView');
-const symbol = 'BINANCE:' + s + '.P';
-
-$('chartSymbol').textContent = s;
-
-tv.src =
-'https://s.tradingview.com/widgetembed/?' +
-'frameElementId=tradingview_widget' +
-'&symbol=' + encodeURIComponent(symbol) +
-'&interval=15' +
-'&hidesidetoolbar=0' +
-'&symboledit=1' +
-'&saveimage=1' +
-'&toolbarbg=0b1220' +
-'&theme=dark' +
-'&style=1' +
-'&timezone=Etc%2FUTC' +
-'&withdateranges=1' +
-'&hideideas=1' +
-'&locale=en';
-
-const selector = $('orderSymbol');
-if (selector) selector.value = s;
-
-updateOrderValue();
-}
-
-   $('orderSymbol').addEventListener('change',()=>setChartSymbol($('orderSymbol').value));
-$('openChart').onclick=()=>window.open('https://www.tradingview.com/chart/?symbol=BINANCE%3A'+encodeURIComponent($('chartSymbol').textContent),'_blank','noopener');
-$('gainersTab').onclick=()=>{moverMode='gainers';renderMovers()};$('losersTab').onclick=()=>{moverMode='losers';renderMovers()};
-function resizeDashboard(target,delta){const main=$('main');if(window.innerWidth<=1050){const panel=target==='chart' ? document.querySelector('.chart-panel') : document.querySelector('.bubbles-panel');const min=260,max=760;panel.style.height=Math.max(min,Math.min(max,panel.getBoundingClientRect().height+delta))+'px';return;}const rows=getComputedStyle(main).gridTemplateRows.split(' ').map(v=>parseFloat(v));if(rows.length<2||rows.some(v=>!Number.isFinite(v)))return;let first=rows[0],second=rows[1];if(target==='chart'){first+=delta;second-=delta;}else{first-=delta;second+=delta;}if(first<220||second<180)return;main.style.gridTemplateRows=`${first}px ${second}px`; }
-$('chartSmaller').onclick=()=>resizeDashboard('chart',-60);$('chartLarger').onclick=()=>resizeDashboard('chart',60);$('bubblesSmaller').onclick=()=>resizeDashboard('bubbles',-60);$('bubblesLarger').onclick=()=>resizeDashboard('bubbles',60);
-async function toggleFullscreen(panel){try{if(document.fullscreenElement){await document.exitFullscreen();}else if(panel.requestFullscreen){await panel.requestFullscreen();}else{alert('Fullscreen is not supported in this browser.');}}catch(e){alert('Fullscreen চালু করা যায়নি। ব্রাউজারের অনুমতি বা সেটিং পরীক্ষা করুন।');}}
-$('chartFullscreen').onclick=()=>toggleFullscreen(document.querySelector('.chart-panel'));$('bubblesFullscreen').onclick=()=>toggleFullscreen(document.querySelector('.bubbles-panel'));
-document.addEventListener('fullscreenchange',()=>{document.querySelectorAll('.panel:fullscreen').forEach(p=>{p.style.width='100vw';p.style.height='100vh';p.style.maxHeight='100vh';});document.querySelectorAll('.panel:not(:fullscreen)').forEach(p=>{p.style.width='';p.style.height='';p.style.maxHeight='';});});
-function renderOrders(){
- const body=$('historyBody');if(!orders.length){body.innerHTML='<tr><td colspan="9" class="empty">No paper orders yet. Simulate an order to begin.</td></tr>';return;}
- body.innerHTML=orders.map(o=>`<tr><td>${o.time}</td><td><b>${o.symbol}</b></td><td class="${o.side==='BUY'?'up':'down'}">${o.side}</td><td>${o.type}</td><td>${fmt(o.qty,6)}</td><td>${fmt(o.price,o.price<1?6:2)}</td><td>${money(o.value)}</td><td>${o.type==='Limit'?'PAPER LIMIT':'SIMULATED'}</td><td><button class="btn small-btn" data-remove="${o.id}">Remove</button></td></tr>`).join('');
- body.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{orders=orders.filter(o=>o.id!==Number(b.dataset.remove));renderOrders()});
-}
-$('submitOrder').onclick=()=>{
- const symbol=$('orderSymbol').value,type=$('orderType').value,qty=Number($('orderQty').value);
- const price=type==='Market'?(prices[symbol]?.price||0):Number($('orderPrice').value);
- if(!(qty>0)){alert('Please enter a quantity greater than zero.');return;}
- if(!(price>0)){alert(type==='Market'?'Live market price is not available yet. Try again shortly.':'Please enter a valid limit price.');return;}
- const order={id:Date.now(),time:new Date().toLocaleTimeString(),symbol,side,type,qty,price,value:qty*price};
- orders.unshift(order);renderOrders();$('orderQty').value='';updateOrderValue();
-};
-$('clearHistory').onclick=()=>{if(confirm('Clear all simulated paper orders?')){orders=[];renderOrders()}};
-$('refreshBtn').onclick=()=>{fetchPrices();fetchMovers();updateOrderValue()};
-// Binance USD-M Futures coin search
-let futuresSymbols = [];
-
-async function loadFuturesSymbols() {
-try {
-const response = await fetch(
-'https://fapi.binance.com/fapi/v1/exchangeInfo'
-);
-if (!response.ok) throw new Error('Futures API unavailable');
-
-const data = await response.json();
-futuresSymbols = data.symbols.filter(s =>
-s.status === 'TRADING' &&
-s.quoteAsset === 'USDT' &&
-s.contractType === 'PERPETUAL'
-);
-
-renderFuturesSearch();
-} catch (error) {
-$('futuresSearchResults').innerHTML =
-'<div class="empty">Futures search unavailable. Please try again.</div>';
-}
-}
-
-function renderFuturesSearch() {
-const box = $('futuresSearchResults');
-const query = $('futuresCoinSearch').value.trim().toUpperCase();
-
-if (!query) {
-box.innerHTML = '';
-return;
-}
-
-const matches = futuresSymbols
-.filter(s => s.symbol.includes(query) || s.baseAsset.includes(query))
-.slice(0, 12);
-
-box.innerHTML = matches.length
-? matches.map(s =>
-`<button type="button" class="btn futures-result"
-data-futures-symbol="${s.symbol}"
-style="display:block;width:100%;text-align:left;margin-top:4px">
-${s.baseAsset} / USDT <span class="sub">${s.symbol}</span>
-</button>`
-).join('')
-: '<div class="empty">No matching USDT Futures pair found.</div>';
-
-box.querySelectorAll('[data-futures-symbol]').forEach(button => {
-button.onclick = () => {
-const symbol = button.dataset.futuresSymbol;
-setChartSymbol(symbol);
-$('futuresCoinSearch').value = symbol;
-box.innerHTML = '';
-};
-});
-}
-
-$('futuresCoinSearch').addEventListener('input', renderFuturesSearch);
-loadFuturesSymbols();
-   calcRisk();$('orderPrice').disabled=true;fetchPrices();fetchMovers();connectWS();setInterval(fetchPrices,30000);setInterval(fetchMovers,60000);
-</script>
-<section id="trading-journal" style="background:#111827;color:#f9fafb;padding:20px;margin:20px 0;border-radius:12px;font-family:Arial,sans-serif;">
-<h2>📒 Trading Journal</h2>
-<p>Record your trades and track your performance.</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
-<label>Coin / Pair
-<input id="tj-coin" placeholder="BTCUSDT" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
-</label>
-<label>Market
-<select id="tj-market" style="display:block;width:100%;padding:10px;margin-top:5px;">
-<option>Futures</option>
-<option>Spot</option>
-</select>
-</label>
-<label>Direction
-<select id="tj-side" style="display:block;width:100%;padding:10px;margin-top:5px;">
-<option>Long</option>
-<option>Short</option>
-<option>Spot Buy</option>
-</select>
-</label>
-<label>Entry Price
-<input id="tj-entry" type="number" step="any" placeholder="0.00" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
-</label>
-<label>Exit Price
-<input id="tj-exit" type="number" step="any" placeholder="0.00" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
-</label>
-<label>Quantity (coin)
-<input id="tj-qty" type="number" step="any" placeholder="0.00" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
-</label>
-<label>Fees (USDT)
-<input id="tj-fees" type="number" min="0" step="any" value="0" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
-</label>
-<label>Notes
-<input id="tj-notes" placeholder="Trade reason / mistake" style="display:block;width:100%;box-sizing:border-box;padding:10px;margin-top:5px;">
-</label>
+<div class="flex">
+<!-- Left Sidebar Navigation -->
+<aside class="w-56 min-h-[calc(screen-3.5rem)] card-bg border-r p-3 hidden md:flex flex-col justify-between">
+<div class="space-y-1">
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded bg-amber-500/10 text-amber-500 font-medium"><i data-lucide="layout-dashboard" class="w-4 h-4"></i><span>Dashboard</span></a>
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded text-gray-400 hover:bg-gray-800/50 hover:text-white"><i data-lucide="activity" class="w-4 h-4"></i><span>Live Market</span></a>
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded text-gray-400 hover:bg-gray-800/50 hover:text-white"><i data-lucide="scan" class="w-4 h-4"></i><span>Market Scanner</span></a>
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded text-gray-400 hover:bg-gray-800/50 hover:text-white"><i data-lucide="candlestick-chart" class="w-4 h-4"></i><span>Chart</span></a>
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded text-gray-400 hover:bg-gray-800/50 hover:text-white"><i data-lucide="calculator" class="w-4 h-4"></i><span>Futures Calculator</span></a>
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded text-gray-400 hover:bg-gray-800/50 hover:text-white"><i data-lucide="trending-up" class="w-4 h-4"></i><span>SMC Analysis</span></a>
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded text-gray-400 hover:bg-gray-800/50 hover:text-white"><i data-lucide="book-open" class="w-4 h-4"></i><span>Trading Journal</span></a>
+<a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded text-gray-400 hover:bg-gray-800/50 hover:text-white"><i data-lucide="shield-alert" class="w-4 h-4"></i><span>Risk Dashboard</span></a>
 </div>
 
-<button id="tj-add" type="button" style="padding:12px 18px;margin:15px 8px 15px 0;background:#16a34a;color:white;border:0;border-radius:8px;cursor:pointer;">＋ Save Trade</button>
-<button id="tj-export" type="button" style="padding:12px 18px;background:#2563eb;color:white;border:0;border-radius:8px;cursor:pointer;">Export CSV</button>
+<!-- Premium Promo Widget -->
+<div class="mt-6 p-4 rounded-xl border border-amber-500/30 bg-gradient-to-b from-amber-500/5 to-transparent text-center relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-16 h-16 bg-amber-500/10 rounded-full blur-xl"></div>
+<i data-lucide="crown" class="w-6 h-6 text-amber-500 mx-auto mb-2 animate-bounce"></i>
+<h4 class="font-bold text-white text-xs mb-1">Trade Smarter, Not Harder</h4>
+<p class="text-[10px] text-gray-400 mb-3">সঠিক তথ্য, সঠিক সিদ্ধান্ত, সফল ট্রেড!</p>
+<button class="w-full py-1.5 bg-amber-500 text-black font-bold rounded hover:bg-amber-400 transition-colors">Upgrade to Pro</button>
+</div>
+</aside>
 
-<div style="display:flex;flex-wrap:wrap;gap:20px;margin:15px 0;">
-<div>Total Trades: <strong id="tj-total">0</strong></div>
-<div>Net P&amp;L: <strong id="tj-pnl">0.00 USDT</strong></div>
-<div>Win Rate: <strong id="tj-winrate">0%</strong></div>
+<!-- Main Dashboard View Container -->
+<main class="flex-1 p-4 grid grid-cols-1 xl:grid-cols-4 gap-4">
+
+<!-- COLUMN 1 & 2 & 3: Main Analytical Widgets -->
+<div class="xl:col-span-3 space-y-4">
+
+<!-- Financial Summary Info Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="card-bg p-3 rounded-lg flex items-center justify-between">
+<div>
+<p class="text-gray-400 text-[10px]">Total Balance (Futures)</p>
+<h3 class="text-base font-bold text-white mt-1">$ 1,250.45</h3>
+</div>
+<i data-lucide="wallet" class="w-5 h-5 text-gray-600"></i>
+</div>
+<div class="card-bg p-3 rounded-lg flex items-center justify-between">
+<div>
+<p class="text-gray-400 text-[10px]">24h Change</p>
+<h3 class="text-base font-bold accent-green mt-1">+2.45% <span class="text-[10px] font-normal">(+$29.76)</span></h3>
+</div>
+<i data-lucide="trending-up" class="w-5 h-5 accent-green"></i>
+</div>
+<div class="card-bg p-3 rounded-lg flex items-center justify-between">
+<div>
+<p class="text-gray-400 text-[10px]">BTC Price</p>
+<h3 class="text-base font-bold text-white mt-1">$ 67,432.12</h3>
+<span class="text-[9px] accent-green">+1.23%</span>
+</div>
+<span class="text-amber-500 font-bold text-sm">₿</span>
+</div>
+<div class="card-bg p-3 rounded-lg flex items-center justify-between">
+<div>
+<p class="text-gray-400 text-[10px]">ETH Price</p>
+<h3 class="text-base font-bold text-white mt-1">$ 3,248.76</h3>
+<span class="text-[9px] accent-green">+2.17%</span>
+</div>
+<span class="text-purple-500 font-bold text-sm">Ξ</span>
+</div>
 </div>
 
-<div style="overflow-x:auto;">
-<table style="width:100%;border-collapse:collapse;min-width:750px;">
-<thead>
-<tr style="text-align:left;background:#1f2937;">
-<th style="padding:10px;">Date</th>
-<th style="padding:10px;">Pair</th>
-<th style="padding:10px;">Side</th>
-<th style="padding:10px;">Entry</th>
-<th style="padding:10px;">Exit</th>
-<th style="padding:10px;">Qty</th>
-<th style="padding:10px;">Net P&amp;L</th>
-<th style="padding:10px;">Notes / Action</th>
-</tr>
-</thead>
-<tbody id="tj-rows"></tbody>
-</table>
+<!-- Main Chart Terminal -->
+<div class="card-bg p-4 rounded-lg">
+<div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-3">
+<div class="flex items-center space-x-3">
+<span class="font-bold text-white text-sm">BTC/USDT</span>
+<span class="text-gray-500">Binance</span>
+<span class="accent-green font-semibold">$67,432.12 (+0.17%)</span>
 </div>
-<p id="tj-status" role="status">Trades are saved in this browser.</p>
-</section>
+<div class="flex space-x-2 text-gray-400 text-[10px]">
+<button class="px-1.5 py-0.5 rounded bg-gray-800 text-white">1h</button>
+<button class="px-1.5 py-0.5 rounded hover:bg-gray-800">4h</button>
+<button class="px-1.5 py-0.5 rounded hover:bg-gray-800">1D</button>
+<button class="px-1.5 py-0.5 rounded hover:bg-gray-800">Indicators</button>
+</div>
+</div>
+<!-- ChartJS Render Target -->
+<div class="w-full h-64 relative">
+<canvas id="liveTradingChart"></canvas>
+</div>
+</div>
 
-<script>
-(function () {
-const $ = id => document.getElementById(id);
-const key = 'cryptoTradingBanglaJournalV1';
-let trades = [];
+<!-- Market Scanner and Futures Calculator Grid Split -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-try {
-const saved = localStorage.getItem(key);
-trades = saved ? JSON.parse(saved) : [];
-if (!Array.isArray(trades)) trades = [];
-} catch (e) {
-trades = [];
-}
-
-function save() {
-try {
-localStorage.setItem(key, JSON.stringify(trades));
-$('tj-status').textContent = 'Saved in this browser.';
-return true;
-} catch (e) {
-$('tj-status').textContent = 'Could not save. Check browser storage settings.';
-return false;
-}
-}
-
-function cell(text) {
-const td = document.createElement('td');
-td.style.cssText = 'padding:10px;border-bottom:1px solid #374151;';
-td.textContent = text;
-return td;
-}
-
-function render() {
-const body = $('tj-rows');
-body.replaceChildren();
-let net = 0, wins = 0;
-
-trades.forEach((t, i) => {
-net += t.pnl;
-if (t.pnl > 0) wins++;
-
-const tr = document.createElement('tr');
-tr.append(
-cell(t.date),
-cell(t.coin),
-cell(t.side),
-cell(String(t.entry)),
-cell(String(t.exit)),
-cell(String(t.qty)),
-cell(t.pnl.toFixed(4) + ' USDT'),
-cell(t.notes)
-);
-
-const actionCell = document.createElement('td');
-actionCell.style.cssText = 'padding:10px;border-bottom:1px solid #374151;';
-const del = document.createElement('button');
-del.type = 'button';
-del.textContent = 'Delete';
-del.onclick = () => {
-if (!confirm('Delete this trade?')) return;
-trades.splice(i, 1);
-save();
-render();
-};
-actionCell.appendChild(del);
-tr.appendChild(actionCell);
-body.appendChild(tr);
-});
-
-$('tj-total').textContent = String(trades.length);
-$('tj-pnl').textContent = net.toFixed(4) + ' USDT';
-$('tj-winrate').textContent =
-(trades.length ? (wins / trades.length * 100).toFixed(1) : '0') + '%';
-}
-
-$('tj-add').addEventListener('click', () => {
-const coin = $('tj-coin').value.trim().toUpperCase();
-const market = $('tj-market').value;
-const side = $('tj-side').value;
-const entry = Number($('tj-entry').value);
-const exit = Number($('tj-exit').value);
-const qty = Number($('tj-qty').value);
-const fees = Number($('tj-fees').value || 0);
-const notes = $('tj-notes').value.trim();
-
-if (!coin || !Number.isFinite(entry) || entry <= 0 ||
-!Number.isFinite(exit) || exit <= 0 ||
-!Number.isFinite(qty) || qty <= 0 ||
-!Number.isFinite(fees) || fees < 0) {
-$('tj-status').textContent = 'Enter a pair, valid entry/exit prices, quantity and fees.';
-return;
-}
-
-let pnl;
-if (side === 'Short') {
-pnl = (entry - exit) * qty;
-} else {
-pnl = (exit - entry) * qty;
-}
-pnl -= fees;
-
-trades.unshift({
-date: new Date().toLocaleDateString(),
-coin: coin,
-market: market,
-side: side,
-entry: entry,
-exit: exit,
-qty: qty,
-fees: fees,
-pnl: pnl,
-notes: notes
-});
-
-save();
-render();
-$('tj-status').textContent = 'Trade added. Net P&L: ' + pnl.toFixed(4) + ' USDT';
-['tj-coin','tj-entry','tj-exit','tj-qty','tj-notes'].forEach(id => $(id).value = '');
-$('tj-fees').value = '0';
-});
-
-$('tj-export').addEventListener('click', () => {
-const header = ['Date','Pair','Market','Side','Entry','Exit','Quantity','Fees','Net P&L','Notes'];
-const rows = trades.map(t => [
-t.date,t.coin,t.market,t.side,t.entry,t.exit,t.qty,t.fees,t.pnl,t.notes
-]);
-const csv = [header, ...rows].map(row =>
-row.map(value => '"' + String(value).replace(/"/g, '""') + '"').join(',')
-).join('\r\n');
-
-const blob = new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8;'});
-const url = URL.createObjectURL(blob);
-const a = document.createElement('a');
-a.href = url;
-a.download = 'crypto-trading-journal.csv';
-a.click();
-URL.revokeObjectURL(url);
-});
-
-render();
-})();
-</script>
-
-</body>
-</html>
-Displaying index.html.
+<!-- Market Scanner Component -->
+<div class="card-bg p-4 rounded-lg">
+<div class="flex justify-between items-center mb-3">
+<h3 class="font-bold text-white flex items-center"><i data-lucide="scan" class="w-3.5 h-3.5 mr-1.5 text-amber-500"></i> Market Scanner</h3>
