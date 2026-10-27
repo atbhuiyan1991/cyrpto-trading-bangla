@@ -282,7 +282,6 @@ const response = await fetch(url, { cache: 'no-store' });
 if (!response.ok) throw new Error('HTTP ' + response.status);
 
 const candles = await response.json();
-if (symbol !== selectedSymbol || interval !== (intervalMap[selectedInterval] || '15m')) return;
 
   if (!Array.isArray(candles) || candles.length < 200) {
 throw new Error('পর্যাপ্ত Candle ডেটা নেই');
