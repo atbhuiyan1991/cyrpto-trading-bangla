@@ -260,7 +260,9 @@ async function updateEMA(){
 const periods = [9, 21, 50, 200];
 const symbol = selectedSymbol;
 const intervalMap = {'15':'15m','60':'1h','240':'4h','D':'1d'};
-const interval = intervalMap[selectedInterval] || '15m';
+const requestSymbol = symbol;
+const requestInterval = interval;
+  const interval = intervalMap[selectedInterval] || '15m';
 
 $('ema-symbol').textContent = symbol.replace('USDT', '/USDT');
 $('ema-timeframe').textContent = ' · ' + interval;
@@ -280,7 +282,9 @@ const response = await fetch(url, { cache: 'no-store' });
 if (!response.ok) throw new Error('HTTP ' + response.status);
 
 const candles = await response.json();
-if (!Array.isArray(candles) || candles.length < 200) {
+if (symbol !== selectedSymbol || interval !== (intervalMap[selectedInterval] || '15m')) return;
+
+  if (!Array.isArray(candles) || candles.length < 200) {
 throw new Error('পর্যাপ্ত Candle ডেটা নেই');
 }
 
@@ -433,7 +437,8 @@ function calcRisk(){
 }
 function renderJournal(){
  const pnl=journal.reduce((sum,t)=>sum+Number(t.pnl||0),0),wins=journal.filter(t=>Number(t.pnl)>0).length,losses=journal.filter(t=>Number(t.pnl)<0).length;
- $('journal-count').textContent=journal.length;$('journal-winrate').textContent=(journal.length?wins/journal.length*100:0).toFixed(1)+'%';$('journal-pnl').textContent=fmtMoney(pnl);$('journal-pnl').className=pnl>=0?'green':'red';$('journal-record').textContent=`${wins} / ${losses}`;
+ $('journal-count').te
+  xtContent=journal.length;$('journal-winrate').textContent=(journal.length?wins/journal.length*100:0).toFixed(1)+'%';$('journal-pnl').textContent=fmtMoney(pnl);$('journal-pnl').className=pnl>=0?'green':'red';$('journal-record').textContent=`${wins} / ${losses}`;
  $('journal-table').innerHTML=journal.slice().reverse().map(t=>`<tr><td>${safe(t.date)}</td><td>${safe(t.symbol)}</td><td>${safe(t.side)}</td><td class="${t.pnl>=0?'green':'red'}">${fmtMoney(t.pnl)}</td><td><button data-delete-trade="${t.id}">Delete</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">এখনো কোনো ট্রেড যোগ করা হয়নি।</td></tr>';
 }
 function csvExport(){
