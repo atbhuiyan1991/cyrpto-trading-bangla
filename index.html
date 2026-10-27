@@ -68,7 +68,36 @@ brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--yellow);fon
 <section id="chart-section" class="panel main-section">
   <div class="section-head"><div><h2>TradingView Chart <span class="badge" id="chart-symbol-label">BTC/USDT</span></h2><div class="small muted">TradingView widget — ইন্টারনেট প্রয়োজন</div></div><div class="button-row"><div class="subtabs" id="timeframes"><button data-interval="15" class="active">15m</button><button data-interval="60">1h</button><button data-interval="240">4h</button><button data-interval="D">1D</button></div><button id="open-full-tv" class="button-primary">Open Full TradingView ↗</button></div></div>
   <div id="tradingview_chart" class="chart-frame"><div class="empty">TradingView চার্ট লোড হচ্ছে…</div></div>
-  <div class="notice">চার্টের Symbol পরিবর্তন করতে Watchlist বা Market Scanner-এর কয়েন বাটনে চাপ দিন।</div>
+  <div id="ema-panel" class="panel" style="margin-top:14px">
+<div class="section-head">
+<h2>EMA Trend Panel</h2>
+<span id="ema-symbol" class="badge">BTC/USDT</span>
+</div>
+<div class="cards">
+<div class="result">
+<span>EMA 9</span>
+<b id="ema-9">লোড হচ্ছে…</b>
+</div>
+<div class="result">
+<span>EMA 21</span>
+<b id="ema-21">লোড হচ্ছে…</b>
+</div>
+<div class="result">
+<span>EMA 50</span>
+<b id="ema-50">লোড হচ্ছে…</b>
+</div>
+<div class="result">
+<span>EMA 200</span>
+<b id="ema-200">লোড হচ্ছে…</b>
+</div>
+</div>
+<div class="notice" style="margin-top:12px">
+<b>Trend:</b> <span id="ema-trend">ডেটার অপেক্ষায়…</span>
+<span id="ema-timeframe" class="muted"></span>
+</div>
+</div>
+
+<div class="notice">চার্টের Symbol পরিবর্তন করতে Watchlist বা Market Scanner-এর কয়েন বাটনে চাপ দিন।</div>
 </section>
 
 <section id="live-market" class="panel main-section">
@@ -227,6 +256,81 @@ let themeLight = false;
 
 function setStatus(id, text, ok=true){ const el=$(id); if(el){el.textContent=text;el.className=ok?'good-status':'bad-status';}}
 function persist(){ localStorage.setItem('ctb-journal',JSON.stringify(journal)); localStorage.setItem('ctb-watchlist',JSON.stringify(watchlist)); localStorage.setItem('ctb-alerts',JSON.stringify(alerts)); localStorage.setItem('ctb-settings',JSON.stringify(settings));}
+async function updateEMA(){
+const periods = [9, 21, 50, 200];
+const symbol = selectedSymbol;
+const intervalMap = {'15':'15m','60':'1h','240':'4h','D':'1d'};
+const interval = intervalMap[selectedInterval] || '15m';
+
+$('ema-symbol').textContent = symbol.replace('USDT', '/USDT');
+$('ema-timeframe').textContent = ' · ' + interval;
+
+periods.forEach(p => {
+$('ema-' + p).textContent = 'লোড হচ্ছে…';
+});
+$('ema-trend').textContent = 'ডেটার অপেক্ষায়…';
+
+try {
+const url = 'https://fapi.binance.com/fapi/v1/klines'
++ '?symbol=' + encodeURIComponent(symbol)
++ '&interval=' + encodeURIComponent(interval)
++ '&limit=250';
+
+const response = await fetch(url, { cache: 'no-store' });
+if (!response.ok) throw new Error('HTTP ' + response.status);
+
+const candles = await response.json();
+if (!Array.isArray(candles) || candles.length < 200) {
+throw new Error('পর্যাপ্ত Candle ডেটা নেই');
+}
+
+const closes = candles.map(c => Number(c[4]));
+
+function calculateEMA(values, period) {
+const multiplier = 2 / (period + 1);
+let ema = values.slice(0, period)
+.reduce((sum, value) => sum + value, 0) / period;
+
+for (let i = period; i < values.length; i++) {
+ema = (values[i] - ema) * multiplier + ema;
+}
+return ema;
+}
+
+const values = {};
+periods.forEach(period => {
+values[period] = calculateEMA(closes, period);
+$('ema-' + period).textContent = fmtPrice(values[period]);
+});
+
+const price = closes[closes.length - 1];
+const bullish = price > values[9] &&
+values[9] > values[21] &&
+values[21] > values[50] &&
+values[50] > values[200];
+
+const bearish = price < values[9] &&
+values[9] < values[21] &&
+values[21] < values[50] &&
+values[50] < values[200];
+
+const trend = $('ema-trend');
+trend.textContent = bullish ? 'Bullish Alignment'
+: bearish ? 'Bearish Alignment'
+: 'Mixed / No Clear Alignment';
+
+trend.className = bullish ? 'green' : bearish ? 'red' : 'muted';
+
+} catch (error) {
+periods.forEach(p => {
+$('ema-' + p).textContent = 'ডেটা নেই';
+});
+$('ema-trend').textContent = 'লোড করা যায়নি — পরে চেষ্টা করুন';
+$('ema-trend').className = 'muted';
+console.error('EMA update error:', error);
+}
+}
+
 function loadTradingView(){
  const box=$('tradingview_chart');
  box.innerHTML='';
@@ -244,7 +348,7 @@ function loadTradingView(){
    if(window.TradingView){script.onload();}else old.addEventListener('load',script.onload,{once:true});
  }
  $('chart-symbol-label').textContent=selectedSymbol.replace('USDT','/USDT');
-}
+}updateEMA();
 function selectSymbol(symbol){
  selectedSymbol=symbol.toUpperCase().replace('/','');
  $('smc-symbol').value=selectedSymbol; $('ai-symbol').value=selectedSymbol;
