@@ -500,9 +500,31 @@ const del=e.target.closest('[data-delete-trade]')?.dataset.deleteTrade;
 if(del){journal=journal.filter(t=>String(t.id)!==String(del));persist();renderJournal();}
 const da=e.target.closest('[data-delete-alert]')?.dataset.deleteAlert;
 if(da){alerts=alerts.filter(a=>String(a.id)!==String(da));persist();renderAlerts();}
-const interval=e.target.closest('[data-interval]')?.dataset.interval;
-if(interval){selectedInterval=interval;document.querySelectorAll('#timeframes button').forEach(b=>b.classList.toggle('active',b.dataset.interval===interval));loadTradingView();}
+const interval = e.target.closest('[data-interval]')?.dataset.interval;
+if (interval) {
+selectedInterval = interval;
+
+const timeframeMap = {
+'5': '5m',
+'15': '15m',
+'60': '1h',
+'240': '4h',
+'D': '1D'
+};
+
+const timeframe = timeframeMap[interval] || '15m';
+
+document.querySelectorAll('#timeframes button').forEach(b => {
+b.classList.toggle('active', b.dataset.interval === interval);
 });
+
+$('smc-timeframe').value = timeframe;
+
+let aiTimeframe = $('ai-timeframe');
+if (aiTimeframe) aiTimeframe.value = timeframe;
+
+loadTradingView();
+}
 document.querySelectorAll('[data-scanner-tab]').forEach(b=>b.addEventListener('click',()=>{scannerMode=b.dataset.scannerTab;document.querySelectorAll('[data-scanner-tab]').forEach(x=>x.classList.toggle('active',x===b));renderScanner();}));
 $('global-search').addEventListener('input',()=>{$('market-search').value=$('global-search').value;$('market-search').dispatchEvent(new Event('input'));$('live-market').scrollIntoView({behavior:'smooth',block:'start'});});
 $('market-search').addEventListener('input',renderMarketTable);$('market-sort').addEventListener('change',renderMarketTable);$('market-limit').addEventListener('change',renderMarketTable);
