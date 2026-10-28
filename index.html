@@ -263,6 +263,14 @@ const map = {'5m':'5', '15m':'15', '1h':'60', '4h':'240', '1d':'D'};
 return map[interval] || '15';
 }
 
+// Helper to format symbol for Binance Futures Perpetual (.P)
+function formatFuturesSymbol(symbol) {
+let clean = symbol.toUpperCase().replace('/', '').trim();
+if (clean.startsWith('BINANCE:')) clean = clean.replace('BINANCE:', '');
+if (!clean.endsWith('.P')) clean += '.P';
+return 'BINANCE:' + clean;
+}
+
 async function updateEMA(){
 const periods = [9, 21, 50, 200];
 const symbol = selectedSymbol;
@@ -328,7 +336,7 @@ box.innerHTML='';
 try{
 new TradingView.widget({
 autosize:true,
-symbol:'BINANCE:'+selectedSymbol,
+symbol:formatFuturesSymbol(selectedSymbol),
 interval:getTVInterval(selectedInterval),
 timezone:'Asia/Muscat',
 theme:themeLight?'light':'dark',
@@ -713,7 +721,7 @@ $('smc-output').textContent=`${$('smc-symbol').value} (${ $('smc-timeframe').val
 });
 $('smc-save').addEventListener('click',()=>{localStorage.setItem('ctb-smc',JSON.stringify({symbol:$('smc-symbol').value,timeframe:$('smc-timeframe').value,structure:$('smc-structure').value,liquidity:$('smc-liquidity').value,displacement:$('smc-displacement').value,zone:$('smc-zone').value}));alert('SMC checklist স্থানীয়ভাবে সংরক্ষিত হয়েছে।');});
 $('ai-generate').addEventListener('click',buildAI);
-$('ai-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('ai-output').innerText);alert('Analysis summary copied.');}catch(_){alert('Copy করা যায়নি; text manually select করুন।');}});
+$('ai-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('ai-output').innerText);alert('Analysis summary copied.');}catch(_){alert('Copy করা যায়নি; text manually select করুন।');});
 $('risk-check').addEventListener('click',renderRisk);['risk-balance','risk-per-trade','risk-daily-limit','risk-today-pnl'].forEach(id=>$(id).addEventListener('input',renderRisk));
 $('alert-add').addEventListener('click',async()=>{
 const symbol=$('alert-symbol').value.trim().toUpperCase().replace('/',''),price=Number($('alert-price').value),condition=$('alert-condition').value;
@@ -724,7 +732,7 @@ alerts.push({id:Date.now(),symbol,price,condition,triggered:false});persist();re
 $('settings-save').addEventListener('click',saveSettings);
 $('settings-reset').addEventListener('click',()=>{settings={balance:50,symbol:'BTCUSDT',language:'bn',refresh:30000};applySettings();persist();});
 $('export-data').addEventListener('click',exportAll);
-$('open-full-tv').addEventListener('click',()=>window.open('https://www.tradingview.com/chart/?symbol=BINANCE%3A'+encodeURIComponent(selectedSymbol),'_blank','noopener'));
+$('open-full-tv').addEventListener('click',()=>window.open('https://www.tradingview.com/chart/?symbol=BINANCE%3A'+encodeURIComponent(selectedSymbol)+'.P','_blank','noopener'));
 $('theme-toggle').addEventListener('click',()=>{
 themeLight=!themeLight;
 if(themeLight){document.documentElement.style.setProperty('--bg','#f4f5f7');document.documentElement.style.setProperty('--panel','#ffffff');document.documentElement.style.setProperty('--panel2','#e9edf2');document.documentElement.style.setProperty('--line','#d3d8df');document.documentElement.style.setProperty('--text','#161a1e');document.documentElement.style.setProperty('--muted','#5e6673');}
