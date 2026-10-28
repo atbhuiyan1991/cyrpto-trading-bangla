@@ -244,7 +244,7 @@ const safe = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>
 const defaultPairs = ['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','XRPUSDT'];
 let tickers = new Map();
 let selectedSymbol = 'BTCUSDT';
-let selectedInterval = '15';
+let selectedInterval = '15m';
 let scannerMode = 'gainers';
 let marketRows = [];
 let alerts = JSON.parse(localStorage.getItem('ctb-alerts') || '[]');
@@ -257,11 +257,15 @@ let themeLight = false;
 function setStatus(id, text, ok=true){ const el=$(id); if(el){el.textContent=text;el.className=ok?'good-status':'bad-status';}}
 function persist(){ localStorage.setItem('ctb-journal',JSON.stringify(journal)); localStorage.setItem('ctb-watchlist',JSON.stringify(watchlist)); localStorage.setItem('ctb-alerts',JSON.stringify(alerts)); localStorage.setItem('ctb-settings',JSON.stringify(settings));}
 
+function getTVInterval(interval) {
+const map = {'5m':'5', '15m':'15', '1h':'60', '4h':'240', '1d':'D'};
+return map[interval] || '15';
+}
+
 async function updateEMA(){
 const periods = [9, 21, 50, 200];
 const symbol = selectedSymbol;
-const intervalMap = {'5':'5m','15':'15m','60':'1h','240':'4h','D':'1d','1D':'1d','1d':'1d'};
-const interval = intervalMap[selectedInterval] || '15m';
+const interval = selectedInterval;
 
 $('ema-symbol').textContent = symbol.replace('USDT', '/USDT');
 $('ema-timeframe').textContent = ' · ' + interval;
@@ -320,8 +324,22 @@ script.src='https://s3.tradingview.com/tv.js';
 script.onload=()=>{
 if(!window.TradingView){box.innerHTML='<div class="empty">TradingView লোড করা যায়নি। ইন্টারনেট/ব্লকার পরীক্ষা করুন।</div>';return;}
 box.innerHTML='';
-try{new TradingView.widget({autosize:true,symbol:'BINANCE:'+selectedSymbol,interval:selectedInterval,timezone:'Asia/Muscat',theme:themeLight?'light':'dark',style:'1',locale:settings.language==='bn'?'en':'en',toolbar_bg:'#161a1e',enable_publishing:false,hide_side_toolbar:false,allow_symbol_change:true,container_id:'tradingview_chart'});}
-catch(e){box.innerHTML='<div class="empty">চার্ট চালু করা যায়নি।</div>';console.error(e);}
+try{
+new TradingView.widget({
+autosize:true,
+symbol:'BINANCE:'+selectedSymbol,
+interval:getTVInterval(selectedInterval),
+timezone:'Asia/Muscat',
+theme:themeLight?'light':'dark',
+style:'1',
+locale:settings.language==='bn'?'en':'en',
+toolbar_bg:'#161a1e',
+enable_publishing:false,
+hide_side_toolbar:false,
+allow_symbol_change:true,
+container_id:'tradingview_chart'
+});
+} catch(e){box.innerHTML='<div class="empty">চার্ট চালু করা যায়নি।</div>';console.error(e);}
 };
 script.onerror=()=>{box.innerHTML='<div class="empty">TradingView স্ক্রিপ্ট লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করুন।</div>';};
 if(!document.querySelector('script[data-tv-loader]')){script.dataset.tvLoader='1';document.head.appendChild(script);}else{
@@ -463,7 +481,6 @@ $('risk-status').textContent=breached?'Limit reached':'Within limit';$('risk-sta
 $('risk-output').style.borderColor=breached?'var(--red)':'var(--line)';
 }
 
-// Helper calculation for RSI
 function calculateRSI(closes, period = 14) {
 if (closes.length < period + 1) return 50;
 let gains = 0, losses = 0;
@@ -489,7 +506,6 @@ let rs = avgGain / avgLoss;
 return 100 - (100 / (1 + rs));
 }
 
-// Helper calculation for MACD
 function calculateMACD(closes) {
 if (closes.length < 35) return { macd: 0, signal: 0 };
 const calcEMA = (data, p) => {
@@ -503,13 +519,12 @@ return ema;
 let ema12 = calcEMA(closes, 12);
 let ema26 = calcEMA(closes, 26);
 let macdVal = ema12 - ema26;
-return { macd: macdVal, signal: macdVal * 0.9 }; // approximated signal line
+return { macd: macdVal, signal: macdVal * 0.9 };
 }
 
 async function buildAI(){
 const symbol=$('ai-symbol').value.trim().toUpperCase()||selectedSymbol;
-const rawTimeframe=$('ai-timeframe').value;
-const timeframe = (rawTimeframe === '1D' || rawTimeframe === 'D') ? '1d' : rawTimeframe;
+const timeframe=$('ai-timeframe').value;
 let price=Number($('ai-price').value);
 let support=Number($('ai-support').value);
 let resistance=Number($('ai-resistance').value);
@@ -547,8 +562,7 @@ macdInfo = calculateMACD(closes);
 }
 }
 
-// Multi-timeframe confluence check (fetch 1h or 4h as higher timeframe)
-let higherTf = timeframe === '5m' || timeframe === '15m' ? '1h' : '4h';
+let higherTf = (timeframe === '5m' || timeframe === '15m') ? '1h' : '4h';
 const hUrl = `https://fapi.binance.com/fapi/v1/klines?symbol=${encodeURIComponent(symbol)}&interval=${higherTf}&limit=50`;
 const hResp = await fetch(hUrl, { cache: 'no-store' });
 if(hResp.ok) {
@@ -598,10 +612,9 @@ $('ai-output').innerHTML=`
 <button class="button-primary" style="margin-top:8px;padding:4px 8px;font-size:11px;background:#571e27;color:#fff;border-color:#87313f" onclick="sendToCalc(${bearSL}, ${price}, ${bearTP}, 'short')">Send to Calculator ↗</button>
 </div>
 </div>
-<div class="warning" style="margin-top:12px">RSI (${rsiVal.toFixed(1)}), MACD এবং মাল্টি-টাইমফ্রেম যাচাই করে সেটআপ তৈরি করা হয়েছে। ${notes?'নোট: '+safe(notes):''}</div>`;
+<div class="warning" style="margin-top:12px">Timeframe (${timeframe}) ভিত্তিক RSI (${rsiVal.toFixed(1)}), MACD এবং মাল্টি-টাইমফ্রেম যাচাই করে সেটআপ তৈরি করা হয়েছে। ${notes?'নোট: '+safe(notes):''}</div>`;
 }
 
-// Global function to push AI setup directly to the risk calculator
 window.sendToCalc = function(sl, entry, tp, side) {
 $('calc-entry').value = entry;
 $('calc-sl').value = sl;
@@ -628,6 +641,7 @@ document.querySelectorAll('.nav').forEach(btn=>btn.addEventListener('click',()=>
 document.querySelectorAll('.nav').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
 const target=$(btn.dataset.target);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
 }));
+
 document.addEventListener('click',e=>{
 const sym=e.target.closest('[data-symbol]')?.dataset.symbol;
 if(sym){selectSymbol(sym);$('chart-section').scrollIntoView({behavior:'smooth'});}
@@ -639,24 +653,36 @@ const del=e.target.closest('[data-delete-trade]')?.dataset.deleteTrade;
 if(del){journal=journal.filter(t=>String(t.id)!==String(del));persist();renderJournal();}
 const da=e.target.closest('[data-delete-alert]')?.dataset.deleteAlert;
 if(da){alerts=alerts.filter(a=>String(a.id)!==String(da));persist();renderAlerts();}
-const interval=e.target.closest('[data-interval]')?.dataset.interval;
-if(interval){
-selectedInterval=interval;
 
-const timeframeMap={'5':'5m','15':'15m','60':'1h','240':'4h','D':'1d','1d':'1d'};
-const timeframe=timeframeMap[interval]||'15m';
+const intervalBtn=e.target.closest('[data-interval]');
+if(intervalBtn){
+const interval=intervalBtn.dataset.interval; 
+const tfMap={'5':'5m', '15':'15m', '60':'1h', '240':'4h', '1d':'1d', 'D':'1d'};
+selectedInterval = tfMap[interval] || '15m';
 
 document.querySelectorAll('#timeframes button').forEach(b=>{
-b.classList.toggle('active',b.dataset.interval===interval);
+b.classList.toggle('active',b===intervalBtn);
 });
 
-$('smc-timeframe').value=timeframe;
-$('ai-timeframe').value=timeframe;
+$('smc-timeframe').value = selectedInterval;
+$('ai-timeframe').value = selectedInterval;
 
 loadTradingView();
 }
-
 });
+
+$('smc-timeframe').addEventListener('change', (e) => {
+$('ai-timeframe').value = e.target.value;
+selectedInterval = e.target.value;
+loadTradingView();
+});
+
+$('ai-timeframe').addEventListener('change', (e) => {
+$('smc-timeframe').value = e.target.value;
+selectedInterval = e.target.value;
+loadTradingView();
+});
+
 document.querySelectorAll('[data-scanner-tab]').forEach(b=>b.addEventListener('click',()=>{scannerMode=b.dataset.scannerTab;document.querySelectorAll('[data-scanner-tab]').forEach(x=>x.classList.toggle('active',x===b));renderScanner();}));
 $('global-search').addEventListener('input',()=>{$('market-search').value=$('global-search').value;$('market-search').dispatchEvent(new Event('input'));$('live-market').scrollIntoView({behavior:'smooth',block:'start'});});
 $('market-search').addEventListener('input',renderMarketTable);$('market-sort').addEventListener('change',renderMarketTable);$('market-limit').addEventListener('change',renderMarketTable);
