@@ -53,6 +53,33 @@
 
 <main class="main">
 <section id="dashboard" class="main-section">
+<!-- Total Market Cap & Overview Panel -->
+<div class="panel" style="margin-bottom:16px;background:linear-gradient(135deg, #161a1e, #1e2630);">
+<div class="section-head">
+<h2>Global Crypto Market Overview</h2>
+<span class="small muted">CoinGecko Global API Data</span>
+</div>
+<div class="cards" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+<div class="result" style="background:#0f1318">
+<span>Total Market Cap</span>
+<b id="global-mcap">লোড হচ্ছে…</b>
+<span id="global-mcap-change" class="small">—</span>
+</div>
+<div class="result" style="background:#0f1318">
+<span>24h Market Volume</span>
+<b id="global-volume">লোড হচ্ছে…</b>
+</div>
+<div class="result" style="background:#0f1318">
+<span>BTC Dominance</span>
+<b id="global-btc-dom">লোড হচ্ছে…</b>
+</div>
+<div class="result" style="background:#0f1318">
+<span>Active Cryptos</span>
+<b id="global-coins">—</b>
+</div>
+</div>
+</div>
+
 <div class="cards">
 <div class="panel"><div class="stat-label">Personal Balance (USDT)</div><div class="stat-value" id="balance-card">$50.00</div><div class="small muted">Settings-এ নিজের ব্যালেন্স সেট করুন</div></div>
 <div class="panel"><div class="stat-label">24h BTC Change</div><div class="stat-value green" id="ticker-change">—</div><div class="small muted" id="ticker-change-fiat">লাইভ মার্কেট ডেটা</div></div>
@@ -260,6 +287,33 @@ function persist(){ localStorage.setItem('ctb-journal',JSON.stringify(journal));
 function getTVInterval(interval) {
 const map = {'5m':'5', '15m':'15', '1h':'60', '4h':'240', '1d':'D'};
 return map[interval] || '15';
+}
+
+// Fetch Global Market Cap data from CoinGecko API
+async function fetchGlobalMarketData() {
+try {
+const response = await fetch('https://api.coingecko.com/api/v3/global', { cache: 'no-store' });
+if (!response.ok) throw new Error('Global API error');
+const data = (await response.json()).data;
+
+const mcap = data.total_market_cap.usd;
+const mcapChange = data.market_cap_change_percentage_24h_usd;
+const volume = data.total_volume.usd;
+const btcDom = data.market_cap_percentage.btc;
+const activeCoins = data.active_cryptocurrencies;
+
+$('global-mcap').textContent = '$' + (mcap / 1e9).toFixed(2) + ' B';
+const changeEl = $('global-mcap-change');
+changeEl.textContent = fmtPct(mcapChange);
+changeEl.className = 'small ' + (mcapChange >= 0 ? 'green' : 'red');
+
+$('global-volume').textContent = '$' + (volume / 1e9).toFixed(2) + ' B';
+$('global-btc-dom').textContent = btcDom.toFixed(1) + '%';
+$('global-coins').textContent = activeCoins.toLocaleString();
+} catch (e) {
+$('global-mcap').textContent = 'ডেটা পাওয়া যায়নি';
+console.error('Global market fetch error:', e);
+}
 }
 
 async function updateEMA(){
@@ -739,6 +793,7 @@ const savedSmc=JSON.parse(localStorage.getItem('ctb-smc')||'null');
 if(savedSmc){$('smc-symbol').value=savedSmc.symbol||'BTCUSDT';$('smc-timeframe').value=savedSmc.timeframe||'1h';$('smc-structure').value=savedSmc.structure||'নির্বাচন করুন';$('smc-liquidity').value=savedSmc.liquidity||'নির্বাচন করুন';$('smc-displacement').value=savedSmc.displacement||'নির্বাচন করুন';$('smc-zone').value=savedSmc.zone||'নির্বাচন করুন';}
 selectedSymbol=settings.symbol||'BTCUSDT';
 loadTradingView();connectSocket();fetchMarket();
+fetchGlobalMarketData(); // Load Total Market Cap data on start
 refreshTimer=setInterval(fetchMarket,settings.refresh);
 }
 
@@ -747,5 +802,3 @@ init();
 </script>
 </body>
 </html>
-
-
