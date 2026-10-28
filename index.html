@@ -66,7 +66,7 @@
 </section>
 
 <section id="chart-section" class="panel main-section">
-<div class="section-head"><div><h2>TradingView Chart <span class="badge" id="chart-symbol-label">BTC/USDT</span></h2><div class="small muted">TradingView widget — ইন্টারনেট প্রয়োজন</div></div><div class="button-row"><div class="subtabs" id="timeframes"><button data-interval="15" class="active">15m</button><button data-interval="60">1h</button><button data-interval="240">4h</button><button data-interval="D">1D</button></div><button id="open-full-tv" class="button-primary">Open Full TradingView ↗</button></div></div>
+<div class="section-head"><div><h2>TradingView Chart <span class="badge" id="chart-symbol-label">BTC/USDT</span></h2><div class="small muted">TradingView widget — ইন্টারনেট প্রয়োজন</div></div><div class="button-row"><div class="subtabs" id="timeframes"><button data-interval="5">5m</button><button data-interval="15" class="active">15m</button><button data-interval="60">1h</button><button data-interval="240">4h</button><button data-interval="D">1D</button></div><button id="open-full-tv" class="button-primary">Open Full TradingView ↗</button></div></div>
 <div id="tradingview_chart" class="chart-frame"><div class="empty">TradingView চার্ট লোড হচ্ছে…</div></div>
 <div id="ema-panel" class="panel" style="margin-top:14px">
 <div class="section-head">
@@ -260,7 +260,7 @@ function persist(){ localStorage.setItem('ctb-journal',JSON.stringify(journal));
 async function updateEMA(){
 const periods = [9, 21, 50, 200];
 const symbol = selectedSymbol;
-const intervalMap = {'15':'15m','60':'1h','240':'4h','D':'1d'};
+const intervalMap = {'5':'5m','15':'15m','60':'1h','240':'4h','D':'1d'};
 const interval = intervalMap[selectedInterval] || '15m';
 
 $('ema-symbol').textContent = symbol.replace('USDT', '/USDT');
