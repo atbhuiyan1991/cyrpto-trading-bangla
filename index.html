@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>abu talab Bhuiyan | Crypto Trading Terminal</title>
-<meta name="theme-color" content="#0b0e11">
-
-<style>
-:root{--bg:#0b0e11;--panel:#161a1e;--panel2:#202630;--line:#2b3139;--text:#eaecef;--muted:#848e9c;--yellow:#fcd535;--green:#0ecb81;--red:#f6465d;--blue:#579dff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;padding:8px 12px}button:hover{filter:brightness(1.15)}input,select,textarea{width:100%;background:#0f1318;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--yellow)}a{color:var(--yellow);text-decoration:none}.app{max-width:1600px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}.brand{display:flex;align-items:center;gap:11px}.coinlogo{display:grid;place-items:center;width:42px;height:42px;background:var(--yellow);color:#111;border-radius:10px;font-weight:900;font-size:23px}.brand-logo{width:42px;height:42px;max-width:42px;max-height:42px;object-fit:contain;border-radius:10px;flex-shrink:0;display:block;}
-.brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--yellow);font-size:10px;letter-spacing:2px}.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search{width:min(280px,70vw)}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px}
-.sidebar{display:flex;flex-direction:column;gap:6px;align-self:start;position:sticky;top:12px}
-.nav{width:100%;text-align:left;background:transparent;border-color:transparent;color:var(--muted);padding:11px;display:flex;align-items:center;justify-content:space-between;border-radius:8px;transition:all 0.2s}
-.nav.active,.nav:hover{background:#2b3139;color:white;border-color:var(--line)}
-.nav.active{border-left:3px solid var(--yellow)}
-.promo{margin-top:18px;background:linear-gradient(145deg,#8c6510,#33270a);border-radius:10px;padding:15px;text-align:center}.promo h3{margin:4px 0}.promo p{font-size:12px;color:#f5e6b2}.status{font-size:12px;color:var(--muted);margin-top:14px}.dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:7px}.main{min-width:0;display:flex;flex-direction:column;gap:16px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:23px;font-weight:750;margin-top:6px;overflow-wrap:anywhere}.muted{color:var(--muted)}.green{color:var(--green)!important}.red{color:var(--red)!important}.yellow{color:var(--yellow)}.twocol{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:16px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}.section-head h2,.section-head h3{margin:0;font-size:16px}.subtabs{display:flex;gap:6px;flex-wrap:wrap}.subtabs button{padding:6px 9px;font-size:12px}.subtabs button.active{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.chart-frame{height:410px;min-height:300px;background:#0b0e11;border-radius:9px;overflow:hidden}.chart-frame iframe{width:100%;height:100%;border:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid #252b33}th:first-child,td:first-child{text-align:left}th{font-size:11px;color:var(--muted);font-weight:600}td{font-size:13px}.pair{font-weight:700}.small{font-size:11px}.market-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.mini{background:#10151b;border:1px solid var(--line);border-radius:9px;padding:10px;min-width:0}.mini strong{display:block}.mini .price{font-weight:700;margin:5px 0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.result{background:#10151b;border:1px solid var(--line);padding:11px;border-radius:9px}.result b{display:block;font-size:17px;overflow-wrap:anywhere}.result span{font-size:11px;color:var(--muted)}.notice{font-size:12px;color:var(--muted);margin-top:10px}.scenario-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.scenario{border:1px solid var(--line);border-radius:10px;padding:13px;background:#10151b}.scenario h3{margin:0 0 10px}.scenario p{margin:6px 0}.bull{border-top:3px solid var(--green)}.bear{border-top:3px solid var(--red)}.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.hidden{display:none!important}.button-primary{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.button-green{background:#0b553b;border-color:#12734f}.button-danger{background:#571e27;border-color:#87313f}.button-row{display:flex;gap:8px;flex-wrap:wrap}.inline-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.empty{padding:18px;text-align:center;color:var(--muted)}.footer{text-align:center;color:var(--muted);padding:22px 10px;font-size:12px}.badge{font-size:10px;padding:3px 6px;border-radius:5px;background:#3b3211;color:var(--yellow)}.warning{padding:10px;border:1px solid #69551c;background:#29220f;border-radius:8px;color:#e9d58d;font-size:12px}.good-status{color:var(--green)}.bad-status{color:var(--red)}.journal-form{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:12px}.journal-form label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}.journal-form button{align-self:end}.checkboxline{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px}.checkboxline input{width:auto}
-
-/* মোবাইল রেসপনসিভ অপ্টিমাইজেশন */
-@media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;flex-direction:column;gap:6px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.twocol{grid-template-columns:1fr}.market-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:700px){.app{padding:9px}.cards{grid-template-columns:1fr}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid,.split,.scenario-grid{grid-template-columns:1fr}.inline-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.journal-form{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-frame{height:360px}.search{width:100%}.result-grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<div class="app">
-<header class="topbar">
-<div class="brand">
-<img src="./my-logo2.png" alt="Abu Talab Bhuiyan Logo" class="brand-logo">
-<div>
-<h1>abu talab Bhuiyan</h1>
-<p>CRYPTO FUTURES TERMINAL</p>
-</div>
-</div>
-
-<div class="top-actions">
-<input id="global-search" class="search" placeholder="কয়েন খুঁজুন (যেমন BTC, SOL)..." aria-label="Search coins">
-<button id="lang-toggle">বাংলা | EN</button>
-<button id="theme-toggle" title="Theme বদলান">☼ Theme</button>
-<button id="export-data">ডেটা Export</button>
-</div>
-</header>
-
-<div class="layout">
-<aside class="sidebar panel">
+l">
 <button class="nav active" data-target="dashboard"><span>▦ Dashboard</span></button>
 <button class="nav" data-target="live-market"><span>↗ Live Market</span></button>
 <button class="nav" data-target="market-scanner"><span>⌕ Market Scanner</span></button>
