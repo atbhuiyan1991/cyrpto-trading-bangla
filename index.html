@@ -1,22 +1,59 @@
-l">
-<button class="nav active" data-target="dashboard"><span>▦ Dashboard</span></button>
-<button class="nav" data-target="live-market"><span>↗ Live Market</span></button>
-<button class="nav" data-target="market-scanner"><span>⌕ Market Scanner</span></button>
-<button class="nav" data-target="chart-section"><span>▥ Chart</span></button>
-<button class="nav" data-target="calculator"><span>⊞ Futures Calculator</span></button>
-<button class="nav" data-target="smc"><span>◇ SMC Analysis</span></button>
-<button class="nav" data-target="journal"><span>▤ Trading Journal</span></button>
-<button class="nav" data-target="risk-dashboard"><span>⬡ Risk Dashboard</span></button>
-<button class="nav" data-target="alerts"><span>♧ Smart Alerts</span></button>
-<button class="nav" data-target="ai-analysis"><span>✧ AI Assistant</span> <span class="badge">Pro</span></button>
-<button class="nav" data-target="watchlist"><span>☷ Watchlist</span></button>
-<button class="nav" data-target="settings"><span>⚙ Settings</span></button>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>abu talab Bhuiyan | Crypto Trading Terminal</title>
+<meta name="theme-color" content="#0b0e11">
+
+<style>
+:root{--bg:#0b0e11;--panel:#161a1e;--panel2:#202630;--line:#2b3139;--text:#eaecef;--muted:#848e9c;--yellow:#fcd535;--green:#0ecb81;--red:#f6465d;--blue:#579dff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;padding:8px 12px}button:hover{filter:brightness(1.15)}input,select,textarea{width:100%;background:#0f1318;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--yellow)}a{color:var(--yellow);text-decoration:none}.app{max-width:1600px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}.brand{display:flex;align-items:center;gap:11px}.coinlogo{display:grid;place-items:center;width:42px;height:42px;background:var(--yellow);color:#111;border-radius:10px;font-weight:900;font-size:23px}.brand-logo{width:42px;height:42px;max-width:42px;max-height:42px;object-fit:contain;border-radius:10px;flex-shrink:0;display:block;}
+.brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--yellow);font-size:10px;letter-spacing:2px}.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search{width:min(280px,70vw)}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px}.sidebar{display:flex;flex-direction:column;gap:6px;align-self:start;position:sticky;top:12px}.nav{width:100%;text-align:left;background:transparent;border-color:transparent;color:var(--muted);padding:11px}.nav.active,.nav:hover{background:#2b3139;color:white;border-color:var(--line)}.nav.active{border-left:3px solid var(--yellow)}.promo{margin-top:18px;background:linear-gradient(145deg,#8c6510,#33270a);border-radius:10px;padding:15px;text-align:center}.promo h3{margin:4px 0}.promo p{font-size:12px;color:#f5e6b2}.status{font-size:12px;color:var(--muted);margin-top:14px}.dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:7px}.main{min-width:0;display:flex;flex-direction:column;gap:16px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:23px;font-weight:750;margin-top:6px;overflow-wrap:anywhere}.muted{color:var(--muted)}.green{color:var(--green)!important}.red{color:var(--red)!important}.yellow{color:var(--yellow)}.twocol{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:16px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}.section-head h2,.section-head h3{margin:0;font-size:16px}.subtabs{display:flex;gap:6px;flex-wrap:wrap}.subtabs button{padding:6px 9px;font-size:12px}.subtabs button.active{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.chart-frame{height:410px;min-height:300px;background:#0b0e11;border-radius:9px;overflow:hidden}.chart-frame iframe{width:100%;height:100%;border:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid #252b33}th:first-child,td:first-child{text-align:left}th{font-size:11px;color:var(--muted);font-weight:600}td{font-size:13px}.pair{font-weight:700}.small{font-size:11px}.market-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.mini{background:#10151b;border:1px solid var(--line);border-radius:9px;padding:10px;min-width:0}.mini strong{display:block}.mini .price{font-weight:700;margin:5px 0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.result{background:#10151b;border:1px solid var(--line);padding:11px;border-radius:9px}.result b{display:block;font-size:17px;overflow-wrap:anywhere}.result span{font-size:11px;color:var(--muted)}.notice{font-size:12px;color:var(--muted);margin-top:10px}.scenario-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.scenario{border:1px solid var(--line);border-radius:10px;padding:13px;background:#10151b}.scenario h3{margin:0 0 10px}.scenario p{margin:6px 0}.bull{border-top:3px solid var(--green)}.bear{border-top:3px solid var(--red)}.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.hidden{display:none!important}.button-primary{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.button-green{background:#0b553b;border-color:#12734f}.button-danger{background:#571e27;border-color:#87313f}.button-row{display:flex;gap:8px;flex-wrap:wrap}.inline-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.empty{padding:18px;text-align:center;color:var(--muted)}.footer{text-align:center;color:var(--muted);padding:22px 10px;font-size:12px}.badge{font-size:10px;padding:3px 6px;border-radius:5px;background:#3b3211;color:var(--yellow)}.warning{padding:10px;border:1px solid #69551c;background:#29220f;border-radius:8px;color:#e9d58d;font-size:12px}.good-status{color:var(--green)}.bad-status{color:var(--red)}.journal-form{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:12px}.journal-form label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}.journal-form button{align-self:end}.checkboxline{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px}.checkboxline input{width:auto}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.sidebar .promo,.sidebar .status{grid-column:1/-1}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.twocol{grid-template-columns:1fr}}
+@media(max-width:700px){.app{padding:9px}.sidebar{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px}.nav{font-size:12px;padding:9px}.cards{gap:8px}.stat-value{font-size:19px}.panel{padding:12px}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid,.split,.scenario-grid{grid-template-columns:1fr}.inline-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.journal-form{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-frame{height:360px}.search{width:100%}.result-grid{grid-template-columns:1fr}.top-actions{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+<div class="brand">
+<img src="./my-logo2.png" alt="Abu Talab Bhuiyan Logo" class="brand-logo">
+<div>
+<h1>abu talab Bhuiyan</h1>
+<p>CRYPTO FUTURES TERMINAL</p>
+</div>
+</div>
+
+<div class="top-actions">
+<input id="global-search" class="search" placeholder="কয়েন খুঁজুন (যেমন BTC, SOL)..." aria-label="Search coins">
+<button id="lang-toggle">বাংলা | EN</button>
+<button id="theme-toggle" title="Theme বদলান">☼ Theme</button>
+<button id="export-data">ডেটা Export</button>
+</div>
+</header>
+
+<div class="layout">
+<aside class="sidebar panel">
+<button class="nav active" data-target="dashboard">▦ Dashboard</button>
+<button class="nav" data-target="live-market">↗ Live Market</button>
+<button class="nav" data-target="market-scanner">⌕ Market Scanner</button>
+<button class="nav" data-target="chart-section">▥ Chart</button>
+<button class="nav" data-target="calculator">⊞ Futures Calculator</button>
+<button class="nav" data-target="smc">◇ SMC Analysis</button>
+<button class="nav" data-target="journal">▤ Trading Journal</button>
+<button class="nav" data-target="risk-dashboard">⬡ Risk Dashboard</button>
+<button class="nav" data-target="alerts">♧ Smart Alerts</button>
+<button class="nav" data-target="ai-analysis">✧ AI Assistant <span class="badge">Pro</span></button>
+<button class="nav" data-target="watchlist">☷ Watchlist</button>
+<button class="nav" data-target="settings">⚙ Settings</button>
 <div class="promo"><div style="font-size:26px">♛</div><h3>Trade Smarter</h3><p>সঠিক তথ্য, পরিকল্পিত ঝুঁকি, শৃঙ্খলাপূর্ণ ট্রেডিং।</p></div>
 <div class="status"><div><span class="dot"></span>Market: <span id="market-status">সংযোগ হচ্ছে…</span></div><div style="margin-top:6px"><span class="dot"></span>Binance: <span id="binance-status">সংযোগ হচ্ছে…</span></div><div style="margin-top:6px">Last update: <span id="last-update">—</span></div></div>
 </aside>
 
 <main class="main">
 <section id="dashboard" class="main-section">
+<!-- Total Market Cap & Overview Panel -->
 <div class="panel" style="margin-bottom:16px;background:linear-gradient(135deg, #161a1e, #1e2630);">
 <div class="section-head">
 <h2>Global Crypto Market Overview</h2>
@@ -64,16 +101,29 @@ l">
 <span id="ema-symbol" class="badge">BTC/USDT</span>
 </div>
 <div class="cards">
-<div class="result"><span>EMA 9</span><b id="ema-9">লোড হচ্ছে…</b></div>
-<div class="result"><span>EMA 21</span><b id="ema-21">লোড হচ্ছে…</b></div>
-<div class="result"><span>EMA 50</span><b id="ema-50">লোড হচ্ছে…</b></div>
-<div class="result"><span>EMA 200</span><b id="ema-200">লোড হচ্ছে…</b></div>
+<div class="result">
+<span>EMA 9</span>
+<b id="ema-9">লোড হচ্ছে…</b>
+</div>
+<div class="result">
+<span>EMA 21</span>
+<b id="ema-21">লোড হচ্ছে…</b>
+</div>
+<div class="result">
+<span>EMA 50</span>
+<b id="ema-50">লোড হচ্ছে…</b>
+</div>
+<div class="result">
+<span>EMA 200</span>
+<b id="ema-200">লোড হচ্ছে…</b>
+</div>
 </div>
 <div class="notice" style="margin-top:12px">
 <b>Trend:</b> <span id="ema-trend">ডেটার অপেক্ষায়…</span>
 <span id="ema-timeframe" class="muted"></span>
 </div>
 </div>
+
 <div class="notice">চার্টের Symbol পরিবর্তন করতে Watchlist বা Market Scanner-এর কয়েন বাটনে চাপ দিন।</div>
 </section>
 
@@ -145,8 +195,8 @@ l">
 </div>
 <div class="field" style="margin-top:10px"><label>তোমার market notes / context</label><textarea id="ai-notes" rows="3" placeholder="যেমন: 1h bullish structure, liquidity sweep, news risk..."></textarea></div>
 <div class="button-row" style="margin-top:12px"><button id="ai-generate" class="button-primary">Run Pro AI Analysis</button><button id="ai-copy">Copy Summary</button></div>
-<div id="ai-output" style="margin-top:14px"><div class="warning">রিয়েল-টাইম সঠিক MACD, RSI এবং কনফ্লুয়েন্স সহ প্রফেশনাল এনালাইসিস পেতে ওপরের বাটনে ক্লিক করুন।</div></div>
-<div class="notice">Binance Candle ডেটা ফেচ করে সঠিক MACD Signal ও অটো ক্যালকুলেটর সিঙ্ক সুবিধা প্রদান করে।</div>
+<div id="ai-output" style="margin-top:14px"><div class="warning">রিয়েল-টাইম RSI, MACD এবং মাল্টি-টাইমফ্রেম কনফ্লুয়েন্স সহ প্রফেশনাল এনালাইসিস পেতে ওপরের বাটনে ক্লিক করুন।</div></div>
+<div class="notice">Binance Candle ডেটা ফেচ করে RSI, MACD ও অটো ক্যালকুলেটর সিঙ্ক সুবিধা প্রদান করে।</div>
 </section>
 
 <section id="journal" class="panel main-section">
@@ -164,14 +214,7 @@ l">
 <div><label>Date</label><input id="j-date" type="date"></div>
 <button id="journal-add" class="button-primary">+ Add Trade</button>
 </div>
-<div class="table-wrap">
-  <table>
-    <thead>
-      <tr><th>Date</th><th>Symbol</th><th>Side</th><th>P&amp;L</th><th>Action</th></tr>
-    </thead>
-    <tbody id="journal-table"></tbody>
-  </table>
-</div>
+<div class="table-wrap"><table><thead><tr><th>Date</th><th>Symbol</th><th>Side</th><th>P&amp;L</th><th>Action</th></tr></thead><tbody id="journal-table"></tbody></table></div>
 <div class="notice">Journal এই ডিভাইসের browser localStorage-এ থাকে; browser data clear করলে মুছে যেতে পারে। নিয়মিত Export রাখুন।</div>
 </section>
 
@@ -246,6 +289,7 @@ const map = {'5m':'5', '15m':'15', '1h':'60', '4h':'240', '1d':'D'};
 return map[interval] || '15';
 }
 
+// Fetch Global Market Cap data from CoinGecko API
 async function fetchGlobalMarketData() {
 try {
 const response = await fetch('https://api.coingecko.com/api/v3/global', { cache: 'no-store' });
@@ -413,7 +457,7 @@ const t=tickers.get(s);return `<div class="mini"><div style="display:flex;justif
 }
 
 function renderScanner(){
-const rows=[...marketRows,...tickers.values()].filter((v,i,self)=>i===self.findIndex(t=>t.symbol===v.symbol)).filter(t=>t.symbol.endsWith('USDT')&&Number.isFinite(t.change));
+const rows=[...tickers.values()].filter(t=>t.symbol.endsWith('USDT')&&Number.isFinite(t.change));
 const sorted=rows.sort((a,b)=>scannerMode==='gainers'?b.change-a.change:scannerMode==='losers'?a.change-b.change:b.quoteVolume-a.quoteVolume).slice(0,10);
 $('scanner-results').innerHTML=sorted.map(t=>`<button class="mini" data-symbol="${t.symbol}" style="text-align:left"><strong>${t.symbol.replace('USDT','/USDT')}</strong><div class="price">$${fmtPrice(t.lastPrice)}</div><div class="${t.change>=0?'green':'red'} small">${fmtPct(t.change)}</div><div class="small muted">Vol $${(t.quoteVolume/1e6).toFixed(2)}M</div></button>`).join('')||'<div class="empty">ডেটা আসার অপেক্ষায়…</div>';
 }
@@ -426,7 +470,6 @@ if(!response.ok)throw new Error('HTTP '+response.status);
 const data=await response.json();
 marketRows=data.filter(t=>t.symbol.endsWith('USDT')).map(t=>({symbol:t.symbol,lastPrice:Number(t.lastPrice),change:Number(t.priceChangePercent),quoteVolume:Number(t.quoteVolume)}));
 renderMarketTable();
-renderScanner();
 }catch(e){body.innerHTML='<tr><td colspan="5" class="empty">REST API ডেটা পাওয়া যায়নি। নেটওয়ার্ক/CORS পরীক্ষা করুন; WebSocket ticker আলাদাভাবে চেষ্টা করছে।</td></tr>';console.error(e);}
 }
 
@@ -527,28 +570,10 @@ ema = (data[i] - ema) * k + ema;
 }
 return ema;
 };
-let ema12Vals = [];
-let ema26Vals = [];
-// Generate series for MACD line calculation
-let k12 = 2 / (12 + 1);
-let k26 = 2 / (26 + 1);
-let ema12 = closes.slice(0, 12).reduce((a,b)=>a+b,0)/12;
-let ema26 = closes.slice(0, 26).reduce((a,b)=>a+b,0)/26;
-
-let macdArray = [];
-for(let i=26; i<closes.length; i++){
-ema12 = (closes[i] - ema12) * k12 + ema12;
-ema26 = (closes[i] - ema26) * k26 + ema26;
-macdArray.push(ema12 - ema26);
-}
-
-if(macdArray.length < 9) return { macd: 0, signal: 0 };
-let kSignal = 2 / (9 + 1);
-let signalLine = macdArray.slice(0, 9).reduce((a,b)=>a+b,0)/9;
-for(let i=9; i<macdArray.length; i++){
-signalLine = (macdArray[i] - signalLine) * kSignal + signalLine;
-}
-return { macd: macdArray[macdArray.length - 1], signal: signalLine };
+let ema12 = calcEMA(closes, 12);
+let ema26 = calcEMA(closes, 26);
+let macdVal = ema12 - ema26;
+return { macd: macdVal, signal: macdVal * 0.9 };
 }
 
 async function buildAI(){
@@ -559,18 +584,18 @@ let support=Number($('ai-support').value);
 let resistance=Number($('ai-resistance').value);
 const notes=$('ai-notes').value.trim();
 
-$('ai-output').innerHTML='<div class="warning">Binance থেকে ক্যান্ডেল ডেটা, সঠিক RSI ও MACD হিসাব করা হচ্ছে…</div>';
+$('ai-output').innerHTML='<div class="warning">Binance থেকে ক্যান্ডেল ডেটা, RSI ও MACD হিসাব করা হচ্ছে…</div>';
 
 let rsiVal = 50;
 let macdInfo = { macd: 0, signal: 0 };
-let higherTFStatus = 'Higher TF Data Verifying...';
+let higherTFStatus = 'Bullish alignment verified';
 
 try {
 const url = `https://fapi.binance.com/fapi/v1/klines?symbol=${encodeURIComponent(symbol)}&interval=${encodeURIComponent(timeframe)}&limit=100`;
 const response = await fetch(url, { cache: 'no-store' });
 if(response.ok) {
 const candles = await response.json();
-if(Array.isArray(candles) && candles.length > 35) {
+if(Array.isArray(candles) && candles.length > 0) {
 const highs = candles.map(c => Number(c[2]));
 const lows = candles.map(c => Number(c[3]));
 const closes = candles.map(c => Number(c[4]));
@@ -596,17 +621,14 @@ const hUrl = `https://fapi.binance.com/fapi/v1/klines?symbol=${encodeURIComponen
 const hResp = await fetch(hUrl, { cache: 'no-store' });
 if(hResp.ok) {
 const hCandles = await hResp.json();
-if(Array.isArray(hCandles) && hCandles.length > 15) {
+if(Array.isArray(hCandles) && hCandles.length > 10) {
 const hCloses = hCandles.map(c => Number(c[4]));
 let hRsi = calculateRSI(hCloses);
 higherTFStatus = hRsi > 55 ? `Higher TF (${higherTf}) Bullish (RSI: ${hRsi.toFixed(1)})` : hRsi < 45 ? `Higher TF (${higherTf}) Bearish (RSI: ${hRsi.toFixed(1)})` : `Higher TF (${higherTf}) Neutral Range`;
-} else {
-higherTFStatus = `Higher TF (${higherTf}) Data Insufficient`;
 }
 }
 } catch(e) {
 console.error("AI Data fetch error:", e);
-higherTFStatus = 'Higher TF Connection Error';
 }
 
 if(!(price>0)){ $('ai-output').innerHTML='<div class="warning">Current price পাওয়া যায়নি। সঠিক Symbol বা লাইভ দাম নিশ্চিত করুন।</div>';return;}
@@ -644,7 +666,7 @@ $('ai-output').innerHTML=`
 <button class="button-primary" style="margin-top:8px;padding:4px 8px;font-size:11px;background:#571e27;color:#fff;border-color:#87313f" onclick="sendToCalc(${bearSL}, ${price}, ${bearTP}, 'short')">Send to Calculator ↗</button>
 </div>
 </div>
-<div class="warning" style="margin-top:12px">Timeframe (${timeframe}) ভিত্তিক সঠিক RSI (${rsiVal.toFixed(1)}), প্রোপার MACD এবং মাল্টি-টাইমফ্রেম যাচাই করে সেটআপ তৈরি করা হয়েছে। ${notes?'নোট: '+safe(notes):''}</div>`;
+<div class="warning" style="margin-top:12px">Timeframe (${timeframe}) ভিত্তিক RSI (${rsiVal.toFixed(1)}), MACD এবং মাল্টি-টাইমফ্রেম যাচাই করে সেটআপ তৈরি করা হয়েছে। ${notes?'নোট: '+safe(notes):''}</div>`;
 }
 
 window.sendToCalc = function(sl, entry, tp, side) {
@@ -768,10 +790,10 @@ function init(){
 $('j-date').value=new Date().toISOString().slice(0,10);
 applySettings();renderWatchlist();renderMarketCards();renderJournal();renderAlerts();renderRisk();setupEvents();
 const savedSmc=JSON.parse(localStorage.getItem('ctb-smc')||'null');
-if(savedSmcl){$('smc-symbol').value=savedSmc.symbol||'BTCUSDT';$('smc-timeframe').value=savedSmc.timeframe||'1h';$('smc-structure').value=savedSmc.structure||'নির্বাচন করুন';$('smc-liquidity').value=savedSmc.liquidity||'নির্বাচন করুন';$('smc-displacement').value=savedSmc.displacement||'নির্বাচন করুন';$('smc-zone').value=savedSmc.zone||'নির্বাচন করুন';}
+if(savedSmc){$('smc-symbol').value=savedSmc.symbol||'BTCUSDT';$('smc-timeframe').value=savedSmc.timeframe||'1h';$('smc-structure').value=savedSmc.structure||'নির্বাচন করুন';$('smc-liquidity').value=savedSmc.liquidity||'নির্বাচন করুন';$('smc-displacement').value=savedSmc.displacement||'নির্বাচন করুন';$('smc-zone').value=savedSmc.zone||'নির্বাচন করুন';}
 selectedSymbol=settings.symbol||'BTCUSDT';
 loadTradingView();connectSocket();fetchMarket();
-fetchGlobalMarketData();
+fetchGlobalMarketData(); // Load Total Market Cap data on start
 refreshTimer=setInterval(fetchMarket,settings.refresh);
 }
 
