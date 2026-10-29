@@ -8,258 +8,239 @@
 
 <style>
 :root{--bg:#0b0e11;--panel:#161a1e;--panel2:#202630;--line:#2b3139;--text:#eaecef;--muted:#848e9c;--yellow:#fcd535;--green:#0ecb81;--red:#f6465d;--blue:#579dff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;padding:8px 12px}button:hover{filter:brightness(1.15)}input,select,textarea{width:100%;background:#0f1318;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--yellow)}a{color:var(--yellow);text-decoration:none}.app{max-width:1600px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}.brand{display:flex;align-items:center;gap:11px}.brand-logo{width:42px;height:42px;max-width:42px;max-height:42px;object-fit:contain;border-radius:10px;flex-shrink:0;display:block;}
-.brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--yellow);font-size:10px;letter-spacing:2px}.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search{width:min(280px,70vw)}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px}
-.sidebar{display:flex;flex-direction:column;gap:5px;align-self:start;position:sticky;top:12px;max-height:92vh;overflow-y:auto}
-.nav{width:100%;text-align:left;background:transparent;border-color:transparent;color:var(--muted);padding:9px 11px;display:flex;align-items:center;justify-content:space-between;border-radius:8px;transition:all 0.2s;font-size:13px}
-.nav.active,.nav:hover{background:#2b3139;color:white;border-color:var(--line)}
-.nav.active{border-left:3px solid var(--yellow)}
-.promo{margin-top:12px;background:linear-gradient(145deg,#8c6510,#33270a);border-radius:10px;padding:12px;text-align:center}.promo h3{margin:4px 0;font-size:14px}.promo p{font-size:11px;color:#f5e6b2}.status{font-size:11px;color:var(--muted);margin-top:10px}.dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:7px}.main{min-width:0;display:flex;flex-direction:column;gap:16px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:23px;font-weight:750;margin-top:6px;overflow-wrap:anywhere}.muted{color:var(--muted)}.green{color:var(--green)!important}.red{color:var(--red)!important}.yellow{color:var(--yellow)}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}.section-head h2,.section-head h3{margin:0;font-size:16px}.subtabs{display:flex;gap:6px;flex-wrap:wrap}.subtabs button{padding:6px 9px;font-size:12px}.subtabs button.active{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.chart-frame{height:410px;min-height:300px;background:#0b0e11;border-radius:9px;overflow:hidden}.chart-frame iframe{width:100%;height:100%;border:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid #252b33}th:first-child,td:first-child{text-align:left}th{font-size:11px;color:var(--muted);font-weight:600}td{font-size:13px}.market-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.mini{background:#10151b;border:1px solid var(--line);border-radius:9px;padding:10px;min-width:0}.mini strong{display:block}.mini .price{font-weight:700;margin:5px 0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.result{background:#10151b;border:1px solid var(--line);padding:11px;border-radius:9px}.result b{display:block;font-size:17px;overflow-wrap:anywhere}.result span{font-size:11px;color:var(--muted)}.notice{font-size:12px;color:var(--muted);margin-top:10px}.scenario-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.scenario{border:1px solid var(--line);border-radius:10px;padding:13px;background:#10151b}.scenario h3{margin:0 0 10px}.scenario p{margin:6px 0}.bull{border-top:3px solid var(--green)}.bear{border-top:3px solid var(--red)}.button-primary{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.button-danger{background:#571e27;border-color:#87313f}.button-row{display:flex;gap:8px;flex-wrap:wrap}.inline-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.empty{padding:18px;text-align:center;color:var(--muted)}.footer{text-align:center;color:var(--muted);padding:22px 10px;font-size:12px}.badge{font-size:10px;padding:3px 6px;border-radius:5px;background:#3b3211;color:var(--yellow)}.warning{padding:10px;border:1px solid #69551c;background:#29220f;border-radius:8px;color:#e9d58d;font-size:12px}.good-status{color:var(--green)}.bad-status{color:var(--red)}.journal-form{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:12px}.journal-form label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}.journal-form button{align-self:end}
-
-@media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.market-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:700px){.app{padding:9px}.cards{grid-template-columns:1fr}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid,.scenario-grid{grid-template-columns:1fr}.inline-fields,.journal-form{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-frame{height:360px}.search{width:100%}.result-grid{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;padding:8px 12px}button:hover{filter:brightness(1.15)}input,select,textarea{width:100%;background:#0f1318;border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--yellow)}a{color:var(--yellow);text-decoration:none}.app{max-width:1600px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}.brand{display:flex;align-items:center;gap:11px}.coinlogo{display:grid;place-items:center;width:42px;height:42px;background:var(--yellow);color:#111;border-radius:10px;font-weight:900;font-size:23px}.brand-logo{width:42px;height:42px;max-width:42px;max-height:42px;object-fit:contain;border-radius:10px;flex-shrink:0;display:block;}
+.brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--yellow);font-size:10px;letter-spacing:2px}.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search{width:min(280px,70vw)}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px}.sidebar{display:flex;flex-direction:column;gap:6px;align-self:start;position:sticky;top:12px}.nav{width:100%;text-align:left;background:transparent;border-color:transparent;color:var(--muted);padding:11px}.nav.active,.nav:hover{background:#2b3139;color:white;border-color:var(--line)}.nav.active{border-left:3px solid var(--yellow)}.promo{margin-top:18px;background:linear-gradient(145deg,#8c6510,#33270a);border-radius:10px;padding:15px;text-align:center}.promo h3{margin:4px 0}.promo p{font-size:12px;color:#f5e6b2}.status{font-size:12px;color:var(--muted);margin-top:14px}.dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:7px}.main{min-width:0;display:flex;flex-direction:column;gap:16px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:23px;font-weight:750;margin-top:6px;overflow-wrap:anywhere}.muted{color:var(--muted)}.green{color:var(--green)!important}.red{color:var(--red)!important}.yellow{color:var(--yellow)}.twocol{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:16px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}.section-head h2,.section-head h3{margin:0;font-size:16px}.subtabs{display:flex;gap:6px;flex-wrap:wrap}.subtabs button{padding:6px 9px;font-size:12px}.subtabs button.active{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.chart-frame{height:410px;min-height:300px;background:#0b0e11;border-radius:9px;overflow:hidden}.chart-frame iframe{width:100%;height:100%;border:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid #252b33}th:first-child,td:first-child{text-align:left}th{font-size:11px;color:var(--muted);font-weight:600}td{font-size:13px}.pair{font-weight:700}.small{font-size:11px}.market-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.mini{background:#10151b;border:1px solid var(--line);border-radius:9px;padding:10px;min-width:0}.mini strong{display:block}.mini .price{font-weight:700;margin:5px 0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.result{background:#10151b;border:1px solid var(--line);padding:11px;border-radius:9px}.result b{display:block;font-size:17px;overflow-wrap:anywhere}.result span{font-size:11px;color:var(--muted)}.notice{font-size:12px;color:var(--muted);margin-top:10px}.scenario-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.scenario{border:1px solid var(--line);border-radius:10px;padding:13px;background:#10151b}.scenario h3{margin:0 0 10px}.scenario p{margin:6px 0}.bull{border-top:3px solid var(--green)}.bear{border-top:3px solid var(--red)}.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.hidden{display:none!important}.button-primary{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.button-green{background:#0b553b;border-color:#12734f}.button-danger{background:#571e27;border-color:#87313f}.button-row{display:flex;gap:8px;flex-wrap:wrap}.inline-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.empty{padding:18px;text-align:center;color:var(--muted)}.footer{text-align:center;color:var(--muted);padding:22px 10px;font-size:12px}.badge{font-size:10px;padding:3px 6px;border-radius:5px;background:#3b3211;color:var(--yellow)}.warning{padding:10px;border:1px solid #69551c;background:#29220f;border-radius:8px;color:#e9d58d;font-size:12px}.good-status{color:var(--green)}.bad-status{color:var(--red)}.journal-form{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:12px}.journal-form label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}.journal-form button{align-self:end}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.sidebar .promo,.sidebar .status{grid-column:1/-1}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.twocol{grid-template-columns:1fr}}
+@media(max-width:700px){.app{padding:9px}.sidebar{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px}.nav{font-size:12px;padding:9px}.cards{gap:8px}.stat-value{font-size:19px}.panel{padding:12px}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid,.split,.scenario-grid{grid-template-columns:1fr}.inline-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.journal-form{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-frame{height:360px}.search{width:100%}.result-grid{grid-template-columns:1fr}.top-actions{width:100%}}
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar">
 <div class="brand">
-<img src="./my-logo2.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+<img src="./my-logo2.png" alt="Abu Talab Bhuiyan Logo" class="brand-logo">
 <div>
 <h1>abu talab Bhuiyan</h1>
 <p>CRYPTO FUTURES TERMINAL</p>
 </div>
 </div>
 
-<div class="top-actions">
-<input id="global-search" class="search" placeholder="কয়েন খুঁজুন (যেমন BTC, SOL)...">
-<button id="lang-toggle">বাংলা | EN</button>
-<button id="theme-toggle" title="Theme বদলান">☼ Theme</button>
-<button id="export-data">ডেটা Export</button>
-</div>
+  <div class="top-actions">
+    <input id="global-search" class="search" placeholder="কয়েন খুঁজুন (যেমন BTC, SOL)..." aria-label="Search coins">
+    <button id="lang-toggle">বাংলা | EN</button>
+    <button id="theme-toggle" title="Theme বদলান">☼ Theme</button>
+    <button id="export-data">ডেটা Export</button>
+  </div>
 </header>
 
 <div class="layout">
 <aside class="sidebar panel">
-<button class="nav active" data-target="dashboard"><span>▦ Dashboard</span></button>
-<button class="nav" data-target="live-market"><span>↗ Live Market</span></button>
-<button class="nav" data-target="market-scanner"><span>⌕ Market Scanner</span></button>
-<button class="nav" data-target="chart-section"><span>▥ Chart & EMA</span></button>
-<button class="nav" data-target="mtf-confluence"><span>🌐 Multi-TF Confluence</span> <span class="badge">New</span></button>
-<button class="nav" data-target="smc-smart"><span>◇ SMC Smart Detection</span> <span class="badge">New</span></button>
-<button class="nav" data-target="kill-zone"><span>🕒 Kill Zone & Sessions</span> <span class="badge">New</span></button>
-<button class="nav" data-target="calculator"><span>⊞ Futures Calculator</span></button>
-<button class="nav" data-target="ai-analysis"><span>✧ AI Pro Assistant</span></button>
-<button class="nav" data-target="journal"><span>▤ Trading Journal</span></button>
-<button class="nav" data-target="risk-dashboard"><span>⬡ Risk Dashboard</span></button>
-<button class="nav" data-target="alerts"><span>♧ Smart Alerts</span></button>
-<button class="nav" data-target="watchlist"><span>☷ Watchlist</span></button>
-<button class="nav" data-target="settings"><span>⚙ Settings</span></button>
-<div class="promo"><h3>Trade Smarter</h3><p>সঠিক তথ্য, পরিকল্পিত ঝুঁকি ও শৃঙ্খলা।</p></div>
-<div class="status"><div><span class="dot"></span>Market: <span id="market-status">সংযোগ হচ্ছে…</span></div><div style="margin-top:4px"><span class="dot"></span>Binance: <span id="binance-status">সংযোগ হচ্ছে…</span></div></div>
+  <button class="nav active" data-target="dashboard">▦ Dashboard</button>
+  <button class="nav" data-target="live-market">↗ Live Market</button>
+  <button class="nav" data-target="market-scanner">⌕ Market Scanner</button>
+  <button class="nav" data-target="chart-section">▥ Chart</button>
+  <button class="nav" data-target="calculator">⊞ Futures Calculator</button>
+  <button class="nav" data-target="smc">◇ SMC Analysis</button>
+  <button class="nav" data-target="journal">▤ Trading Journal</button>
+  <button class="nav" data-target="risk-dashboard">⬡ Risk Dashboard</button>
+  <button class="nav" data-target="alerts">♧ Smart Alerts</button>
+  <button class="nav" data-target="ai-analysis">✧ AI Assistant <span class="badge">New</span></button>
+  <button class="nav" data-target="watchlist">☷ Watchlist</button>
+  <button class="nav" data-target="settings">⚙ Settings</button>
+  <div class="promo"><div style="font-size:26px">♛</div><h3>Trade Smarter</h3><p>সঠিক তথ্য, পরিকল্পিত ঝুঁকি, শৃঙ্খলাপূর্ণ ট্রেডিং।</p></div>
+  <div class="status"><div><span class="dot"></span>Market: <span id="market-status">সংযোগ হচ্ছে…</span></div><div style="margin-top:6px"><span class="dot"></span>Binance: <span id="binance-status">সংযোগ হচ্ছে…</span></div><div style="margin-top:6px">Last update: <span id="last-update">—</span></div></div>
 </aside>
 
 <main class="main">
 <section id="dashboard" class="main-section">
-<div class="panel" style="margin-bottom:16px;background:linear-gradient(135deg, #161a1e, #1e2630);">
-<div class="section-head"><h2>Global Crypto Market Overview</h2><span class="small muted">CoinGecko Global API Data</span></div>
-<div class="cards" style="grid-template-columns:repeat(4,minmax(0,1fr))">
-<div class="result" style="background:#0f1318"><span>Total Market Cap</span><b id="global-mcap">লোড হচ্ছে…</b><span id="global-mcap-change" class="small">—</span></div>
-<div class="result" style="background:#0f1318"><span>24h Market Volume</span><b id="global-volume">লোড হচ্ছে…</b></div>
-<div class="result" style="background:#0f1318"><span>BTC Dominance</span><b id="global-btc-dom">লোড হচ্ছে…</b></div>
-<div class="result" style="background:#0f1318"><span>Active Cryptos</span><b id="global-coins">—</b></div>
-</div>
-</div>
+  <div class="cards">
+    <div class="panel"><div class="stat-label">Personal Balance (USDT)</div><div class="stat-value" id="balance-card">$50.00</div><div class="small muted">Settings-এ নিজের ব্যালেন্স সেট করুন</div></div>
+    <div class="panel"><div class="stat-label">24h BTC Change</div><div class="stat-value green" id="ticker-change">—</div><div class="small muted" id="ticker-change-fiat">লাইভ মার্কেট ডেটা</div></div>
+    <div class="panel"><div class="stat-label">BTC Price</div><div class="stat-value" id="top-btc-price">লোড হচ্ছে…</div><div id="top-btc-change" class="small">—</div></div>
+    <div class="panel"><div class="stat-label">ETH Price</div><div class="stat-value" id="top-eth-price">লোড হচ্ছে…</div><div id="top-eth-change" class="small">—</div></div>
+  </div>
+  
+  <!-- New Feature 4: Trading Sessions & Feature 5: Funding Rate Overview -->
+  <div class="panel" style="margin-top:16px">
+    <div class="section-head"><h2>Market Sessions &amp; Funding Overview</h2><span class="badge">Scalping Helper</span></div>
+    <div class="cards">
+      <div class="result"><span>Active Session</span><b id="active-session" class="yellow">লোড হচ্ছে...</b></div>
+      <div class="result"><span>BTC Funding Rate</span><b id="btc-funding">—</b></div>
+      <div class="result"><span>ETH Funding Rate</span><b id="eth-funding">—</b></div>
+      <div class="result"><span>Shortcut Hotkeys</span><b class="muted" style="font-size:12px">B: Long | S: Short | C: Calc</b></div>
+    </div>
+  </div>
 
-<div class="cards">
-<div class="panel"><div class="stat-label">Personal Balance (USDT)</div><div class="stat-value" id="balance-card">$50.00</div><div class="small muted">Settings থেকে আপডেট করুন</div></div>
-<div class="panel"><div class="stat-label">24h BTC Change</div><div class="stat-value green" id="ticker-change">—</div><div class="small muted">লাইভ মার্কেট ডেটা</div></div>
-<div class="panel"><div class="stat-label">BTC Price</div><div class="stat-value" id="top-btc-price">লোড হচ্ছে…</div><div id="top-btc-change" class="small">—</div></div>
-<div class="panel"><div class="stat-label">ETH Price</div><div class="stat-value" id="top-eth-price">লোড হচ্ছে…</div><div id="top-eth-change" class="small">—</div></div>
-</div>
-<div class="panel" style="margin-top:16px">
-<div class="section-head"><h2>Binance Live Ticker</h2><span class="small muted">USDT Spot/Futures Ticker</span></div>
-<div id="mini-tickers" class="market-grid"></div>
-</div>
+  <div class="panel" style="margin-top:16px">
+    <div class="section-head"><h2>Binance Live Ticker</h2><span class="small muted">USDT Spot ticker · প্রায় রিয়েল-টাইম</span></div>
+    <div id="mini-tickers" class="market-grid"></div>
+  </div>
 </section>
 
-<!-- 1. Multi-Timeframe Confluence -->
-<section id="mtf-confluence" class="panel main-section">
-<div class="section-head"><h2>1. Multi-Timeframe Confluence</h2><span class="badge">5m, 15m, 1h, 4h Alignment</span></div>
-<div class="form-grid">
-<div class="field"><label>Confluence Symbol</label><input id="mtf-symbol" value="BTCUSDT"></div>
-<div style="align-self:end"><button id="mtf-run" class="button-primary">Run MTF Analysis</button></div>
-</div>
-<div id="mtf-output" class="result-grid" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-top:14px">
-<div class="result"><span>5m TF</span><b id="mtf-5m">অপেক্ষমাণ…</b></div>
-<div class="result"><span>15m TF</span><b id="mtf-15m">অপেক্ষমাণ…</b></div>
-<div class="result"><span>1h TF</span><b id="mtf-1h">অপেক্ষমাণ…</b></div>
-<div class="result"><span>4h TF</span><b id="mtf-4h">অপেক্ষমাণ…</b></div>
-</div>
-<div id="mtf-summary" class="notice" style="margin-top:12px">বাটনে ক্লিক করে মাল্টি-টাইমফ্রেম ট্রেন্ড কনফ্লুয়েন্স যাচাই করুন।</div>
-</section>
-
-<!-- 2. SMC Smart Detection -->
-<section id="smc-smart" class="panel main-section">
-<div class="section-head"><h2>2. SMC Smart Detection (Automated)</h2><span class="badge">BOS & Structure</span></div>
-<div class="form-grid">
-<div class="field"><label>Symbol</label><input id="smc-auto-symbol" value="BTCUSDT"></div>
-<div class="field"><label>Timeframe</label><select id="smc-auto-tf"><option value="5m">5m</option><option value="15m" selected>15m</option><option value="1h">1h</option><option value="4h">4h</option></select></div>
-</div>
-<div class="button-row" style="margin-top:12px"><button id="smc-auto-run" class="button-primary">Scan SMC Structure</button></div>
-<div id="smc-auto-output" class="notice" style="margin-top:12px">ক্যান্ডেল ডেটা থেকে সুইং স্ট্রাকচার ও ব্রেক অব স্ট্রাকচার (BOS) স্ক্যান করতে রান করুন।</div>
-</section>
-
-<!-- 3. Session & Kill Zone Dashboard -->
-<section id="kill-zone" class="panel main-section">
-<div class="section-head"><h2>3. Session & Kill Zone Dashboard (Oman Time)</h2><span class="badge">Asia, London, NY</span></div>
-<div class="cards" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-<div class="result"><span>Asia Session (03:00 - 12:00 GST)</span><b id="sess-asia">হিসাব করা হচ্ছে…</b></div>
-<div class="result"><span>London Kill Zone (11:00 - 15:00 GST)</span><b id="sess-london">হিসাব করা হচ্ছে…</b></div>
-<div class="result"><span>New York Kill Zone (16:00 - 20:00 GST)</span><b id="sess-ny">হিসাব করা হচ্ছে…</b></div>
-</div>
-<div class="notice" style="margin-top:12px">বর্তমান ওমানের স্থানীয় সময় অনুযায়ী কোন সেশন বা কিল জোন সক্রিয় রয়েছে তা এখানে দেখা যাবে।</div>
-</section>
-
-<!-- Chart & EMA -->
 <section id="chart-section" class="panel main-section">
-<div class="section-head"><div><h2>TradingView Chart <span class="badge" id="chart-symbol-label">BTC/USDT</span></h2><div class="small muted">রিয়েল-টাইম চার্ট ও ইন্ডিকেটর</div></div><div class="button-row"><div class="subtabs" id="timeframes"><button data-interval="5">5m</button><button data-interval="15" class="active">15m</button><button data-interval="60">1h</button><button data-interval="240">4h</button><button data-interval="1d">1D</button></div><button id="open-full-tv" class="button-primary">Open Full ↗</button></div></div>
-<div id="tradingview_chart" class="chart-frame"><div class="empty">TradingView লোড হচ্ছে…</div></div>
-<div id="ema-panel" class="panel" style="margin-top:14px">
-<div class="section-head"><h2>EMA Trend Panel</h2><span id="ema-symbol" class="badge">BTC/USDT</span></div>
+  <div class="section-head"><div><h2>TradingView Chart <span class="badge" id="chart-symbol-label">BTC/USDT</span></h2><div class="small muted">TradingView widget — ইন্টারনেট প্রয়োজন</div></div><div class="button-row"><div class="subtabs" id="timeframes"><button data-interval="15" class="active">15m</button><button data-interval="60">1h</button><button data-interval="240">4h</button><button data-interval="D">1D</button></div><button id="open-full-tv" class="button-primary">Open Full TradingView ↗</button></div></div>
+  <div id="tradingview_chart" class="chart-frame"><div class="empty">TradingView চার্ট লোড হচ্ছে…</div></div>
+  <div id="ema-panel" class="panel" style="margin-top:14px">
+<div class="section-head">
+<h2>EMA Trend Panel</h2>
+<span id="ema-symbol" class="badge">BTC/USDT</span>
+</div>
 <div class="cards">
 <div class="result"><span>EMA 9</span><b id="ema-9">লোড হচ্ছে…</b></div>
 <div class="result"><span>EMA 21</span><b id="ema-21">লোড হচ্ছে…</b></div>
 <div class="result"><span>EMA 50</span><b id="ema-50">লোড হচ্ছে…</b></div>
 <div class="result"><span>EMA 200</span><b id="ema-200">লোড হচ্ছে…</b></div>
 </div>
-<div class="notice" style="margin-top:12px"><b>Trend:</b> <span id="ema-trend">ডেটার অপেক্ষায়…</span> <span id="ema-timeframe" class="muted"></span></div>
+<div class="notice" style="margin-top:12px">
+<b>Trend:</b> <span id="ema-trend">ডেটার অপেক্ষায়…</span>
+<span id="ema-timeframe" class="muted"></span>
 </div>
+</div>
+<div class="notice">চার্টের Symbol পরিবর্তন করতে Watchlist বা Market Scanner-এর কয়েন বাটনে চাপ দিন।</div>
 </section>
 
-<!-- Live Market -->
 <section id="live-market" class="panel main-section">
-<div class="section-head"><h2>Binance Live Market</h2><div class="button-row"><button id="refresh-market">↻ Refresh</button><button id="market-search-clear">Clear</button></div></div>
-<div class="inline-fields" style="margin-bottom:12px"><div><input id="market-search" placeholder="কয়েন খুঁজুন…"></div><div><select id="market-sort"><option value="volume">Volume অনুযায়ী</option><option value="change-desc">Gainers আগে</option><option value="change-asc">Losers আগে</option></select></div><div><select id="market-limit"><option value="50">Top 50</option><option value="100">Top 100</option></select></div><div><span id="market-count" class="muted small">—</span></div></div>
-<div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Price (USDT)</th><th>24h %</th><th>24h Volume</th><th>Action</th></tr></thead><tbody id="market-table"><tr><td colspan="5" class="empty">ডেটা আসছে…</td></tr></tbody></table></div>
+  <div class="section-head"><h2>Binance Live Market</h2><div class="button-row"><button id="refresh-market">↻ Refresh</button><button id="market-search-clear">Search Clear</button></div></div>
+  <div class="inline-fields" style="margin-bottom:12px"><div><input id="market-search" placeholder="কয়েন খুঁজুন…"></div><div><select id="market-sort"><option value="volume">Volume অনুযায়ী</option><option value="change-desc">Gainers আগে</option><option value="change-asc">Losers আগে</option><option value="price-desc">দাম বেশি আগে</option><option value="price-asc">দাম কম আগে</option></select></div><div><select id="market-limit"><option value="50">Top 50</option><option value="100">Top 100</option><option value="200">Top 200</option></select></div><div><span id="market-count" class="muted small">ডেটা লোড হচ্ছে…</span></div></div>
+  <div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Price (USDT)</th><th>24h %</th><th>24h Volume</th><th>Action</th></tr></thead><tbody id="market-table"><tr><td colspan="5" class="empty">Binance থেকে ডেটা আনা হচ্ছে…</td></tr></tbody></table></div>
+  <div class="notice">এটি Binance Futures-এর পাবলিক মার্কেট ডেটা।</div>
 </section>
 
-<!-- Market Scanner -->
 <section id="market-scanner" class="panel main-section">
-<div class="section-head"><h2>Market Scanner</h2><div class="subtabs"><button class="active" data-scanner-tab="gainers">Top Gainers</button><button data-scanner-tab="losers">Top Losers</button><button data-scanner-tab="volume">High Volume</button></div></div>
-<div id="scanner-results" class="market-grid"><div class="empty">অপেক্ষমাণ…</div></div>
+  <div class="section-head"><h2>Market Scanner</h2><div class="subtabs"><button class="active" data-scanner-tab="gainers">Top Gainers</button><button data-scanner-tab="losers">Top Losers</button><button data-scanner-tab="volume">High Volume</button></div></div>
+  <div id="scanner-results" class="market-grid"><div class="empty">মার্কেট ডেটা লোড হলে ফলাফল দেখা যাবে।</div></div>
+  <div class="notice">Scanner 24h পরিবর্তন ও ভলিউম অনুসারে সাজায়; এটি নিজে থেকে buy/sell signal নয়।</div>
 </section>
 
-<!-- Watchlist -->
 <section id="watchlist" class="panel main-section">
-<div class="section-head"><h2>Watchlist</h2><span class="small muted">কয়েনে ক্লিক করলে চার্ট ও প্যানেল সিঙ্ক হবে</span></div>
-<div id="watchlist-cards" class="market-grid"></div>
-<div class="form-grid" style="margin-top:12px"><div class="field"><label>Add Watchlist Symbol</label><input id="watch-add-symbol" placeholder="ADAUSDT"></div><div style="align-self:end"><button id="watch-add" class="button-primary">+ Add</button></div></div>
+  <div class="section-head"><h2>Watchlist</h2><span class="small muted">কয়েন চাপলে চার্ট বদলাবে</span></div>
+  <div id="watchlist-cards" class="market-grid"></div>
+  <div class="form-grid" style="margin-top:12px"><div class="field"><label>Watchlist-এ কয়েন যোগ করুন (যেমন ADAUSDT)</label><input id="watch-add-symbol" placeholder="ADAUSDT"></div><div style="align-self:end"><button id="watch-add" class="button-primary">+ Add Coin</button></div></div>
 </section>
 
-<!-- Futures Calculator -->
 <section id="calculator" class="panel main-section">
-<div class="section-head"><h2>Futures Position Risk Calculator</h2><span class="badge">Risk & Fee Based</span></div>
-<div class="form-grid">
-<div class="field"><label>Account Balance (USDT)</label><input id="calc-balance" type="number" value="50"></div>
-<div class="field"><label>Risk per Trade (%)</label><input id="calc-risk" type="number" value="1" step="any"></div>
-<div class="field"><label>Entry Price</label><input id="calc-entry" type="number" step="any" placeholder="যেমন 67000"></div>
-<div class="field"><label>Stop Loss Price</label><input id="calc-sl" type="number" step="any" placeholder="যেমন 66500"></div>
-<div class="field"><label>Take Profit Price</label><input id="calc-tp" type="number" step="any" placeholder="যেমন 68500"></div>
-<div class="field"><label>Position Side</label><select id="calc-side"><option value="long">Long</option><option value="short">Short</option></select></div>
-<div class="field"><label>Leverage</label><input id="calc-leverage" type="number" value="10"></div>
-<div class="field"><label>Estimated Fee (%)</label><input id="calc-fee" type="number" value="0.1"></div>
-</div>
-<div class="button-row" style="margin-top:14px"><button id="calc-button" class="button-primary">Calculate Position</button><button id="calc-reset">Reset</button></div>
-<div class="result-grid">
-<div class="result"><span>Risk Amount</span><b id="res-risk">—</b></div>
-<div class="result"><span>Position Size (coin)</span><b id="res-size">—</b></div>
-<div class="result"><span>Position Value</span><b id="res-val">—</b></div>
-<div class="result"><span>Estimated Margin</span><b id="res-margin">—</b></div>
-<div class="result"><span>Estimated Fees</span><b id="res-fees">—</b></div>
-<div class="result"><span>Risk : Reward</span><b id="res-rr">—</b></div>
-</div>
-<p id="calc-message" class="notice">এন্ট্রি ও স্টপ লস দিয়ে পজিশন সাইজ হিসাব করুন।</p>
+  <div class="section-head"><h2>Futures Position Risk &amp; Liquidation Calculator</h2><span class="badge">Risk &amp; Liq based</span></div>
+  <div class="form-grid">
+    <div class="field"><label for="calc-balance">Account Balance (USDT)</label><input id="calc-balance" type="number" min="0" step="any" value="50"></div>
+    <div class="field"><label for="calc-risk">Risk per Trade (%)</label><input id="calc-risk" type="number" min="0.01" max="100" step="any" value="1"></div>
+    <div class="field"><label for="calc-entry">Entry Price</label><input id="calc-entry" type="number" min="0" step="any" placeholder="যেমন 67000"></div>
+    <div class="field"><label for="calc-sl">Stop Loss Price</label><input id="calc-sl" type="number" min="0" step="any" placeholder="যেমন 66500"></div>
+    <div class="field"><label for="calc-tp">Take Profit Price (ঐচ্ছিক)</label><input id="calc-tp" type="number" min="0" step="any" placeholder="যেমন 68500"></div>
+    <div class="field"><label for="calc-side">Position Side</label><select id="calc-side"><option value="long">Long</option><option value="short">Short</option></select></div>
+    <div class="field"><label for="calc-leverage">Leverage (Isolated)</label><input id="calc-leverage" type="number" min="1" max="125" step="1" value="10"></div>
+    <div class="field"><label for="calc-fee">Estimated round-trip fee (%)</label><input id="calc-fee" type="number" min="0" step="any" value="0.1"></div>
+  </div>
+  <div class="button-row" style="margin-top:14px"><button id="calc-button" class="button-primary">Calculate Position Size</button><button id="calc-reset">Reset</button></div>
+  
+  <div class="result-grid">
+    <div class="result"><span>Risk Amount</span><b id="res-risk">—</b></div>
+    <div class="result"><span>Position Size (coin)</span><b id="res-size">—</b></div>
+    <div class="result"><span>Position Value</span><b id="res-val">—</b></div>
+    <div class="result"><span>Estimated Margin</span><b id="res-margin">—</b></div>
+    <div class="result"><span>Est. Liquidation Price</span><b id="res-liq" class="red">—</b></div>
+    <div class="result"><span>Risk : Reward (R:R)</span><b id="res-rr">—</b></div>
+  </div>
+  
+  <!-- New Feature 2: Visual R:R Badge -->
+  <div id="rr-badge-box" style="margin-top:12px; display:none;" class="warning">
+    <b>Visual R:R Status:</b> <span id="rr-badge-text">—</span>
+  </div>
+
+  <p id="calc-message" class="notice">Entry ও Stop Loss দিন, তারপর হিসাব করুন।</p>
+  <div class="warning">Position size ও Liquidation price হলো আনুমানিক হিসাব। ফি, funding, slippage এবং maintenance margin এর কারণে প্রকৃত ফলে তারতম্য হতে পারে।</div>
 </section>
 
-<!-- AI Pro Assistant -->
+<section id="smc" class="panel main-section">
+  <div class="section-head"><h2>SMC Analysis</h2><span class="badge">Manual checklist</span></div>
+  <div class="form-grid">
+    <div class="field"><label>Symbol</label><input id="smc-symbol" value="BTCUSDT"></div>
+    <div class="field"><label>Timeframe</label><select id="smc-timeframe"><option>15m</option><option selected>1h</option><option>4h</option><option>1D</option></select></div>
+    <div class="field"><label>Market Structure</label><select id="smc-structure"><option>নির্বাচন করুন</option><option>Bullish HH/HL</option><option>Bearish LH/LL</option><option>Range</option></select></div>
+    <div class="field"><label>Liquidity</label><select id="smc-liquidity"><option>নির্বাচন করুন</option><option>Buy-side liquidity swept</option><option>Sell-side liquidity swept</option><option>No clear sweep</option></select></div>
+    <div class="field"><label>Displacement / BOS / CHoCH</label><select id="smc-displacement"><option>নির্বাচন করুন</option><option>Bullish displacement</option><option>Bearish displacement</option><option>No confirmation</option></select></div>
+    <div class="field"><label>FVG / Order Block</label><select id="smc-zone"><option>নির্বাচন করুন</option><option>Bullish zone</option><option>Bearish zone</option><option>No clear zone</option></select></div>
+  </div>
+  <div class="button-row" style="margin-top:12px"><button id="smc-analyze" class="button-primary">Checklist Summary</button><button id="smc-save">Save Checklist</button></div>
+  <div id="smc-output" class="notice">চার্ট দেখে নিজের পর্যবেক্ষণ নির্বাচন করুন। এই প্যানেল চার্ট নিজে থেকে স্ক্যান করে না।</div>
+</section>
+
 <section id="ai-analysis" class="panel main-section">
-<div class="section-head"><h2>AI Pro Assistant</h2><span class="badge">RSI & MACD Strategy</span></div>
-<div class="form-grid">
-<div class="field"><label>Timeframe</label><select id="ai-timeframe"><option value="5m">5m</option><option value="15m" selected>15m</option><option value="1h">1h</option><option value="4h">4h</option></select></div>
-<div class="field"><label>Symbol</label><input id="ai-symbol" value="BTCUSDT"></div>
-<div class="field"><label>Current Price</label><input id="ai-price" type="number" step="any"></div>
-<div class="field"><label>Support</label><input id="ai-support" type="number" step="any"></div>
-<div class="field"><label>Resistance</label><input id="ai-resistance" type="number" step="any"></div>
-</div>
-<div class="field" style="margin-top:10px"><label>Market Notes</label><textarea id="ai-notes" rows="2" placeholder="নোট লিখুন..."></textarea></div>
-<div class="button-row" style="margin-top:12px"><button id="ai-generate" class="button-primary">Run Pro AI Analysis</button><button id="ai-copy">Copy</button></div>
-<div id="ai-output" style="margin-top:14px"><div class="warning">বিশ্লেষণ পেতে বাটনে ক্লিক করুন।</div></div>
+  <div class="section-head"><h2>AI Analysis <span class="badge">Scenario helper</span></h2><span class="small muted">AI API সংযোগ ছাড়া এটি live AI নয়</span></div>
+  <div class="form-grid">
+    <div class="field"><label>Symbol</label><input id="ai-symbol" value="BTCUSDT"></div>
+    <div class="field"><label>Current Price (USDT)</label><input id="ai-price" type="number" step="any" placeholder="লাইভ দাম থেকে পূরণ করুন"></div>
+    <div class="field"><label>Support</label><input id="ai-support" type="number" step="any" placeholder="Support level"></div>
+    <div class="field"><label>Resistance</label><input id="ai-resistance" type="number" step="any" placeholder="Resistance level"></div>
+  </div>
+  <div class="field" style="margin-top:10px"><label>তোমার market notes / context</label><textarea id="ai-notes" rows="3" placeholder="যেমন: 1h bullish structure, liquidity sweep, news risk..."></textarea></div>
+  <div class="button-row" style="margin-top:12px"><button id="ai-generate" class="button-primary">Build Scenario Analysis</button><button id="ai-copy">Copy Summary</button></div>
+  <div id="ai-output" style="margin-top:14px"><div class="warning">এটি নিয়মভিত্তিক scenario template, প্রকৃত AI prediction নয়। তথ্য যাচাই না করে ট্রেড নেবেন না।</div></div>
+  <div class="notice">প্রকৃত AI analysis চালাতে আলাদা AI provider/API প্রয়োজন। গোপন API key কখনো HTML ফাইলে রাখবেন না; নিরাপদ backend ব্যবহার করুন।</div>
 </section>
 
-<!-- Trading Journal -->
 <section id="journal" class="panel main-section">
-<div class="section-head"><h2>Trading Journal</h2><div class="button-row"><button id="journal-export">Export CSV</button><button id="journal-clear" class="button-danger">Clear</button></div></div>
-<div class="cards" style="margin-bottom:14px">
-<div class="result"><span>Win Rate</span><b id="journal-winrate">0%</b></div>
-<div class="result"><span>Total P&amp;L</span><b id="journal-pnl">$0.00</b></div>
-<div class="result"><span>Total Trades</span><b id="journal-count">0</b></div>
-<div class="result"><span>Wins / Losses</span><b id="journal-record">0 / 0</b></div>
-</div>
-<div class="journal-form">
-<div><label>Symbol</label><input id="j-symbol" value="BTCUSDT"></div>
-<div><label>Side</label><select id="j-side"><option>Long</option><option>Short</option></select></div>
-<div><label>P&amp;L (USDT)</label><input id="j-pnl" type="number" step="any" placeholder="12.50"></div>
-<div><label>Date</label><input id="j-date" type="date"></div>
-<button id="journal-add" class="button-primary">+ Add Trade</button>
-</div>
-<div class="table-wrap"><table><thead><tr><th>Date</th><th>Symbol</th><th>Side</th><th>P&amp;L</th><th>Action</th></tr></thead><tbody id="journal-table"></tbody></table></div>
+  <div class="section-head"><h2>Trading Journal</h2><div class="button-row"><button id="journal-export">Export CSV</button><button id="journal-clear" class="button-danger">Clear Journal</button></div></div>
+  <div class="cards" style="margin-bottom:14px">
+    <div class="result"><span>Win Rate</span><b id="journal-winrate">0%</b></div>
+    <div class="result"><span>Total P&amp;L (USDT)</span><b id="journal-pnl">$0.00</b></div>
+    <div class="result"><span>Total Trades</span><b id="journal-count">0</b></div>
+    <div class="result"><span>Wins / Losses</span><b id="journal-record">0 / 0</b></div>
+  </div>
+  
+  <!-- New Feature 6: Journal form enhanced with Note/Screenshot field -->
+  <div class="journal-form">
+    <div><label>Symbol</label><input id="j-symbol" value="BTCUSDT"></div>
+    <div><label>Side</label><select id="j-side"><option>Long</option><option>Short</option></select></div>
+    <div><label>P&amp;L (USDT)</label><input id="j-pnl" type="number" step="any" placeholder="যেমন 12.50"></div>
+    <div><label>Date</label><input id="j-date" type="date"></div>
+    <div><label>Note / Screenshot URL</label><input id="j-note" placeholder="নোট বা স্ক্রিনশট লিংক..."></div>
+    <button id="journal-add" class="button-primary">+ Add Trade</button>
+  </div>
+  
+  <div class="table-wrap"><table><thead><tr><th>Date</th><th>Symbol</th><th>Side</th><th>P&amp;L</th><th>Note / Link</th><th>Action</th></tr></thead><tbody id="journal-table"></tbody></table></div>
+  <div class="notice">Journal এই ডিভাইসের browser localStorage-এ থাকে; browser data clear করলে মুছে যেতে পারে। নিয়মিত Export রাখুন।</div>
 </section>
 
-<!-- Risk Dashboard -->
 <section id="risk-dashboard" class="panel main-section">
-<div class="section-head"><h2>Risk & Loss Lock</h2><span class="badge">Risk Controls</span></div>
-<div class="form-grid">
-<div class="field"><label>Account Balance (USDT)</label><input id="risk-balance" type="number" value="50"></div>
-<div class="field"><label>Risk per Trade (%)</label><input id="risk-per-trade" type="number" value="1"></div>
-<div class="field"><label>Daily Loss Limit (%)</label><input id="risk-daily-limit" type="number" value="3"></div>
-<div class="field"><label>Today's Realised P&amp;L (USDT)</label><input id="risk-today-pnl" type="number" value="0" step="any"></div>
-</div>
-<div class="button-row" style="margin-top:12px"><button id="risk-check" class="button-primary">Check Limits</button></div>
-<div id="risk-output" class="result-grid" style="margin-top:14px">
-<div class="result"><span>Risk per trade</span><b id="risk-one">$0.50</b></div>
-<div class="result"><span>Daily loss limit</span><b id="risk-limit">$1.50</b></div>
-<div class="result"><span>Daily Status</span><b id="risk-status">Within limit</b></div>
-</div>
+  <div class="section-head"><h2>Risk Dashboard</h2><span class="badge">Personal risk controls</span></div>
+  <div class="form-grid">
+    <div class="field"><label>Account Balance (USDT)</label><input id="risk-balance" type="number" value="50" min="0" step="any"></div>
+    <div class="field"><label>Risk per trade (%)</label><input id="risk-per-trade" type="number" value="1" min="0.01" max="100" step="any"></div>
+    <div class="field"><label>Daily loss limit (%)</label><input id="risk-daily-limit" type="number" value="3" min="0.1" max="100" step="any"></div>
+    <div class="field"><label>আজকের realised P&amp;L (USDT)</label><input id="risk-today-pnl" type="number" value="0" step="any"></div>
+  </div>
+  <div class="button-row" style="margin-top:12px"><button id="risk-check" class="button-primary">Check Risk Limits</button></div>
+  <div id="risk-output" class="result-grid"><div class="result"><span>Risk per trade</span><b id="risk-one">$0.50</b></div><div class="result"><span>Daily loss limit</span><b id="risk-limit">$1.50</b></div><div class="result"><span>Daily status</span><b id="risk-status">Within limit</b></div></div>
+  <div class="notice">এটি risk-planning tool; exchange account বা open position-এর সঙ্গে সংযুক্ত নয়।</div>
 </section>
 
-<!-- Smart Alerts -->
 <section id="alerts" class="panel main-section">
-<div class="section-head"><h2>Smart Alerts</h2></div>
-<div class="form-grid">
-<div class="field"><label>Symbol</label><input id="alert-symbol" value="BTCUSDT"></div>
-<div class="field"><label>Target Price</label><input id="alert-price" type="number" step="any" placeholder="70000"></div>
-<div class="field"><label>Condition</label><select id="alert-condition"><option value="above">Above or Equal</option><option value="below">Below or Equal</option></select></div>
-<div class="field"><label>&nbsp;</label><button id="alert-add" class="button-primary">Create Alert</button></div>
-</div>
-<div id="alerts-list" style="margin-top:14px"></div>
+  <div class="section-head"><h2>Smart Alerts</h2><span class="small muted">এই পেজ খোলা থাকলে price monitor</span></div>
+  <div class="form-grid">
+    <div class="field"><label>Symbol</label><input id="alert-symbol" value="BTCUSDT"></div>
+    <div class="field"><label>Target Price (USDT)</label><input id="alert-price" type="number" min="0" step="any" placeholder="যেমন 70000"></div>
+    <div class="field"><label>Condition</label><select id="alert-condition"><option value="above">দাম target-এর সমান/উপরে</option><option value="below">দাম target-এর সমান/নিচে</option></select></div>
+    <div class="field"><label> </label><button id="alert-add" class="button-primary">Create Alert</button></div>
+  </div>
+  <div id="alerts-list" style="margin-top:14px"></div>
+  <div class="notice">Browser notification-এর জন্য অনুমতি লাগতে পারে। পেজ বন্ধ থাকলে alert নির্ভরযোগ্যভাবে চলবে না।</div>
 </section>
 
-<!-- Settings -->
 <section id="settings" class="panel main-section">
-<div class="section-head"><h2>Settings</h2></div>
-<div class="form-grid">
-<div class="field"><label>Account Balance (USDT)</label><input id="setting-balance" type="number" value="50"></div>
-<div class="field"><label>Default Symbol</label><select id="setting-symbol"><option value="BTCUSDT">BTC/USDT</option><option value="ETHUSDT">ETH/USDT</option><option value="SOLUSDT">SOL/USDT</option></select></div>
-<div class="field"><label>Language</label><select id="setting-language"><option value="bn">বাংলা</option><option value="en">English</option></select></div>
-<div class="field"><label>Refresh Interval</label><select id="setting-refresh"><option value="15000">15s</option><option value="30000" selected>30s</option><option value="60000">60s</option></select></div>
-</div>
-<div class="button-row" style="margin-top:12px"><button id="settings-save" class="button-primary">Save Settings</button><button id="settings-reset">Reset</button></div>
+  <div class="section-head"><h2>Settings</h2></div>
+  <div class="form-grid">
+    <div class="field"><label>Personal account balance (USDT)</label><input id="setting-balance" type="number" min="0" step="any" value="50"></div>
+    <div class="field"><label>Default chart symbol</label><select id="setting-symbol"><option value="BTCUSDT">BTC/USDT</option><option value="ETHUSDT">ETH/USDT</option><option value="SOLUSDT">SOL/USDT</option><option value="BNBUSDT">BNB/USDT</option><option value="XRPUSDT">XRP/USDT</option></select></div>
+    <div class="field"><label>Language preference</label><select id="setting-language"><option value="bn">বাংলা</option><option value="en">English (partial UI)</option></select></div>
+    <div class="field"><label>Refresh interval</label><select id="setting-refresh"><option value="15000">15 seconds</option><option value="30000" selected>30 seconds</option><option value="60000">60 seconds</option></select></div>
+  </div>
+  <div class="button-row" style="margin-top:12px"><button id="settings-save" class="button-primary">Save Settings</button><button id="settings-reset">Reset Preferences</button></div>
+  <p class="notice">Settings ও watchlist এই browser-এ স্থানীয়ভাবে সংরক্ষিত হয়। এই HTML-এ কোনো Binance API secret নেই।</p>
 </section>
 
 </main>
 </div>
-<footer class="footer">Abu Talab Bhuiyan · Pro Crypto Trading Terminal<br>শিক্ষামূলক ও প্রফেশনাল ট্রেডিং টুল</footer>
+<footer class="footer">Crypto Trading Bangla · Learn · Analyze · Trade<br>বাংলা ভাষায় সঠিক তথ্য, নিরাপদ ট্রেডিং · Built for Bangladeshi Traders<br><span class="small">শিক্ষামূলক টুল—আর্থিক পরামর্শ নয়।</span></footer>
 </div>
 
 <script>
@@ -273,383 +254,401 @@ const safe = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>
 const defaultPairs = ['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','XRPUSDT'];
 let tickers = new Map();
 let selectedSymbol = 'BTCUSDT';
-let selectedInterval = '15m';
+let selectedInterval = '15';
 let scannerMode = 'gainers';
 let marketRows = [];
-
-let alerts = []; try { alerts = JSON.parse(localStorage.getItem('ctb-alerts') || '[]'); } catch(e){}
-let journal = []; try { journal = JSON.parse(localStorage.getItem('ctb-journal') || '[]'); } catch(e){}
-let watchlist = [...defaultPairs];
-try { const w = JSON.parse(localStorage.getItem('ctb-watchlist') || 'null'); if(Array.isArray(w)&&w.length) watchlist=w; } catch(e){}
-let settings = {balance:50,symbol:'BTCUSDT',language:'bn',refresh:30000};
-try { const s = JSON.parse(localStorage.getItem('ctb-settings') || 'null'); if(s && typeof s==='object') settings={...settings,...s}; } catch(e){}
-
-let ws = null, reconnectTimer = null, refreshTimer = null, sessionTimer = null;
+let alerts = JSON.parse(localStorage.getItem('ctb-alerts') || '[]');
+let journal = JSON.parse(localStorage.getItem('ctb-journal') || '[]');
+let watchlist = JSON.parse(localStorage.getItem('ctb-watchlist') || 'null') || [...defaultPairs];
+let settings = JSON.parse(localStorage.getItem('ctb-settings') || 'null') || {balance:50,symbol:'BTCUSDT',language:'bn',refresh:30000};
+let ws = null, reconnectTimer = null, refreshTimer = null;
 let themeLight = false;
 
 function setStatus(id, text, ok=true){ const el=$(id); if(el){el.textContent=text;el.className=ok?'good-status':'bad-status';}}
-function persist(){ 
+function persist(){ localStorage.setItem('ctb-journal',JSON.stringify(journal)); localStorage.setItem('ctb-watchlist',JSON.stringify(watchlist)); localStorage.setItem('ctb-alerts',JSON.stringify(alerts)); localStorage.setItem('ctb-settings',JSON.stringify(settings));}
+
+// Session & Funding Tracker (Feature 4 & 5)
+function updateTradingSessions(){
+  const now = new Date();
+  const utcHour = now.getUTCHours();
+  let session = 'Closed / Low Liquidity';
+  if (utcHour >= 7 && utcHour < 15) session = 'London Session (Active)';
+  else if (utcHour >= 12 && utcHour < 21) session = 'New York Session (Active)';
+  else if (utcHour >= 0 && utcHour < 8) session = 'Tokyo / Asian Session';
+  if ($('active-session')) $('active-session').textContent = session;
+}
+setInterval(updateTradingSessions, 60000);
+updateTradingSessions();
+
+async function fetchFundingRates(){
   try {
-    localStorage.setItem('ctb-journal',JSON.stringify(journal)); 
-    localStorage.setItem('ctb-watchlist',JSON.stringify(watchlist)); 
-    localStorage.setItem('ctb-alerts',JSON.stringify(alerts)); 
-    localStorage.setItem('ctb-settings',JSON.stringify(settings));
+    const res = await fetch('https://fapi.binance.com/fapi/v1/premiumIndex', {cache: 'no-store'});
+    if(res.ok){
+      const data = await res.json();
+      const btc = data.find(x => x.symbol === 'BTCUSDT');
+      const eth = data.find(x => x.symbol === 'ETHUSDT');
+      if(btc && $('btc-funding')) $('btc-funding').textContent = (Number(btc.lastFundingRate)*100).toFixed(4) + '%';
+      if(eth && $('eth-funding')) $('eth-funding').textContent = (Number(eth.lastFundingRate)*100).toFixed(4) + '%';
+    }
   } catch(e) {}
 }
-
-function getTVInterval(interval) {
-const map = {'5m':'5', '15m':'15', '1h':'60', '4h':'240', '1d':'D'};
-return map[interval] || '15';
-}
-
-async function fetchGlobalMarketData() {
-try {
-const response = await fetch('https://api.coingecko.com/api/v3/global', { cache: 'no-store' });
-if (!response.ok) throw new Error();
-const data = (await response.json()).data;
-$('global-mcap').textContent = '$' + (data.total_market_cap.usd / 1e9).toFixed(2) + ' B';
-const changeEl = $('global-mcap-change');
-changeEl.textContent = fmtPct(data.market_cap_change_percentage_24h_usd);
-changeEl.className = 'small ' + (data.market_cap_change_percentage_24h_usd >= 0 ? 'green' : 'red');
-$('global-volume').textContent = '$' + (data.total_volume.usd / 1e9).toFixed(2) + ' B';
-$('global-btc-dom').textContent = data.market_cap_percentage.btc.toFixed(1) + '%';
-$('global-coins').textContent = data.active_cryptocurrencies.toLocaleString();
-} catch (e) {
-$('global-mcap').textContent = 'ডেটা অনুপলব্ধ';
-}
-}
-
-async function calculateEMA(values, period) {
-const multiplier = 2 / (period + 1);
-let ema = values.slice(0, period).reduce((sum, value) => sum + value, 0) / period;
-for (let i = period; i < values.length; i++) {
-ema = (values[i] - ema) * multiplier + ema;
-}
-return ema;
-}
+fetchFundingRates();
+setInterval(fetchFundingRates, 60000);
 
 async function updateEMA(){
-const periods = [9, 21, 50, 200];
-const symbol = selectedSymbol;
-const interval = selectedInterval;
-$('ema-symbol').textContent = symbol.replace('USDT', '/USDT');
-$('ema-timeframe').textContent = ' · ' + interval;
-periods.forEach(p => { $('ema-' + p).textContent = 'লোড হচ্ছে…'; });
-$('ema-trend').textContent = 'অপেক্ষমাণ…';
+  const periods = [9, 21, 50, 200];
+  const symbol = selectedSymbol;
+  const intervalMap = {'15':'15m','60':'1h','240':'4h','D':'1d'};
+  const interval = intervalMap[selectedInterval] || '15m';
 
-try {
-const url = `https://fapi.binance.com/fapi/v1/klines?symbol=${encodeURIComponent(symbol)}&interval=${encodeURIComponent(interval)}&limit=250`;
-const response = await fetch(url, { cache: 'no-store' });
-if (!response.ok) throw new Error();
-const candles = await response.json();
-if (!Array.isArray(candles) || candles.length < 200) throw new Error();
+  $('ema-symbol').textContent = symbol.replace('USDT', '/USDT');
+  $('ema-timeframe').textContent = ' · ' + interval;
 
-const closes = candles.map(c => Number(c[4]));
-const values = {};
-for(const p of periods) {
-  values[p] = await calculateEMA(closes, p);
-  $('ema-' + p).textContent = fmtPrice(values[p]);
-}
+  periods.forEach(p => { $('ema-' + p).textContent = 'লোড হচ্ছে…'; });
+  $('ema-trend').textContent = 'ডেটার অপেক্ষায়…';
 
-const price = closes[closes.length - 1];
-const bullish = price > values[9] && values[9] > values[21] && values[21] > values[50];
-const bearish = price < values[9] && values[9] < values[21] && values[21] < values[50];
-const trend = $('ema-trend');
-trend.textContent = bullish ? 'Bullish Alignment' : bearish ? 'Bearish Alignment' : 'Mixed / Range';
-trend.className = bullish ? 'green' : bearish ? 'red' : 'muted';
-} catch (error) {
-periods.forEach(p => { $('ema-' + p).textContent = 'ডেটা নেই'; });
-$('ema-trend').textContent = 'লোড করা যায়নি';
-}
+  try {
+    const url = `https://fapi.binance.com/fapi/v1/klines?symbol=${encodeURIComponent(symbol)}&interval=${encodeURIComponent(interval)}&limit=250`;
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+
+    const candles = await response.json();
+    if (!Array.isArray(candles) || candles.length < 200) {
+      throw new Error('পর্যাপ্ত Candle ডেটা নেই');
+    }
+
+    const closes = candles.map(c => Number(c[4]));
+
+    function calculateEMA(values, period) {
+      const multiplier = 2 / (period + 1);
+      let ema = values.slice(0, period).reduce((sum, value) => sum + value, 0) / period;
+      for (let i = period; i < values.length; i++) {
+        ema = (values[i] - ema) * multiplier + ema;
+      }
+      return ema;
+    }
+
+    const values = {};
+    periods.forEach(period => {
+      values[period] = calculateEMA(closes, period);
+      $('ema-' + period).textContent = fmtPrice(values[period]);
+    });
+
+    const price = closes[closes.length - 1];
+    const bullish = price > values[9] && values[9] > values[21] && values[21] > values[50] && values[50] > values[200];
+    const bearish = price < values[9] && values[9] < values[21] && values[21] < values[50] && values[50] < values[200];
+
+    const trend = $('ema-trend');
+    trend.textContent = bullish ? 'Bullish Alignment' : bearish ? 'Bearish Alignment' : 'Mixed / No Clear Alignment';
+    trend.className = bullish ? 'green' : bearish ? 'red' : 'muted';
+
+  } catch (error) {
+    periods.forEach(p => { $('ema-' + p).textContent = 'ডেটা নেই'; });
+    $('ema-trend').textContent = 'লোড করা যায়নি — পরে চেষ্টা করুন';
+    $('ema-trend').className = 'muted';
+    console.error('EMA update error:', error);
+  }
 }
 
 function loadTradingView(){
-const box=$('tradingview_chart');
-if(!box) return;
-box.innerHTML='';
-const script=document.createElement('script');
-script.src='https://s3.tradingview.com/tv.js';
-script.onload=()=>{
-if(!window.TradingView){box.innerHTML='<div class="empty">TradingView লোড হয়নি।</div>';return;}
-box.innerHTML='';
-try{
-new TradingView.widget({
-autosize:true,
-symbol:'BINANCE:'+selectedSymbol,
-interval:getTVInterval(selectedInterval),
-timezone:'Asia/Muscat',
-theme:themeLight?'light':'dark',
-style:'1',
-locale:'en',
-toolbar_bg:'#161a1e',
-container_id:'tradingview_chart'
-});
-} catch(e){}
-};
-if(!document.querySelector('script[data-tv-loader]')){script.dataset.tvLoader='1';document.head.appendChild(script);}
-else { if(window.TradingView) script.onload(); }
-$('chart-symbol-label').textContent=selectedSymbol.replace('USDT','/USDT');
-updateEMA();
+ const box=$('tradingview_chart');
+ box.innerHTML='';
+ const script=document.createElement('script');
+ script.src='https://s3.tradingview.com/tv.js';
+ script.onload=()=>{
+   if(!window.TradingView){box.innerHTML='<div class="empty">TradingView লোড করা যায়নি। ইন্টারনেট/ব্লকার পরীক্ষা করুন।</div>';return;}
+   box.innerHTML='';
+   try{new TradingView.widget({autosize:true,symbol:'BINANCE:'+selectedSymbol,interval:selectedInterval,timezone:'Asia/Muscat',theme:themeLight?'light':'dark',style:'1',locale:settings.language==='bn'?'en':'en',toolbar_bg:'#161a1e',enable_publishing:false,hide_side_toolbar:false,allow_symbol_change:true,container_id:'tradingview_chart'});}
+   catch(e){box.innerHTML='<div class="empty">চার্ট চালু করা যায়নি।</div>';console.error(e);}
+ };
+ script.onerror=()=>{box.innerHTML='<div class="empty">TradingView স্ক্রিপ্ট লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করুন।</div>';};
+ if(!document.querySelector('script[data-tv-loader]')){script.dataset.tvLoader='1';document.head.appendChild(script);}else{
+   const old=document.querySelector('script[data-tv-loader]');
+   if(window.TradingView){script.onload();}else old.addEventListener('load',script.onload,{once:true});
+ }
+ $('chart-symbol-label').textContent=selectedSymbol.replace('USDT','/USDT');
+ updateEMA();
 }
 
 function selectSymbol(symbol){
-if(!symbol) return;
-selectedSymbol = symbol.toUpperCase().replace('/', '').trim();
-const mtfSym = $('mtf-symbol'); if(mtfSym) mtfSym.value = selectedSymbol;
-const smcSym = $('smc-auto-symbol'); if(smcSym) smcSym.value = selectedSymbol;
-const aiSym = $('ai-symbol'); if(aiSym) aiSym.value = selectedSymbol;
-
-const t = tickers.get(selectedSymbol);
-if(t && $('ai-price')) {
-  $('ai-price').value = t.lastPrice;
-} else {
-  const mr = marketRows.find(m => m.symbol === selectedSymbol);
-  if(mr && $('ai-price')) $('ai-price').value = mr.lastPrice;
-}
-loadTradingView();
+ selectedSymbol=symbol.toUpperCase().replace('/','');
+ $('smc-symbol').value=selectedSymbol; $('ai-symbol').value=selectedSymbol;
+ const t=tickers.get(selectedSymbol); if(t)$('ai-price').value=t.lastPrice;
+ loadTradingView();
 }
 
 function connectSocket(){
-try{if(ws)ws.close();}catch(_){}
-const streams=[...new Set([...defaultPairs,...watchlist].map(s=>s.toLowerCase()+'@ticker'))];
-const url='wss://stream.binance.com:9443/stream?streams='+streams.join('/');
-try{
-ws=new WebSocket(url);
-ws.onopen=()=>{setStatus('binance-status','Connected');setStatus('market-status','Live');};
-ws.onmessage=event=>{
-let packet; try{packet=JSON.parse(event.data);}catch(_){return;}
-const d=packet.data||packet;
-if(!d.s||!d.c)return;
-const row={symbol:d.s,lastPrice:Number(d.c),change:Number(d.P),quoteVolume:Number(d.q),high:Number(d.h),low:Number(d.l)};
-tickers.set(row.symbol,row);
-if(row.symbol==='BTCUSDT'){
-  $('top-btc-price').textContent='$'+fmtPrice(row.lastPrice);
-  $('top-btc-change').textContent=fmtPct(row.change);
-  $('ticker-change').textContent=fmtPct(row.change);
-  $('ticker-change').className='stat-value '+(row.change>=0?'green':'red');
+ try{if(ws)ws.close();}catch(_){}
+ const streams=[...new Set([...defaultPairs,...watchlist].map(s=>s.toLowerCase()+'@ticker'))];
+ const url='wss://stream.binance.com:9443/stream?streams='+streams.join('/');
+ try{
+  ws=new WebSocket(url);
+  ws.onopen=()=>{setStatus('binance-status','Connected');setStatus('market-status','Live');};
+  ws.onmessage=event=>{
+   let packet;try{packet=JSON.parse(event.data);}catch(_){return;}
+   const d=packet.data||packet;
+   if(!d.s||!d.c)return;
+   const row={symbol:d.s,lastPrice:Number(d.c),change:Number(d.P),quoteVolume:Number(d.q),high:Number(d.h),low:Number(d.l),open:Number(d.o)};
+   tickers.set(row.symbol,row);
+   updateTickerCards(row); renderWatchlist(); renderMarketCards(); renderScanner();
+   checkAlerts(row);
+   $('last-update').textContent=new Date().toLocaleTimeString();
+  };
+  ws.onerror=()=>setStatus('binance-status','Connection error',false);
+  ws.onclose=()=>{setStatus('binance-status','Reconnecting…',false);clearTimeout(reconnectTimer);reconnectTimer=setTimeout(connectSocket,5000);};
+ }catch(e){setStatus('binance-status','Unavailable',false);console.error(e);}
 }
-if(row.symbol==='ETHUSDT'){
-  $('top-eth-price').textContent='$'+fmtPrice(row.lastPrice);
-}
-if(row.symbol===selectedSymbol && $('ai-price')) $('ai-price').value = row.lastPrice;
-renderWatchlist(); renderMarketCards(); renderScanner();
-};
-ws.onerror=()=>setStatus('binance-status','Error',false);
-ws.onclose=()=>{setStatus('binance-status','Reconnecting…',false);clearTimeout(reconnectTimer);reconnectTimer=setTimeout(connectSocket,5000);};
-}catch(e){setStatus('binance-status','Unavailable',false);}
+
+function updateTickerCards(r){
+ if(r.symbol==='BTCUSDT'){
+  $('top-btc-price').textContent='$'+fmtPrice(r.lastPrice);$('top-btc-change').textContent=fmtPct(r.change);$('top-btc-change').className='small '+(r.change>=0?'green':'red');
+  $('ticker-change').textContent=fmtPct(r.change);$('ticker-change').className='stat-value '+(r.change>=0?'green':'red');
+ }
+ if(r.symbol==='ETHUSDT'){$('top-eth-price').textContent='$'+fmtPrice(r.lastPrice);$('top-eth-change').textContent=fmtPct(r.change);$('top-eth-change').className='small '+(r.change>=0?'green':'red');}
+ if(r.symbol===selectedSymbol)$('ai-price').value=r.lastPrice;
 }
 
 function renderMarketCards(){
-const box=$('mini-tickers'); if(!box) return;
-box.innerHTML=defaultPairs.map(s=>{
-const t=tickers.get(s);
-return `<button class="mini" data-symbol="${s}" style="text-align:left"><strong>${s.replace('USDT','/USDT')}</strong><div class="price">${t?'$'+fmtPrice(t.lastPrice):'—'}</div><div class="${t&&t.change>=0?'green':'red'} small">${t?fmtPct(t.change):'…'}</div></button>`;
-}).join('');
+ const box=$('mini-tickers');
+ box.innerHTML=defaultPairs.map(s=>{
+  const t=tickers.get(s);return `<button class="mini" data-symbol="${s}" style="text-align:left"><strong>${s.replace('USDT','/USDT')}</strong><div class="price">${t?'$'+fmtPrice(t.lastPrice):'—'}</div><div class="${t&&t.change>=0?'green':'red'} small">${t?fmtPct(t.change):'Waiting…'}</div></button>`;
+ }).join('');
 }
 
 function renderWatchlist(){
-const box=$('watchlist-cards'); if(!box) return;
-box.innerHTML=watchlist.map(s=>{
-const t=tickers.get(s);
-return `<div class="mini"><div style="display:flex;justify-content:space-between;gap:6px"><button data-symbol="${safe(s)}" style="padding:0;background:none;border:0;font-weight:700">${safe(s.replace('USDT','/USDT'))}</button><button data-remove-watch="${safe(s)}" style="padding:2px 7px">×</button></div><div class="price">${t?'$'+fmtPrice(t.lastPrice):'—'}</div><div class="${t&&t.change>=0?'green':'red'} small">${t?fmtPct(t.change):'…'}</div></div>`;
-}).join('') || '<div class="empty">Watchlist খালি।</div>';
+ const box=$('watchlist-cards');if(!box)return;
+ box.innerHTML=watchlist.map(s=>{
+  const t=tickers.get(s);return `<div class="mini"><div style="display:flex;justify-content:space-between;gap:6px"><button data-symbol="${safe(s)}" style="padding:0;background:none;border:0;font-weight:700">${safe(s.replace('USDT','/USDT'))}</button><button data-remove-watch="${safe(s)}" title="Remove" style="padding:2px 7px">×</button></div><div class="price">${t?'$'+fmtPrice(t.lastPrice):'—'}</div><div class="${t&&t.change>=0?'green':'red'} small">${t?fmtPct(t.change):'ডেটার অপেক্ষায়'}</div></div>`;
+ }).join('') || '<div class="empty">Watchlist খালি। একটি symbol যোগ করুন।</div>';
 }
 
 function renderScanner(){
-const rows=[...marketRows,...tickers.values()].filter((v,i,self)=>i===self.findIndex(t=>t.symbol===v.symbol)).filter(t=>t.symbol.endsWith('USDT')&&Number.isFinite(t.change));
-const sorted=rows.sort((a,b)=>scannerMode==='gainers'?b.change-a.change:scannerMode==='losers'?a.change-b.change:b.quoteVolume-a.quoteVolume).slice(0,10);
-const box=$('scanner-results'); if(!box) return;
-box.innerHTML=sorted.map(t=>`<button class="mini" data-symbol="${t.symbol}" style="text-align:left"><strong>${t.symbol.replace('USDT','/USDT')}</strong><div class="price">$${fmtPrice(t.lastPrice)}</div><div class="${t.change>=0?'green':'red'} small">${fmtPct(t.change)}</div><div class="small muted">Vol $${(t.quoteVolume/1e6).toFixed(1)}M</div></button>`).join('')||'<div class="empty">অপেক্ষমাণ…</div>';
+ const rows=[...tickers.values()].filter(t=>t.symbol.endsWith('USDT')&&Number.isFinite(t.change));
+ const sorted=rows.sort((a,b)=>scannerMode==='gainers'?b.change-a.change:scannerMode==='losers'?a.change-b.change:b.quoteVolume-a.quoteVolume).slice(0,10);
+ $('scanner-results').innerHTML=sorted.map(t=>`<button class="mini" data-symbol="${t.symbol}" style="text-align:left"><strong>${t.symbol.replace('USDT','/USDT')}</strong><div class="price">$${fmtPrice(t.lastPrice)}</div><div class="${t.change>=0?'green':'red'} small">${fmtPct(t.change)}</div><div class="small muted">Vol $${(t.quoteVolume/1e6).toFixed(2)}M</div></button>`).join('')||'<div class="empty">ডেটা আসার অপেক্ষায়…</div>';
 }
 
 async function fetchMarket(){
-try{
-const response=await fetch('https://fapi.binance.com/fapi/v1/ticker/24hr',{cache:'no-store'});
-if(!response.ok) throw new Error();
-const data=await response.json();
-marketRows=data.filter(t=>t.symbol.endsWith('USDT')).map(t=>({symbol:t.symbol,lastPrice:Number(t.lastPrice),change:Number(t.priceChangePercent),quoteVolume:Number(t.quoteVolume)}));
-renderMarketTable(); renderScanner();
-}catch(e){ $('market-table').innerHTML='<tr><td colspan="5" class="empty">ডেটা পাওয়া যায়নি।</td></tr>'; }
+ const body=$('market-table');body.innerHTML='<tr><td colspan="5" class="empty">Binance market data লোড হচ্ছে…</td></tr>';
+ try{
+  const response=await fetch('https://fapi.binance.com/fapi/v1/ticker/24hr',{cache:'no-store'});
+  if(!response.ok)throw new Error('HTTP '+response.status);
+  const data=await response.json();
+  marketRows=data.filter(t=>t.symbol.endsWith('USDT')).map(t=>({symbol:t.symbol,lastPrice:Number(t.lastPrice),change:Number(t.priceChangePercent),quoteVolume:Number(t.quoteVolume)}));
+  renderMarketTable();
+ }catch(e){body.innerHTML='<tr><td colspan="5" class="empty">REST API ডেটা পাওয়া যায়নি। নেটওয়ার্ক/CORS পরীক্ষা করুন; WebSocket ticker আলাদাভাবে চেষ্টা করছে।</td></tr>';console.error(e);}
 }
 
 function renderMarketTable(){
-const query=$('market-search').value.trim().toUpperCase().replace('/','');
-let rows=marketRows.filter(t=>t.symbol.includes(query));
-const sort=$('market-sort').value;
-rows.sort((a,b)=>sort==='change-desc'?b.change-a.change:sort==='change-asc'?a.change-b.change:b.quoteVolume-a.quoteVolume);
-rows=rows.slice(0,Number($('market-limit').value)||50);
-$('market-count').textContent=`${rows.length} symbols`;
-$('market-table').innerHTML=rows.map(t=>`<tr><td><button data-symbol="${t.symbol}" style="padding:0;border:0;background:none;font-weight:700">${t.symbol.replace('USDT','/USDT')}</button></td><td>$${fmtPrice(t.lastPrice)}</td><td class="${t.change>=0?'green':'red'}">${fmtPct(t.change)}</td><td>$${(t.quoteVolume/1e6).toFixed(1)}M</td><td><button data-symbol="${t.symbol}">Chart</button> <button data-add-watch="${t.symbol}">+ Watch</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">নেই।</td></tr>';
+ const query=$('market-search').value.trim().toUpperCase().replace('/','');
+ let rows=marketRows.filter(t=>t.symbol.includes(query));
+ const sort=$('market-sort').value;
+ rows.sort((a,b)=>sort==='change-desc'?b.change-a.change:sort==='change-asc'?a.change-b.change:sort==='price-desc'?b.lastPrice-a.lastPrice:sort==='price-asc'?a.lastPrice-b.lastPrice:b.quoteVolume-a.quoteVolume);
+ rows=rows.slice(0,Number($('market-limit').value)||50);
+ $('market-count').textContent=`${rows.length} symbols shown`;
+ $('market-table').innerHTML=rows.map(t=>`<tr><td><button data-symbol="${t.symbol}" style="padding:0;border:0;background:none;font-weight:700">${t.symbol.replace('USDT','/USDT')}</button></td><td>$${fmtPrice(t.lastPrice)}</td><td class="${t.change>=0?'green':'red'}">${fmtPct(t.change)}</td><td>$${(t.quoteVolume/1e6).toFixed(2)}M</td><td><button data-add-watch="${t.symbol}">+ Watch</button> <button data-chart-symbol="${t.symbol}">Chart</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">কোনো symbol পাওয়া যায়নি।</td></tr>';
 }
 
-// 1. Multi-Timeframe Confluence Logic
-async function runMTFConfluence() {
-const sym = $('mtf-symbol').value.trim().toUpperCase();
-const tfs = ['5m', '15m', '1h', '4h'];
-const elements = {'5m': $('mtf-5m'), '15m': $('mtf-15m'), '1h': $('mtf-1h'), '4h': $('mtf-4h')};
-for(const tf of tfs) { elements[tf].textContent = 'যাচাই হচ্ছে…'; elements[tf].className = ''; }
-
-let bullishCount = 0, bearishCount = 0;
-for(const tf of tfs) {
-  try {
-    const res = await fetch(`https://fapi.binance.com/fapi/v1/klines?symbol=${sym}&interval=${tf}&limit=50`);
-    if(!res.ok) throw new Error();
-    const candles = await res.json();
-    const closes = candles.map(c => Number(c[4]));
-    const e9 = await calculateEMA(closes, 9);
-    const e21 = await calculateEMA(closes, 21);
-    const p = closes[closes.length - 1];
-    if(p > e9 && e9 > e21) {
-      elements[tf].textContent = 'Bullish'; elements[tf].className = 'green'; bullishCount++;
-    } else if(p < e9 && e9 < e21) {
-      elements[tf].textContent = 'Bearish'; elements[tf].className = 'red'; bearishCount++;
-    } else {
-      elements[tf].textContent = 'Neutral/Range'; elements[tf].className = 'muted';
-    }
-  } catch(e) {
-    elements[tf].textContent = 'Error';
-  }
-}
-const sumEl = $('mtf-summary');
-if(bullishCount === 4) { sumEl.textContent = 'শক্তিশালী কনফ্লুয়েন্স: সব কটি টাইমফ্রেম (5m থেকে 4h) বুলিশ!'; sumEl.className = 'notice green'; }
-else if(bearishCount === 4) { sumEl.textContent = 'শক্তিশালী কনফ্লুয়েন্স: সব কটি টাইমফ্রেম বেয়ারিশ!'; sumEl.className = 'notice red'; }
-else { sumEl.textContent = `মিশ্র ট্রেন্ড দেখা যাচ্ছে (${bullishCount} Bullish, ${bearishCount} Bearish)। সাবধানে ট্রেড করুন।`; sumEl.className = 'notice warning'; }
-}
-
-// 2. SMC Smart Detection Logic
-async function runSMCSmart() {
-const sym = $('smc-auto-symbol').value.trim().toUpperCase();
-const tf = $('smc-auto-tf').value;
-const out = $('smc-auto-output');
-out.textContent = 'বিশ্লেষণ চলছে…';
-try {
-const res = await fetch(`https://fapi.binance.com/fapi/v1/klines?symbol=${sym}&interval=${tf}&limit=100`);
-if(!res.ok) throw new Error();
-const candles = await res.json();
-const highs = candles.map(c => Number(c[2]));
-const lows = candles.map(c => Number(c[3]));
-const closes = candles.map(c => Number(c[4]));
-const curP = closes[closes.length - 1];
-const recentHigh = Math.max(...highs.slice(-20));
-const recentLow = Math.min(...lows.slice(-20));
-
-let bos = curP > recentHigh ? 'Bullish BOS (Break of Structure)' : curP < recentLow ? 'Bearish BOS' : 'No Break (Consolidation)';
-out.innerHTML = `<b>Symbol:</b> ${sym} (${tf})<br><b>Structure State:</b> ${bos}<br><b>Recent Swing High:</b> $${fmtPrice(recentHigh)} | <b>Recent Swing Low:</b> $${fmtPrice(recentLow)}`;
-out.className = 'notice ' + (curP > recentHigh ? 'green' : curP < recentLow ? 'red' : '');
-} catch(e) {
-out.textContent = 'ডেটা ফেচ করতে ব্যর্থ হয়েছে।';
-}
-}
-
-// 3. Kill Zone & Sessions (Oman Time = UTC+4)
-function updateKillZones() {
-const now = new Date();
-const utcHours = now.getUTCHours();
-const utcMinutes = now.getUTCMinutes();
-let omanHour = (utcHours + 4) % 24;
-const totalMins = omanHour * 60 + utcMinutes;
-
-const isAsia = totalMins >= 180 && totalMins <= 720;
-const isLondon = totalMins >= 660 && totalMins <= 900;
-const isNY = totalMins >= 960 && totalMins <= 1200;
-
-$('sess-asia').textContent = isAsia ? 'Active (সক্রিয়)' : 'Closed (বন্ধ)';
-$('sess-asia').className = isAsia ? 'green' : 'muted';
-$('sess-london').textContent = isLondon ? 'Kill Zone Active 🔥' : 'Inactive';
-$('sess-london').className = isLondon ? 'green' : 'muted';
-$('sess-ny').textContent = isNY ? 'Kill Zone Active 🔥' : 'Inactive';
-$('sess-ny').className = isNY ? 'green' : 'muted';
-}
-
+// Calculator with Liquidation & Visual R:R (Feature 1 & 2)
 function calcRisk(){
-const balance=Number($('calc-balance').value),riskPct=Number($('calc-risk').value),entry=Number($('calc-entry').value),sl=Number($('calc-sl').value),tp=Number($('calc-tp').value),lev=Number($('calc-leverage').value)||1,feePct=Number($('calc-fee').value)||0,side=$('calc-side').value;
-const msg=$('calc-message');
-if(!(balance>0&&entry>0&&sl>0&&entry!==sl)){msg.textContent='সঠিক তথ্য দিন।';msg.className='notice red';return;}
-const risk=balance*riskPct/100,dist=Math.abs(entry-sl),size=risk/dist,value=size*entry,fees=value*feePct/100,margin=value/Math.max(1,lev),rr=tp>0?Math.abs(tp-entry)/dist:null;
-$('res-risk').textContent=fmtMoney(risk); $('res-size').textContent=size.toFixed(4); $('res-val').textContent=fmtMoney(value);
-$('res-margin').textContent=fmtMoney(margin); $('res-fees').textContent=fmtMoney(fees); $('res-rr').textContent=rr===null?'TP দিন':'1 : '+rr.toFixed(2);
-msg.textContent='হিসাব সফল হয়েছে।'; msg.className='notice';
+ const balance=Number($('calc-balance').value),riskPct=Number($('calc-risk').value),entry=Number($('calc-entry').value),sl=Number($('calc-sl').value),tp=Number($('calc-tp').value),lev=Number($('calc-leverage').value)||1,feePct=Number($('calc-fee').value)||0,side=$('calc-side').value;
+ const msg=$('calc-message');
+ if(!(balance>0&&riskPct>0&&riskPct<=100&&entry>0&&sl>0&&entry!==sl)){msg.textContent='সঠিক Balance, Risk %, Entry এবং Entry থেকে আলাদা Stop Loss দিন।';msg.className='notice red';return;}
+ if((side==='long'&&sl>=entry)||(side==='short'&&sl<=entry)){msg.textContent='Stop Loss নির্বাচিত position side-এর বিপরীত দিকে আছে—Entry/SL বা Side যাচাই করুন।';msg.className='notice red';return;}
+ 
+ const risk=balance*riskPct/100,dist=Math.abs(entry-sl),size=risk/dist,value=size*entry,fees=value*feePct/100,margin=value/Math.max(1,lev),rr=tp>0?Math.abs(tp-entry)/dist:null;
+ 
+ // Liquidation Price Calculation (Isolated Margin assumption approx)
+ let liqPrice = 0;
+ const maintMarginRate = 0.005; // 0.5% maintenance margin
+ if(side === 'long'){
+   liqPrice = entry * (1 - (1 / lev) + maintMarginRate);
+ } else {
+   liqPrice = entry * (1 + (1 / lev) - maintMarginRate);
+ }
+
+ $('res-risk').textContent=fmtMoney(risk);
+ $('res-size').textContent=size.toLocaleString('en-US',{maximumFractionDigits:8});
+ $('res-val').textContent=fmtMoney(value);
+ $('res-margin').textContent=fmtMoney(margin);
+ $('res-liq').textContent=fmtPrice(liqPrice);
+ $('res-rr').textContent=rr===null?'TP দিন':'1 : '+rr.toFixed(2);
+
+ // Visual R:R Badge
+ const badgeBox = $('rr-badge-box');
+ const badgeText = $('rr-badge-text');
+ if(rr !== null){
+   badgeBox.style.display = 'block';
+   if(rr >= 2){
+     badgeText.innerHTML = `<span class="green">উত্তম R:R (1:${rr.toFixed(2)}) — ট্রেডটির রিস্ক-রিওয়ার্ড চমৎকার।</span>`;
+   } else if(rr >= 1) {
+     badgeText.innerHTML = `<span class="yellow">গ্রহণযোগ্য R:R (1:${rr.toFixed(2)})</span>`;
+   } else {
+     badgeText.innerHTML = `<span class="red">ঝুঁকিপূর্ণ R:R (1:${rr.toFixed(2)}) — রিওয়ার্ডের তুলনায় ঝুঁকি বেশি।</span>`;
+   }
+ } else {
+   badgeBox.style.display = 'none';
+ }
+
+ msg.textContent=`প্রতি কয়েনের price risk ${fmtMoney(dist)}। আনুমানিক লিকুইডেশন প্রাইস $${fmtPrice(liqPrice)}।`;
+ msg.className='notice';
 }
 
 function renderJournal(){
-const pnl=journal.reduce((sum,t)=>sum+Number(t.pnl||0),0),wins=journal.filter(t=>Number(t.pnl)>0).length,losses=journal.filter(t=>Number(t.pnl)<0).length;
-$('journal-count').textContent=journal.length;
-$('journal-winrate').textContent=(journal.length?wins/journal.length*100:0).toFixed(1)+'%';
-$('journal-pnl').textContent=fmtMoney(pnl); $('journal-pnl').className=pnl>=0?'green':'red';
-$('journal-record').textContent=`${wins} / ${losses}`;
-$('journal-table').innerHTML=journal.slice().reverse().map(t=>`<tr><td>${safe(t.date)}</td><td>${safe(t.symbol)}</td><td>${safe(t.side)}</td><td class="${t.pnl>=0?'green':'red'}">${fmtMoney(t.pnl)}</td><td><button data-delete-trade="${t.id}">×</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">কোনো ট্রেড নেই।</td></tr>';
+ const pnl=journal.reduce((sum,t)=>sum+Number(t.pnl||0),0),wins=journal.filter(t=>Number(t.pnl)>0).length,losses=journal.filter(t=>Number(t.pnl)<0).length;
+ $('journal-count').textContent=journal.length;
+ $('journal-winrate').textContent=(journal.length?wins/journal.length*100:0).toFixed(1)+'%';
+ $('journal-pnl').textContent=fmtMoney(pnl);
+ $('journal-pnl').className=pnl>=0?'green':'red';
+ $('journal-record').textContent=`${wins} / ${losses}`;
+ $('journal-table').innerHTML=journal.slice().reverse().map(t=>`<tr><td>${safe(t.date)}</td><td>${safe(t.symbol)}</td><td>${safe(t.side)}</td><td class="${t.pnl>=0?'green':'red'}">${fmtMoney(t.pnl)}</td><td>${safe(t.note||'—')}</td><td><button data-delete-trade="${t.id}">Delete</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">এখনো কোনো ট্রেড যোগ করা হয়নি।</td></tr>';
 }
 
-function renderRiskLock(){
-const b=Number($('risk-balance').value)||0,r=Number($('risk-per-trade').value)||0,d=Number($('risk-daily-limit').value)||0,p=Number($('risk-today-pnl').value)||0;
-$('risk-one').textContent=fmtMoney(b*r/100); $('risk-limit').textContent=fmtMoney(b*d/100);
-const limit=b*d/100, breached=p<=-limit;
-$('risk-status').textContent=breached?'LOCKED: Daily Limit Reached! 🛑':'Within Limit ✅';
-$('risk-status').className=breached?'red':'green';
+function csvExport(){
+ const lines=[['Date','Symbol','Side','PnL_USDT','Note'],...journal.map(t=>[t.date,t.symbol,t.side,t.pnl,t.note])];
+ const csv=lines.map(row=>row.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ downloadBlob(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),'crypto-trading-journal.csv');
+}
+
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+
+function renderAlerts(){
+ $('alerts-list').innerHTML=alerts.map(a=>`<div class="mini" style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px"><div><strong>${safe(a.symbol)}</strong> <span class="muted small">${a.condition==='above'?'≥':'≤'} ${fmtPrice(a.price)}</span><div class="small ${a.triggered?'yellow':'muted'}">${a.triggered?'Triggered':'Waiting'}</div></div><button data-delete-alert="${a.id}">Delete</button></div>`).join('')||'<div class="empty">কোনো alert নেই।</div>';
+}
+
+function checkAlerts(t){
+ let changed=false;
+ alerts.forEach(a=>{if(!a.triggered&&a.symbol===t.symbol&&((a.condition==='above'&&t.lastPrice>=a.price)||(a.condition==='below'&&t.lastPrice<=a.price))){
+  a.triggered=true;changed=true;
+  const msg=`${a.symbol} price alert: $${fmtPrice(t.lastPrice)}`;
+  if('Notification'in window&&Notification.permission==='granted'){try{new Notification('Crypto Trading Bangla',{body:msg});}catch(_){}}
+  else alert(msg);
+ }});
+ if(changed){persist();renderAlerts();}
+}
+
+function renderRisk(){
+ const b=Number($('risk-balance').value)||0,r=Number($('risk-per-trade').value)||0,d=Number($('risk-daily-limit').value)||0,p=Number($('risk-today-pnl').value)||0;
+ $('risk-one').textContent=fmtMoney(b*r/100);$('risk-limit').textContent=fmtMoney(b*d/100);
+ const lossLimit=b*d/100,breached=p<=-lossLimit;
+ $('risk-status').textContent=breached?'Limit reached':'Within limit';$('risk-status').className=breached?'red':'green';
+ $('risk-output').style.borderColor=breached?'var(--red)':'var(--line)';
+}
+
+function buildAI(){
+ const symbol=$('ai-symbol').value.trim().toUpperCase()||selectedSymbol,price=Number($('ai-price').value),support=Number($('ai-support').value),resistance=Number($('ai-resistance').value),notes=$('ai-notes').value.trim();
+ if(!(price>0)){ $('ai-output').innerHTML='<div class="warning">Current price লিখুন অথবা Binance থেকে লাইভ দাম আসা পর্যন্ত অপেক্ষা করুন।</div>';return;}
+ const hasS=support>0&&support<price,hasR=resistance>price;
+ let bullEntry=hasS?`${fmtPrice(support)}–${fmtPrice(price)}`:fmtPrice(price),bullSL=hasS?support*0.99:price*0.985,bullTP=hasR?resistance:price*1.02;
+ let bearEntry=hasR?`${fmtPrice(price)}–${fmtPrice(resistance)}`:fmtPrice(price),bearSL=hasR?resistance*1.01:price*1.015,bearTP=hasS?support:price*0.98;
+ $('ai-output').innerHTML=`<p><strong>${safe(symbol)} scenario summary</strong> · Reference price: $${fmtPrice(price)}</p><div class="scenario-grid"><div class="scenario bull"><h3 class="green">Bullish Scenario</h3><p><b>Entry zone:</b> ${bullEntry}</p><p><b>Illustrative SL:</b> $${fmtPrice(bullSL)}</p><p><b>Illustrative TP:</b> $${fmtPrice(bullTP)}</p><p class="small muted">শুধু bullish structure ও confirmation থাকলে বিবেচনা করুন।</p></div><div class="scenario bear"><h3 class="red">Bearish Scenario</h3><p><b>Entry zone:</b> ${bearEntry}</p><p><b>Illustrative SL:</b> $${fmtPrice(bearSL)}</p><p><b>Illustrative TP:</b> $${fmtPrice(bearTP)}</p><p class="small muted">শুধু bearish structure ও confirmation থাকলে বিবেচনা করুন।</p></div></div><div class="warning" style="margin-top:12px">এগুলো গাণিতিক উদাহরণ, যাচাইকৃত signal বা ভবিষ্যদ্বাণী নয়। ${notes?'তোমার নোট: '+safe(notes):'Market structure, volume, news ও timeframe নিজে যাচাই করুন।'}</div>`;
+}
+
+function saveSettings(){
+ settings.balance=Math.max(0,Number($('setting-balance').value)||0);settings.symbol=$('setting-symbol').value;settings.language=$('setting-language').value;settings.refresh=Number($('setting-refresh').value)||30000;persist();
+ $('calc-balance').value=settings.balance;$('risk-balance').value=settings.balance;$('balance-card').textContent=fmtMoney(settings.balance);selectSymbol(settings.symbol);
+ clearInterval(refreshTimer);refreshTimer=setInterval(fetchMarket,settings.refresh);
+ alert('Settings এই browser-এ সংরক্ষণ করা হয়েছে।');
+}
+
+function exportAll(){
+ const data={exportedAt:new Date().toISOString(),settings,watchlist,journal,alerts};
+ downloadBlob(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),'crypto-trading-bangla-backup.json');
 }
 
 function setupEvents(){
-document.querySelectorAll('.nav').forEach(btn=>btn.addEventListener('click',()=>{
-document.querySelectorAll('.nav').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-const target=$(btn.dataset.target); if(target) target.scrollIntoView({behavior:'smooth'});
-}));
+ document.querySelectorAll('.nav').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.nav').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const target=$(btn.dataset.target);if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+ }));
+ 
+ // Hotkeys support (Feature 3)
+ document.addEventListener('keydown', e => {
+   if(['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+   if(e.key.toLowerCase() === 'b'){
+     $('calc-side').value = 'long';
+     alert('Hotkey: Position Side switched to LONG');
+   } else if(e.key.toLowerCase() === 's'){
+     $('calc-side').value = 'short';
+     alert('Hotkey: Position Side switched to SHORT');
+   } else if(e.key.toLowerCase() === 'c'){
+     calcRisk();
+     $('calculator').scrollIntoView({behavior:'smooth'});
+   }
+ });
 
-document.addEventListener('click',e=>{
-const sym=e.target.closest('[data-symbol]')?.dataset.symbol; 
-if(sym){
-  selectSymbol(sym);
-  $('chart-section').scrollIntoView({behavior:'smooth'});
-}
-const add=e.target.closest('[data-add-watch]')?.dataset.addWatch; if(add&&!watchlist.includes(add)){watchlist.push(add);persist();renderWatchlist();connectSocket();}
-const remove=e.target.closest('[data-remove-watch]')?.dataset.removeWatch; if(remove){watchlist=watchlist.filter(s=>s!==remove);persist();renderWatchlist();connectSocket();}
-const del=e.target.closest('[data-delete-trade]')?.dataset.deleteTrade; if(del){journal=journal.filter(t=>String(t.id)!==String(del));persist();renderJournal();}
-const intervalBtn=e.target.closest('[data-interval]');
-if(intervalBtn){
-  selectedInterval={'5':'5m','15':'15m','60':'1h','240':'4h','1d':'1d'}[intervalBtn.dataset.interval]||'15m';
-  document.querySelectorAll('#timeframes button').forEach(b=>b.classList.toggle('active',b===intervalBtn));
+ document.addEventListener('click',e=>{
+  const sym=e.target.closest('[data-symbol]')?.dataset.symbol;
+  if(sym){selectSymbol(sym);$('chart-section').scrollIntoView({behavior:'smooth'});}
+  const add=e.target.closest('[data-add-watch]')?.dataset.addWatch;
+  if(add&&!watchlist.includes(add)){watchlist.push(add);persist();renderWatchlist();connectSocket();}
+  const remove=e.target.closest('[data-remove-watch]')?.dataset.removeWatch;
+  if(remove){watchlist=watchlist.filter(s=>s!==remove);persist();renderWatchlist();connectSocket();}
+  const del=e.target.closest('[data-delete-trade]')?.dataset.deleteTrade;
+  if(del){journal=journal.filter(t=>String(t.id)!==String(del));persist();renderJournal();}
+  const da=e.target.closest('[data-delete-alert]')?.dataset.deleteAlert;
+  if(da){alerts=alerts.filter(a=>String(a.id)!==String(da));persist();renderAlerts();}
+  const interval=e.target.closest('[data-interval]')?.dataset.interval;
+  if(interval){selectedInterval=interval;document.querySelectorAll('#timeframes button').forEach(b=>b.classList.toggle('active',b.dataset.interval===interval));loadTradingView();}
+ });
+ document.querySelectorAll('[data-scanner-tab]').forEach(b=>b.addEventListener('click',()=>{scannerMode=b.dataset.scannerTab;document.querySelectorAll('[data-scanner-tab]').forEach(x=>x.classList.toggle('active',x===b));renderScanner();}));
+ $('global-search').addEventListener('input',()=>{$('market-search').value=$('global-search').value;$('market-search').dispatchEvent(new Event('input'));$('live-market').scrollIntoView({behavior:'smooth',block:'start'});});
+ $('market-search').addEventListener('input',renderMarketTable);$('market-sort').addEventListener('change',renderMarketTable);$('market-limit').addEventListener('change',renderMarketTable);
+ $('market-search-clear').addEventListener('click',()=>{$('market-search').value='';$('global-search').value='';renderMarketTable();});
+ $('refresh-market').addEventListener('click',fetchMarket);
+ $('calc-button').addEventListener('click',calcRisk);
+ $('calc-reset').addEventListener('click',()=>{['calc-entry','calc-sl','calc-tp'].forEach(id=>$(id).value='');$('calc-risk').value='1';$('calc-side').value='long';$('calc-leverage').value='10';$('calc-fee').value='0.1';$('calc-message').textContent='Entry ও Stop Loss দিন, তারপর হিসাব করুন।';['res-risk','res-size','res-val','res-margin','res-liq','res-rr'].forEach(id=>$(id).textContent='—');$('rr-badge-box').style.display='none';});
+ 
+ $('journal-add').addEventListener('click',()=>{
+  const symbol=$('j-symbol').value.trim().toUpperCase(),pnl=Number($('j-pnl').value),date=$('j-date').value||new Date().toISOString().slice(0,10),note=$('j-note').value.trim();
+  if(!symbol||$('j-pnl').value.trim()===''||!Number.isFinite(pnl)){alert('Symbol এবং সঠিক P&L লিখুন।');return;}
+  journal.push({id:Date.now(),date,symbol,side:$('j-side').value,pnl,note});persist();renderJournal();$('j-pnl').value='';$('j-note').value='';
+ });
+ $('journal-export').addEventListener('click',csvExport);
+ $('journal-clear').addEventListener('click',()=>{if(confirm('সব journal record মুছে ফেলবেন? আগে export করে নিন।')){journal=[];persist();renderJournal();}});
+ $('watch-add').addEventListener('click',()=>{const s=$('watch-add-symbol').value.trim().toUpperCase().replace('/','');if(!/^[A-Z0-9]{3,20}USDT$/.test(s)){alert('USDT pair দিন, যেমন ADAUSDT।');return;}if(!watchlist.includes(s)){watchlist.push(s);persist();renderWatchlist();connectSocket();} $('watch-add-symbol').value='';});
+ $('smc-analyze').addEventListener('click',()=>{
+  const structure=$('smc-structure').value,liq=$('smc-liquidity').value,disp=$('smc-displacement').value,zone=$('smc-zone').value;
+  const bullish=/Bullish/.test(structure+' '+disp+' '+zone),bearish=/Bearish/.test(structure+' '+disp+' '+zone);
+  let conclusion=bullish&&!bearish?'Bullish clues selected':bearish&&!bullish?'Bearish clues selected':'Mixed/insufficient confirmation';
+  $('smc-output').textContent=`${$('smc-symbol').value} (${ $('smc-timeframe').value }): ${conclusion}. Structure: ${structure}; Liquidity: ${liq}; Displacement: ${disp}; FVG/OB: ${zone}. এটি checklist summary, স্বয়ংক্রিয় chart analysis নয়।`;
+ });
+ $('smc-save').addEventListener('click',()=>{localStorage.setItem('ctb-smc',JSON.stringify({symbol:$('smc-symbol').value,timeframe:$('smc-timeframe').value,structure:$('smc-structure').value,liquidity:$('smc-liquidity').value,displacement:$('smc-displacement').value,zone:$('smc-zone').value}));alert('SMC checklist স্থানীয়ভাবে সংরক্ষিত হয়েছে।');});
+ $('ai-generate').addEventListener('click',buildAI);
+ $('ai-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('ai-output').innerText);alert('Analysis summary copied.');}catch(_){alert('Copy করা যায়নি; text manually select করুন।');}});
+ $('risk-check').addEventListener('click',renderRisk);['risk-balance','risk-per-trade','risk-daily-limit','risk-today-pnl'].forEach(id=>$(id).addEventListener('input',renderRisk));
+ $('alert-add').addEventListener('click',async()=>{
+  const symbol=$('alert-symbol').value.trim().toUpperCase().replace('/',''),price=Number($('alert-price').value),condition=$('alert-condition').value;
+  if(!/^[A-Z0-9]{3,20}USDT$/.test(symbol)||!(price>0)){alert('সঠিক USDT symbol ও target price দিন।');return;}
+  if('Notification'in window&&Notification.permission==='default'){try{await Notification.requestPermission();}catch(_){}}
+  alerts.push({id:Date.now(),symbol,price,condition,triggered:false});persist();renderAlerts();$('alert-price').value='';
+ });
+ $('settings-save').addEventListener('click',saveSettings);
+ $('settings-reset').addEventListener('click',()=>{settings={balance:50,symbol:'BTCUSDT',language:'bn',refresh:30000};applySettings();persist();});
+ $('export-data').addEventListener('click',exportAll);
+ $('open-full-tv').addEventListener('click',()=>window.open('https://www.tradingview.com/chart/?symbol=BINANCE%3A'+encodeURIComponent(selectedSymbol),'_blank','noopener'));
+ $('theme-toggle').addEventListener('click',()=>{
+  themeLight=!themeLight;
+  if(themeLight){document.documentElement.style.setProperty('--bg','#f4f5f7');document.documentElement.style.setProperty('--panel','#ffffff');document.documentElement.style.setProperty('--panel2','#e9edf2');document.documentElement.style.setProperty('--line','#d3d8df');document.documentElement.style.setProperty('--text','#161a1e');document.documentElement.style.setProperty('--muted','#5e6673');}
+  else{['--bg','--panel','--panel2','--line','--text','--muted'].forEach((v,i)=>document.documentElement.style.removeProperty(v));}
   loadTradingView();
+ });
+ $('lang-toggle').addEventListener('click',()=>{settings.language=settings.language==='bn'?'en':'bn';$('setting-language').value=settings.language;persist();alert(settings.language==='en'?'Some interface labels remain in Bengali.':'বাংলা preference নির্বাচিত হয়েছে।');});
 }
-});
 
-$('mtf-run')?.addEventListener('click', runMTFConfluence);
-$('smc-auto-run')?.addEventListener('click', runSMCSmart);
-$('calc-button')?.addEventListener('click', calcRisk);
-$('risk-check')?.addEventListener('click', renderRiskLock);
-
-$('journal-add')?.addEventListener('click',()=>{
-const symbol=$('j-symbol').value.trim().toUpperCase(), pnl=Number($('j-pnl').value), date=$('j-date').value||new Date().toISOString().slice(0,10);
-if(!symbol||isNaN(pnl)){alert('সঠিক তথ্য দিন।');return;}
-journal.push({id:Date.now(),date,symbol,side:$('j-side').value,pnl}); persist(); renderJournal(); $('j-pnl').value='';
-});
-
-$('watch-add')?.addEventListener('click',()=>{
-const s=$('watch-add-symbol').value.trim().toUpperCase(); if(s&&!watchlist.includes(s)){watchlist.push(s);persist();renderWatchlist();connectSocket();}
-});
-
-$('settings-save')?.addEventListener('click',()=>{
-settings.balance=Number($('setting-balance').value)||50; settings.symbol=$('setting-symbol').value; persist();
-$('calc-balance').value=settings.balance; $('risk-balance').value=settings.balance; $('balance-card').textContent=fmtMoney(settings.balance);
-selectSymbol(settings.symbol); alert('সেভ হয়েছে।');
-});
-
-$('theme-toggle')?.addEventListener('click',()=>{
-themeLight=!themeLight;
-document.documentElement.style.setProperty('--bg',themeLight?'#f4f5f7':'#0b0e11');
-document.documentElement.style.setProperty('--panel',themeLight?'#ffffff':'#161a1e');
-document.documentElement.style.setProperty('--text',themeLight?'#161a1e':'#eaecef');
-loadTradingView();
-});
+function applySettings(){
+ $('setting-balance').value=settings.balance;$('setting-symbol').value=settings.symbol;$('setting-language').value=settings.language;$('setting-refresh').value=String(settings.refresh);
+ $('calc-balance').value=settings.balance;$('risk-balance').value=settings.balance;$('balance-card').textContent=fmtMoney(settings.balance);
 }
 
 function init(){
-$('j-date').value=new Date().toISOString().slice(0,10);
-$('setting-balance').value=settings.balance; $('calc-balance').value=settings.balance; $('risk-balance').value=settings.balance;
-$('balance-card').textContent=fmtMoney(settings.balance);
-setupEvents(); renderWatchlist(); renderMarketCards(); renderJournal(); renderRiskLock();
-selectedSymbol=settings.symbol||'BTCUSDT';
-loadTradingView(); connectSocket(); fetchMarket(); fetchGlobalMarketData();
-refreshTimer=setInterval(fetchMarket,settings.refresh);
-sessionTimer=setInterval(updateKillZones, 30000); updateKillZones();
+ $('j-date').value=new Date().toISOString().slice(0,10);
+ applySettings();renderWatchlist();renderMarketCards();renderJournal();renderAlerts();renderRisk();setupEvents();
+ const savedSmc=JSON.parse(localStorage.getItem('ctb-smc')||'null');
+ if(savedSmc){$('smc-symbol').value=savedSmc.symbol||'BTCUSDT';$('smc-timeframe').value=savedSmc.timeframe||'1h';$('smc-structure').value=savedSmc.structure||'নির্বাচন করুন';$('smc-liquidity').value=savedSmc.liquidity||'নির্বাচন করুন';$('smc-displacement').value=savedSmc.displacement||'নির্বাচন করুন';$('smc-zone').value=savedSmc.zone||'নির্বাচন করুন';}
+ selectedSymbol=settings.symbol||'BTCUSDT';
+ loadTradingView();connectSocket();fetchMarket();
+ refreshTimer=setInterval(fetchMarket,settings.refresh);
 }
 
 init();
