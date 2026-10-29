@@ -127,7 +127,7 @@
 <div class="field"><label>Timeframe</label><select id="smc-auto-tf"><option value="5m">5m</option><option value="15m" selected>15m</option><option value="1h">1h</option><option value="4h">4h</option></select></div>
 </div>
 <div class="button-row" style="margin-top:12px"><button id="smc-auto-run" class="button-primary">Scan SMC Structure</button></div>
-<div id="smc-auto-output" class="notice" style="margin-top:12px">ক্যান্ডেল ডেটা থেকে সুইং স্ট্রাকচার, ব্রেক অব স্ট্রাকচার (BOS) এবং ফেয়ার ভ্যালু গ্যাপ (FVG) স্ক্যান করতে রান করুন।</div>
+<div id="smc-auto-output" class="notice" style="margin-top:12px">ক্যান্ডেল ডেটা থেকে সুইং স্ট্রাকচার, ব্রেক অব স্ট্রাকচার (BOS) স্ক্যান করতে রান করুন।</div>
 </section>
 
 <!-- 3. Session & Kill Zone Dashboard -->
@@ -138,7 +138,7 @@
 <div class="result"><span>London Kill Zone (11:00 - 15:00 GST)</span><b id="sess-london">হিসাব করা হচ্ছে…</b></div>
 <div class="result"><span>New York Kill Zone (16:00 - 20:00 GST)</span><b id="sess-ny">হিসাব করা হচ্ছে…</b></div>
 </div>
-<div class="notice" style="margin-top:12px">বর্তমান ওমানের স্থানীয় সময় অনুযায়ী কোন সেশন বা কিল জোন চলছে তা এখানে দেখা যাবে। কিল জোনগুলোতে সাধারণত সর্বোচ্চ ভোলাটিলিটি ও লিকুইডিটি থাকে।</div>
+<div class="notice" style="margin-top:12px">বর্তমান ওমানের স্থানীয় সময় অনুযায়ী কোন সেশন বা কিল জোন চলছে তা এখানে দেখা যাবে।</div>
 </section>
 
 <!-- 4. Futures Market Intelligence -->
@@ -153,7 +153,7 @@
 <div class="result"><span>Open Interest (USD)</span><b id="intel-oi">—</b></div>
 <div class="result"><span>Market Sentiment</span><b id="intel-sent">—</b></div>
 </div>
-<div class="notice" style="margin-top:12px">Binance Futures পাবলিক API থেকে ফান্ডিং রেট ও ওপেন ইন্টারেস্ট সংগ্রহ করে সেন্টিমেন্ট যাচাই করা হয়।</div>
+<div class="notice" style="margin-top:12px">Binance Futures পাবলিক API থেকে ফান্ডিং রেট ও ওপেন ইন্টারেস্ট সংগ্রহ করা হয়।</div>
 </section>
 
 <!-- Live Market -->
@@ -235,7 +235,7 @@
 <div class="table-wrap"><table><thead><tr><th>Date</th><th>Symbol</th><th>Side</th><th>P&amp;L</th><th>Action</th></tr></thead><tbody id="journal-table"></tbody></table></div>
 </section>
 
-<!-- 5. Daily Loss Lock & Profit Protection -->
+<!-- 5. Daily Loss Lock -->
 <section id="risk-dashboard" class="panel main-section">
 <div class="section-head"><h2>5. Daily Loss Lock & Profit Protection</h2><span class="badge">Risk Controls</span></div>
 <div class="form-grid">
@@ -250,7 +250,6 @@
 <div class="result"><span>Daily loss limit</span><b id="risk-limit">$1.50</b></div>
 <div class="result"><span>Daily Status</span><b id="risk-status">Within limit</b></div>
 </div>
-<div class="warning" style="margin-top:12px">দৈনিক ক্ষতির লিমিট পার হলে ট্রেডিং বন্ধ রাখার জন্য সতর্কবার্তা দেখাবে।</div>
 </section>
 
 <!-- 6. Strategy Backtester -->
@@ -267,19 +266,12 @@
 <div class="result"><span>Profit Factor</span><b id="bt-pf">—</b></div>
 <div class="result"><span>Est. Return</span><b id="bt-return">—</b></div>
 </div>
-<div class="notice" style="margin-top:12px">ঐতিহাসিক ক্যান্ডেল ডেটা ব্যবহার করে EMA 9/21 ক্রসওভার স্ট্র্যাটেজির ফল যাচাই করুন।</div>
-</section>
-
-<!-- 7. News & Volatility Warning -->
-<section id="news-warning" class="panel main-section" style="display:none">
-<div class="section-head"><h2>7. News & Volatility Warning</h2></div>
-<div class="warning">আজকের বাজারে হাই-ইমপ্যাক্ট নিউজ বা ফহেড (FOMC/CPI) ঘোষণা থাকতে পারে। ট্রেড নেওয়ার আগে ইকোনমিক ক্যালেন্ডার চেক করুন।</div>
 </section>
 
 <!-- 8. Trading Psychology Coach -->
 <section id="psychology" class="panel main-section">
 <div class="section-head"><h2>8. Trading Psychology Coach</h2><span class="badge">Behavioral Analysis</span></div>
-<div id="psy-output" class="notice">জার্নাল ডেটা বিশ্লেষণ করে আপনার ট্রেডিং ডিসিপ্লিন, অতিরিক্ত ট্রেড করার প্রবণতা বা লস রিকভারি সিন্ড্রোম শনাক্ত করা হবে।</div>
+<div id="psy-output" class="notice">জার্নাল ডেটা বিশ্লেষণ করে আপনার ট্রেডিং ডিসিপ্লিন ও সাইকোলজি মূল্যায়ন করা হবে।</div>
 <div style="margin-top:12px"><button id="psy-run" class="button-primary">Analyze Psychology</button></div>
 </section>
 
@@ -443,11 +435,20 @@ updateEMA();
 
 function selectSymbol(symbol){
 if(!symbol) return;
-selectedSymbol=symbol.toUpperCase().replace('/','');
-$('smc-symbol')?.setAttribute('value', selectedSymbol);
+selectedSymbol = symbol.toUpperCase().replace('/', '').trim();
+const smcSym = $('smc-auto-symbol'); if(smcSym) smcSym.value = selectedSymbol;
+const mtfSym = $('mtf-symbol'); if(mtfSym) mtfSym.value = selectedSymbol;
+const intelSym = $('intel-symbol'); if(intelSym) intelSym.value = selectedSymbol;
+const btSym = $('bt-symbol'); if(btSym) btSym.value = selectedSymbol;
 const aiSym = $('ai-symbol'); if(aiSym) aiSym.value = selectedSymbol;
+
 const t = tickers.get(selectedSymbol);
-if(t && $('ai-price')) $('ai-price').value = t.lastPrice;
+if(t && $('ai-price')) {
+  $('ai-price').value = t.lastPrice;
+} else {
+  const mr = marketRows.find(m => m.symbol === selectedSymbol);
+  if(mr && $('ai-price')) $('ai-price').value = mr.lastPrice;
+}
 loadTradingView();
 }
 
@@ -522,7 +523,7 @@ const sort=$('market-sort').value;
 rows.sort((a,b)=>sort==='change-desc'?b.change-a.change:sort==='change-asc'?a.change-b.change:b.quoteVolume-a.quoteVolume);
 rows=rows.slice(0,Number($('market-limit').value)||50);
 $('market-count').textContent=`${rows.length} symbols`;
-$('market-table').innerHTML=rows.map(t=>`<tr><td><button data-symbol="${t.symbol}" style="padding:0;border:0;background:none;font-weight:700">${t.symbol.replace('USDT','/USDT')}</button></td><td>$${fmtPrice(t.lastPrice)}</td><td class="${t.change>=0?'green':'red'}">${fmtPct(t.change)}</td><td>$${(t.quoteVolume/1e6).toFixed(1)}M</td><td><button data-add-watch="${t.symbol}">+ Watch</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">নেই।</td></tr>';
+$('market-table').innerHTML=rows.map(t=>`<tr><td><button data-symbol="${t.symbol}" style="padding:0;border:0;background:none;font-weight:700">${t.symbol.replace('USDT','/USDT')}</button></td><td>$${fmtPrice(t.lastPrice)}</td><td class="${t.change>=0?'green':'red'}">${fmtPct(t.change)}</td><td>$${(t.quoteVolume/1e6).toFixed(1)}M</td><td><button data-symbol="${t.symbol}">Chart</button> <button data-add-watch="${t.symbol}">+ Watch</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">নেই।</td></tr>';
 }
 
 // 1. Multi-Timeframe Confluence Logic
@@ -577,7 +578,7 @@ const recentHigh = Math.max(...highs.slice(-20));
 const recentLow = Math.min(...lows.slice(-20));
 
 let bos = curP > recentHigh ? 'Bullish BOS (Break of Structure)' : curP < recentLow ? 'Bearish BOS' : 'No Break (Consolidation)';
-out.innerHTML = `<b>Symbol:</b> ${sym} (${tf})<br><b>Structure State:</b> ${bos}<br><b>Recent Swing High:</b> $${fmtPrice(recentHigh)} | <b>Recent Swing Low:</b> $${fmtPrice(recentLow)}<br><span class="muted">সঠিক FVG ও Order Block জোনের জন্য চার্ট চেক করুন।</span>`;
+out.innerHTML = `<b>Symbol:</b> ${sym} (${tf})<br><b>Structure State:</b> ${bos}<br><b>Recent Swing High:</b> $${fmtPrice(recentHigh)} | <b>Recent Swing Low:</b> $${fmtPrice(recentLow)}`;
 out.className = 'notice ' + (curP > recentHigh ? 'green' : curP < recentLow ? 'red' : '');
 } catch(e) {
 out.textContent = 'ডেটা ফেচ করতে ব্যর্থ হয়েছে।';
@@ -587,15 +588,10 @@ out.textContent = 'ডেটা ফেচ করতে ব্যর্থ হয
 // 3. Kill Zone & Sessions (Oman Time = UTC+4)
 function updateKillZones() {
 const now = new Date();
-// Convert to Oman Time (GST = UTC+4)
 const utcHours = now.getUTCHours();
 const utcMinutes = now.getUTCMinutes();
 let omanHour = (utcHours + 4) % 24;
 const totalMins = omanHour * 60 + utcMinutes;
-
-// Asia: 03:00 to 12:00 GST (180 to 720 mins)
-// London: 11:00 to 15:00 GST (660 to 900 mins)
-// New York: 16:00 to 20:00 GST (960 to 1200 mins)
 
 const isAsia = totalMins >= 180 && totalMins <= 720;
 const isLondon = totalMins >= 660 && totalMins <= 900;
@@ -603,10 +599,8 @@ const isNY = totalMins >= 960 && totalMins <= 1200;
 
 $('sess-asia').textContent = isAsia ? 'Active (সক্রিয়)' : 'Closed (বন্ধ)';
 $('sess-asia').className = isAsia ? 'green' : 'muted';
-
 $('sess-london').textContent = isLondon ? 'Kill Zone Active 🔥' : 'Inactive';
 $('sess-london').className = isLondon ? 'green' : 'muted';
-
 $('sess-ny').textContent = isNY ? 'Kill Zone Active 🔥' : 'Inactive';
 $('sess-ny').className = isNY ? 'green' : 'muted';
 }
@@ -626,7 +620,6 @@ const oiRes = await fetch(`https://fapi.binance.com/fapi/v1/openInterest?symbol=
 const oiData = await oiRes.json();
 const oiUsd = Number(oiData.openInterest) * Number(data.markPrice);
 $('intel-oi').textContent = '$' + (oiUsd / 1e6).toFixed(2) + ' M';
-
 $('intel-sent').textContent = fr > 0.01 ? 'Over-leveraged Longs' : fr < -0.01 ? 'Heavy Shorts' : 'Balanced';
 } catch(e) {
 $('intel-fr').textContent = 'Error';
@@ -710,7 +703,7 @@ const wins = journal.filter(t => Number(t.pnl) > 0).length;
 const losses = journal.filter(t => Number(t.pnl) < 0).length;
 let advice = "নিয়মিত জার্নাল এন্ট্রি করুন যাতে আপনার ট্রেডিং সাইকোলজি বিশ্লেষণ করা যায়।";
 if(total > 5 && (losses / total) > 0.6) {
-  advice = "সতর্কবার্তা: আপনার ধারাবাহিক লস হচ্ছে। ফমোর বশে ওভারট্রেডিং (Overtrading) বা লস রিকভারি ট্রেড করা থেকে বিরত থাকুন।";
+  advice = "সতর্কবার্তা: আপনার ধারাবাহিক লস হচ্ছে। ফমোর বশে ওভারট্রেডিং বা লস রিকভারি ট্রেড করা থেকে বিরত থাকুন।";
 } else if(wins / total > 0.6) {
   advice = "দারুণ! আপনার উইন রেট ভালো আছে। রিস্ক ম্যানেজমেন্ট ও প্রফিট প্রটেকশন বজায় রাখুন।";
 }
@@ -725,7 +718,11 @@ const target=$(btn.dataset.target); if(target) target.scrollIntoView({behavior:'
 }));
 
 document.addEventListener('click',e=>{
-const sym=e.target.closest('[data-symbol]')?.dataset.symbol; if(sym){selectSymbol(sym);$('chart-section').scrollIntoView({behavior:'smooth'});}
+const sym=e.target.closest('[data-symbol]')?.dataset.symbol; 
+if(sym){
+  selectSymbol(sym);
+  $('chart-section').scrollIntoView({behavior:'smooth'});
+}
 const add=e.target.closest('[data-add-watch]')?.dataset.addWatch; if(add&&!watchlist.includes(add)){watchlist.push(add);persist();renderWatchlist();connectSocket();}
 const remove=e.target.closest('[data-remove-watch]')?.dataset.removeWatch; if(remove){watchlist=watchlist.filter(s=>s!==remove);persist();renderWatchlist();connectSocket();}
 const del=e.target.closest('[data-delete-trade]')?.dataset.deleteTrade; if(del){journal=journal.filter(t=>String(t.id)!==String(del));persist();renderJournal();}
