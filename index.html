@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abu Talab Bhuiyan | Pro Crypto Trading Terminal</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://s3.tradingview.com; connect-src 'self' https://fapi.binance.com wss://fstream.binance.com https://api.coingecko.com https://yswbiogwhklhfrkeatpp.supabase.co wss://yswbiogwhklhfrkeatpp.supabase.co; frame-src https://*.tradingview.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0b0e11">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Crypto Terminal">
+<style>
+:root{--bg:#0b0e11;--panel:#161a1e;--panel2:#202630;--line:#2b3139;--text:#eaecef;--muted:#848e9c;--yellow:#fcd535;--green:#0ecb81;--red:#f6465d;--inp:#0f1318;--card:#10151b;--navh:#2b3139;--warnbg:#29220f}
+:root[data-theme=light]{--bg:#f4f5f7;--panel:#fff;--panel2:#eceff3;--line:#d8dce2;--text:#161a1e;--muted:#6b7480;--inp:#f7f8fa;--card:#f7f8fa;--navh:#e6e9ee;--warnbg:#fff7dc;--yellow:#c99700}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;padding:8px 12px}button:hover{filter:brightness(1.15)}
+input,select,textarea{width:100%;background:var(--inp);border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--yellow)}
+.app{max-width:1600px;margin:auto;padding:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;min-width:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}.brand{display:flex;align-items:center;gap:11px}
+.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:10px;flex-shrink:0}.brand h1{font-size:18px;margin:0}.brand p{margin:2px 0 0;color:var(--yellow);font-size:10px;letter-spacing:2px}
+.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search{width:min(280px,70vw)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px}
+.sidebar{display:flex;flex-direction:column;gap:5px;align-self:start;position:sticky;top:12px;max-height:92vh;overflow-y:auto}
+.nav{width:100%;text-align:left;background:transparent;border-color:transparent;color:var(--muted);padding:9px 11px;display:flex;align-items:center;justify-content:space-between;border-radius:8px;font-size:13px}
+.nav.active,.nav:hover{background:var(--navh);color:var(--text);border-color:var(--line)}.nav.active{border-left:3px solid var(--yellow)}
+.promo{margin-top:12px;background:linear-gradient(145deg,#8c6510,#33270a);border-radius:10px;padding:12px;text-align:center;color:#fff}.promo h3{margin:4px 0;font-size:14px}.promo p{font-size:11px;color:#f5e6b2;margin:0}
+.status{font-size:11px;color:var(--muted);margin-top:10px}.dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:7px}
+.main{min-width:0;display:flex;flex-direction:column;gap:16px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase}.stat-value{font-size:23px;font-weight:750;margin-top:6px;overflow-wrap:anywhere}
+.muted{color:var(--muted)}.small{font-size:12px}.green{color:var(--green)!important}.red{color:var(--red)!important}.yellow{color:var(--yellow)}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}.section-head h2{margin:0;font-size:16px}
+.subtabs{display:flex;gap:6px;flex-wrap:wrap}.subtabs button{padding:6px 9px;font-size:12px}.subtabs button.active{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}
+.chart-frame{height:410px;min-height:300px;background:var(--bg);border-radius:9px;overflow:hidden}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}th{font-size:11px;color:var(--muted);font-weight:600}td{font-size:13px}
+.market-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.mini{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px;min-width:0;text-align:left}.mini strong{display:block}.mini .price{font-weight:700;margin:5px 0}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label,.journal-form label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.result{background:var(--card);border:1px solid var(--line);padding:11px;border-radius:9px}.result b{display:block;font-size:17px;overflow-wrap:anywhere}.result span{font-size:11px;color:var(--muted)}
+.notice{font-size:12px;color:var(--muted);margin-top:10px}.scenario-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.scenario{border:1px solid var(--line);border-radius:10px;padding:13px;background:var(--card)}.scenario h3{margin:0 0 10px}.scenario p{margin:6px 0}
+.bull{border-top:3px solid var(--green)}.bear{border-top:3px solid var(--red)}.button-primary{background:var(--yellow);color:#111;border-color:var(--yellow);font-weight:700}.button-danger{background:#571e27;border-color:#87313f;color:#fff}
+.button-row{display:flex;gap:8px;flex-wrap:wrap}.inline-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.empty{padding:18px;text-align:center;color:var(--muted)}
+.footer{text-align:center;color:var(--muted);padding:22px 10px;font-size:12px}.badge{font-size:10px;padding:3px 6px;border-radius:5px;background:#3b3211;color:var(--yellow)}
+.warning{padding:10px;border:1px solid #69551c;background:var(--warnbg);border-radius:8px;color:#b8960f;font-size:12px}.good-status{color:var(--green)}.bad-status{color:var(--red)}
+.journal-form{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px;align-items:end}
+.layout.rail{grid-template-columns:58px minmax(0,1fr)}.rail .sidebar{padding:8px}.rail .nt,.rail .nav .badge,.rail .promo,.rail .status{display:none}.rail .nav{justify-content:center;padding:9px 4px}.ni{display:inline-block;min-width:18px;text-align:center}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.layout.rail{grid-template-columns:1fr}.sidebar{display:none;position:static;max-height:none}.sidebar.open{display:flex}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.market-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.app{padding:9px}.cards{grid-template-columns:1fr}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid,.scenario-grid{grid-template-columns:1fr}.inline-fields,.journal-form{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-frame{height:360px}.search{width:100%}.result-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+<div class="brand"><button id="nav-toggle" title="মেনু">☰</button><img src="./my-logo2.png" alt="" class="brand-logo"><div><h1>Abu Talab Bhuiyan</h1><p>CRYPTO FUTURES TERMINAL</p></div></div>
+<div class="top-actions">
+<input id="global-search" class="search" placeholder="কয়েন খুঁজুন (BTC, SOL) + Enter">
+<button id="lang-toggle">বাংলা | EN</button><button id="theme-toggle">☼ Theme</button><button id="install-btn" style="display:none">📲 Install</button><button id="auth-btn" class="button-primary">লগইন</button><button id="export-data">ডেটা Export</button>
+</div>
+</header>
+<div class="layout">
+<aside class="sidebar panel">
+<button class="nav active" data-target="dashboard"><span>▦ Dashboard</span></button>
+<button class="nav" data-target="live-market"><span>↗ Futures Live Market</span></button>
+<button class="nav" data-target="market-scanner"><span>⌕ Market Scanner</span></button>
+<button class="nav" data-target="chart-section"><span>▥ Chart Section</span></button>
+<button class="nav" data-target="ema-panel-section"><span>📈 EMA Trend Panel</span></button>
+<button class="nav" data-target="mtf-confluence"><span>🌐 Multi-TF Confluence</span></button>
+<button class="nav" data-target="smc-smart"><span>◇ SMC Smart Detection</span></button>
+<button class="nav" data-target="fib-tools"><span>◈ Fibonacci Tools</span> <span class="badge">New</span></button>
+<button class="nav" data-target="funding-oi"><span>% Funding & Open Interest</span> <span class="badge">New</span></button>
+<button class="nav" data-target="kill-zone"><span>🕒 Kill Zone & Sessions</span></button>
+<button class="nav" data-target="calculator"><span>⊞ Futures Calculator</span></button>
+<button class="nav" id="nav-trade" style="display:none" data-target="trade-panel"><span>⚡ Binance Testnet Trade</span> <span class="badge">TEST</span></button>
+<button class="nav" data-target="ai-analysis"><span>✧ Master AI Assistant</span> <span class="badge">Pro</span></button>
+<button class="nav" data-target="journal"><span>▤ Trading Journal</span></button>
+<button class="nav" data-target="risk-dashboard"><span>⬡ Risk Dashboard</span></button>
+<button class="nav" data-target="alerts"><span>♧ Smart Alerts</span></button>
+<button class="nav" data-target="watchlist"><span>☷ Watchlist</span></button>
+<button class="nav" data-target="settings"><span>⚙ Settings</span></button>
+<div class="promo"><h3>Trade Smarter</h3><p>সঠিক তথ্য, পরিকল্পিত ঝুঁকি ও শৃঙ্খলা।</p></div>
+<div class="status"><div><span class="dot"></span>Market: <span id="market-status">সংযোগ হচ্ছে…</span></div><div style="margin-top:4px"><span class="dot"></span>Binance Futures: <span id="binance-status">সংযোগ হচ্ছে…</span></div><div style="margin-top:4px"><span class="dot"></span>Sync: <span id="sync-status" class="muted">Guest (লোকাল)</span></div></div>
+</aside>
+<main class="main">
+<section id="dashboard">
+<div class="panel" style="margin-bottom:16px">
+<div class="section-head"><h2>Global Crypto Market Overview</h2><span class="small muted">CoinGecko</span></div>
+<div class="cards">
+<div class="result"><span>Total Market Cap</span><b id="global-mcap">লোড হচ্ছে…</b><span id="global-mcap-change" class="small">—</span></div>
+<div class="result"><span>24h Market Volume</span><b id="global-volume">—</b></div>
+<div class="result"><span>BTC Dominance</span><b id="global-btc-dom">—</b></div>
+<div class="result"><span>Active Cryptos</span><b id="global-coins">—</b></div>
+</div></div>
+<div class="cards">
+<div class="panel"><div class="stat-label">Personal Balance (USDT)</div><div class="stat-value" id="balance-card">$50.00</div><div class="small muted">Settings থেকে আপডেট করুন</div></div>
+<div class="panel"><div class="stat-label">24h BTC Change</div><div class="stat-value" id="ticker-change">—</div><div class="small muted">ফিউচার্স লাইভ ডেটা</div></div>
+<div class="panel"><div class="stat-label">BTC Price</div><div class="stat-value" id="top-btc-price">—</div><div id="top-btc-change" class="small">—</div></div>
+<div class="panel"><div class="stat-label">ETH Price</div><div class="stat-value" id="top-eth-price">—</div><div id="top-eth-change" class="small">—</div></div>
+</div>
+<div class="panel" style="margin-top:16px"><div class="section-head"><h2>Binance Futures Live Ticker</h2></div><div id="mini-tickers" class="market-grid"></div></div>
+</section>
+
+<section id="ema-panel-section" class="panel">
+<div class="section-head"><h2>EMA Trend Panel</h2><span id="ema-symbol" class="badge">BTC/USDT</span></div>
+<div class="cards">
+<div class="result"><span>EMA 9</span><b id="ema-9">—</b></div><div class="result"><span>EMA 21</span><b id="ema-21">—</b></div>
+<div class="result"><span>EMA 50</span><b id="ema-50">—</b></div><div class="result"><span>EMA 200</span><b id="ema-200">—</b></div>
+</div>
+<div class="notice"><b>Trend Status:</b> <span id="ema-trend">অপেক্ষমাণ…</span> <span id="ema-timeframe" class="muted"></span></div>
+</section>
+
+<section id="mtf-confluence" class="panel">
+<div class="section-head"><h2>Multi-Timeframe Confluence</h2><span class="badge">5m · 15m · 1h · 4h</span></div>
+<div class="form-grid"><div class="field"><label>Symbol</label><input id="mtf-symbol" readonly title="চার্ট অনুসরণ করে" value="BTCUSDT"></div><div style="align-self:end"><button id="mtf-run" class="button-primary">Run MTF Analysis</button></div></div>
+<div class="cards" style="margin-top:14px">
+<div class="result"><span>5m</span><b id="mtf-5m">—</b></div><div class="result"><span>15m</span><b id="mtf-15m">—</b></div>
+<div class="result"><span>1h</span><b id="mtf-1h">—</b></div><div class="result"><span>4h</span><b id="mtf-4h">—</b></div>
+</div>
+<div id="mtf-summary" class="notice">বাটনে ক্লিক করে ট্রেন্ড কনফ্লুয়েন্স যাচাই করুন।</div>
+</section>
+
+<section id="smc-smart" class="panel">
+<div class="section-head"><h2>SMC Smart Detection</h2><span class="badge">BOS & Structure</span></div>
+<div class="form-grid"><div class="field"><label>Symbol</label><input id="smc-auto-symbol" readonly title="চার্ট অনুসরণ করে" value="BTCUSDT"></div>
+<div class="field"><label>Timeframe</label><select id="smc-auto-tf" disabled><option>5m</option><option selected>15m</option><option>1h</option><option>4h</option><option>1d</option></select></div></div>
+<div class="button-row" style="margin-top:12px"><button id="smc-auto-run" class="button-primary">Scan SMC Structure</button></div>
+<div id="smc-auto-output" class="notice">স্ক্যান করতে রান করুন।</div>
+</section>
+
+<section id="fib-tools" class="panel">
+<div class="section-head"><h2>Fibonacci Tools</h2><span class="badge">Auto · Follows Chart</span></div>
+<div id="fib-output" class="notice">অপেক্ষমাণ…</div>
+<div class="button-row" style="margin-top:12px"><button id="fib-scan" class="button-primary">OTE Scanner (Watchlist)</button></div>
+<div id="fib-scan-out" class="market-grid" style="margin-top:12px"></div>
+</section>
+
+<section id="funding-oi" class="panel">
+<div class="section-head"><h2>Funding Rate & Open Interest</h2><span class="badge">Follows Chart</span></div>
+<div class="cards">
+<div class="result"><span>Funding Rate</span><b id="fund-rate">—</b><span id="fund-note" class="small"></span></div>
+<div class="result"><span>পরবর্তী Funding</span><b id="fund-next">—</b></div>
+<div class="result"><span>Mark Price</span><b id="fund-mark">—</b></div>
+<div class="result"><span>Open Interest</span><b id="oi-usd">—</b><span id="oi-coin" class="small"></span></div>
+<div class="result"><span>OI পরিবর্তন (1h)</span><b id="oi-1h">—</b></div>
+<div class="result"><span>OI পরিবর্তন (24h)</span><b id="oi-24h">—</b></div>
+<div class="result"><span>Long/Short Ratio (1h)</span><b id="ls-ratio">—</b><span id="ls-note" class="small"></span></div>
+</div>
+<div class="notice">Funding পজিটিভ = লংরা শর্টদের ফি দেয় (লং ভিড়)। প্রাইসের সাথে OI বাড়লে ট্রেন্ড শক্তিশালী, প্রাইস কমে OI বাড়লে শর্ট চাপ।</div>
+</section>
+
+<section id="kill-zone" class="panel">
+<div class="section-head"><h2>Session & Kill Zone (Oman GST, UTC+4)</h2></div>
+<div class="cards" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+<div class="result"><span>Asia (03:00–12:00)</span><b id="sess-asia">—</b></div>
+<div class="result"><span>London KZ (11:00–15:00)</span><b id="sess-london">—</b></div>
+<div class="result"><span>New York KZ (16:00–20:00)</span><b id="sess-ny">—</b></div>
+</div>
+<div class="notice" id="sess-now">—</div>
+</section>
+
+<section id="chart-section" class="panel">
+<div class="section-head"><div><h2>TradingView Chart <span class="badge" id="chart-symbol-label">BTC/USDT</span></h2></div>
+<div class="button-row"><input id="chart-symbol-input" list="sym-list" placeholder="কয়েন লিখুন: SOL" style="width:140px"><datalist id="sym-list"></datalist><button id="chart-go" class="button-primary">Go</button><div class="subtabs" id="timeframes"><button data-interval="5m">5m</button><button data-interval="15m" class="active">15m</button><button data-interval="1h">1h</button><button data-interval="4h">4h</button><button data-interval="1d">1D</button></div><button id="tv-mode" title="চার্ট না এলে বিকল্প মোড">⚙ চার্ট মোড</button><button id="open-full-tv" class="button-primary" title="TradingView-এ খুলুন, সেখানে আপনার Binance কানেক্টেড থাকলে ট্রেড করা যাবে">TradingView-এ ট্রেড ↗</button></div></div>
+<div id="tradingview_chart" class="chart-frame"><div class="empty">TradingView লোড হচ্ছে…</div></div>
+</section>
+
+<section id="live-market" class="panel">
+<div class="section-head"><h2>Binance Futures Live Market</h2><div class="button-row"><button id="refresh-market">↻ Refresh</button><button id="market-search-clear">Clear</button></div></div>
+<div class="inline-fields" style="margin-bottom:12px"><input id="market-search" placeholder="কয়েন খুঁজুন…">
+<select id="market-sort"><option value="volume">Volume</option><option value="change-desc">Gainers</option><option value="change-asc">Losers</option></select>
+<select id="market-limit"><option value="50">Top 50</option><option value="100">Top 100</option></select><span id="market-count" class="muted small">—</span></div>
+<div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Price</th><th>24h %</th><th>Volume</th><th>Action</th></tr></thead><tbody id="market-table"><tr><td colspan="5" class="empty">ডেটা আসছে…</td></tr></tbody></table></div>
+</section>
+
+<section id="market-scanner" class="panel">
+<div class="section-head"><h2>Market Scanner</h2><div class="subtabs"><button class="active" data-scanner-tab="gainers">Top Gainers</button><button data-scanner-tab="losers">Top Losers</button><button data-scanner-tab="volume">High Volume</button></div></div>
+<div id="scanner-results" class="market-grid"><div class="empty">অপেক্ষমাণ…</div></div>
+</section>
+
+<section id="watchlist" class="panel">
+<div class="section-head"><h2>Watchlist</h2></div>
+<div id="watchlist-cards" class="market-grid"></div>
+<div class="form-grid" style="margin-top:12px"><div class="field"><label>Add Symbol</label><input id="watch-add-symbol" placeholder="ADAUSDT"></div><div style="align-self:end"><button id="watch-add" class="button-primary">+ Add</button></div></div>
+</section>
+
+<section id="calculator" class="panel">
+<div class="section-head"><h2>Futures Position Calculator</h2></div>
+<div class="form-grid">
+<div class="field"><label>Balance (USDT)</label><input id="calc-balance" type="number" value="50"></div>
+<div class="field"><label>Risk per Trade (%)</label><input id="calc-risk" type="number" value="1" step="any"></div>
+<div class="field"><label>Entry</label><input id="calc-entry" type="number" step="any"></div>
+<div class="field"><label>Stop Loss</label><input id="calc-sl" type="number" step="any"></div>
+<div class="field"><label>Take Profit</label><input id="calc-tp" type="number" step="any"></div>
+<div class="field"><label>Side</label><select id="calc-side"><option value="long">Long</option><option value="short">Short</option></select></div>
+<div class="field"><label>Leverage</label><input id="calc-leverage" type="number" value="10"></div>
+<div class="field"><label>Fee (%)</label><input id="calc-fee" type="number" value="0.1" step="any"></div>
+</div>
+<div class="button-row" style="margin-top:14px"><button id="calc-button" class="button-primary">Calculate</button><button id="calc-reset">Reset</button></div>
+<div class="result-grid">
+<div class="result"><span>Risk Amount</span><b id="res-risk">—</b></div><div class="result"><span>Position Size (coin)</span><b id="res-size">—</b></div>
+<div class="result"><span>Position Value</span><b id="res-val">—</b></div><div class="result"><span>Margin</span><b id="res-margin">—</b></div>
+<div class="result"><span>Fees</span><b id="res-fees">—</b></div><div class="result"><span>Risk : Reward</span><b id="res-rr">—</b></div>
+</div>
+<p id="calc-message" class="notice">এন্ট্রি ও স্টপ লস দিয়ে হিসাব করুন।</p>
+</section>
+
+<section id="trade-panel" class="panel" style="display:none">
+<div class="section-head"><h2>Binance Futures Trade</h2><span class="badge">TESTNET — আসল টাকা নয়</span></div>
+<div class="cards">
+<div class="result"><span>Balance (USDT)</span><b id="tr-bal">—</b></div>
+<div class="result"><span>Available</span><b id="tr-avail">—</b></div>
+<div class="result"><span>Open Positions</span><b id="tr-count">—</b></div>
+<div class="result"><span>Active Symbol</span><b id="tr-sym">—</b></div>
+</div>
+<div class="notice">Calculator-এর Side, SL, TP, Leverage ও Risk % এখানে ব্যবহার হয়। পজিশন সাইজ সার্ভার নিজে হিসাব করে এবং SL ছাড়া অর্ডার নেয় না।</div>
+<div id="tr-preview" class="notice"></div>
+<div class="button-row" style="margin-top:12px"><button id="tr-refresh">↻ Refresh</button><button id="tr-place" class="button-primary">Place Order (Testnet)</button></div>
+<div id="tr-msg" class="notice"></div>
+<div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>Symbol</th><th>Size</th><th>Entry</th><th>Mark</th><th>PnL</th><th>Action</th></tr></thead><tbody id="tr-table"><tr><td colspan="6" class="empty">লগইন করে Refresh চাপুন।</td></tr></tbody></table></div>
+</section>
+
+<section id="ai-analysis" class="panel">
+<div class="section-head"><h2>Master AI Assistant</h2><span class="badge">Follows Chart</span></div>
+<div class="form-grid">
+<div class="field"><label>Timeframe</label><select id="ai-timeframe" disabled><option>5m</option><option selected>15m</option><option>1h</option><option>4h</option><option>1d</option></select></div>
+<div class="field"><label>Symbol</label><input id="ai-symbol" readonly title="চার্ট অনুসরণ করে" value="BTCUSDT"></div>
+<div class="field"><label>Price</label><input id="ai-price" type="number" step="any" readonly title="লাইভ প্রাইস"></div>
+<div class="field"><label>Support (ঐচ্ছিক)</label><input id="ai-support" type="number" step="any"></div>
+<div class="field"><label>Resistance (ঐচ্ছিক)</label><input id="ai-resistance" type="number" step="any"></div>
+</div>
+<div class="field" style="margin-top:10px"><label>Notes</label><textarea id="ai-notes" rows="2"></textarea></div>
+<div class="button-row" style="margin-top:12px"><button id="ai-generate" class="button-primary">Run Master AI Analysis</button><button id="ai-copy">Copy</button></div>
+<div id="ai-output" style="margin-top:14px"><div class="warning">বাটনে ক্লিক করে বিশ্লেষণ চালান।</div></div>
+</section>
+
+<section id="journal" class="panel">
+<div class="section-head"><h2>Trading Journal</h2><div class="button-row"><button id="journal-export">Export CSV</button><button id="journal-clear" class="button-danger">Clear</button></div></div>
+<div class="cards" style="margin-bottom:14px">
+<div class="result"><span>Win Rate</span><b id="journal-winrate">0%</b></div><div class="result"><span>Total P&amp;L</span><b id="journal-pnl">$0.00</b></div>
+<div class="result"><span>Trades</span><b id="journal-count">0</b></div><div class="result"><span>Wins / Losses</span><b id="journal-record">0 / 0</b></div>
+</div>
+<div class="journal-form">
+<div><label>Symbol</label><input id="j-symbol" readonly title="চার্ট অনুসরণ করে" value="BTCUSDT"></div>
+<div><label>Side</label><select id="j-side"><option>Long</option><option>Short</option></select></div>
+<div><label>P&amp;L (USDT)</label><input id="j-pnl" type="number" step="any"></div>
+<div><label>Date</label><input id="j-date" type="date"></div>
+<button id="journal-add" class="button-primary">+ Add</button>
+</div>
+<div class="table-wrap"><table><thead><tr><th>Date</th><th>Symbol</th><th>Side</th><th>P&amp;L</th><th>Action</th></tr></thead><tbody id="journal-table"></tbody></table></div>
+</section>
+
+<section id="risk-dashboard" class="panel">
+<div class="section-head"><h2>Risk & Loss Lock</h2></div>
+<div class="form-grid">
+<div class="field"><label>Balance (USDT)</label><input id="risk-balance" type="number" value="50"></div>
+<div class="field"><label>Risk per Trade (%)</label><input id="risk-per-trade" type="number" value="1" step="any"></div>
+<div class="field"><label>Daily Loss Limit (%)</label><input id="risk-daily-limit" type="number" value="3" step="any"></div>
+<div class="field"><label>Today's P&amp;L (USDT)</label><input id="risk-today-pnl" type="number" value="0" step="any"></div>
+</div>
+<div class="button-row" style="margin-top:12px"><button id="risk-check" class="button-primary">Check Limits</button></div>
+<div class="result-grid">
+<div class="result"><span>Risk per trade</span><b id="risk-one">—</b></div><div class="result"><span>Daily loss limit</span><b id="risk-limit">—</b></div><div class="result"><span>Status</span><b id="risk-status">—</b></div>
+</div>
+</section>
+
+<section id="alerts" class="panel">
+<div class="section-head"><h2>Smart Alerts</h2><span class="badge">Follows Chart</span></div>
+<div class="form-grid">
+<div class="field"><label>Symbol (চার্ট অনুসরণ করে)</label><input id="alert-symbol" readonly></div>
+<div class="field"><label>Alert Type</label><select id="alert-type"><option value="price">Price</option><option value="change">24h Change %</option><option value="rsi">RSI (14)</option><option value="ema">EMA 9/21 Cross</option><option value="smc">SMC BOS/CHoCH</option><option value="fib">Fib OTE Zone</option></select></div>
+<div class="field"><label>Condition</label><select id="alert-condition"></select></div>
+<div class="field" id="alert-val-wrap"><label id="alert-val-label">Target Price</label><input id="alert-price" type="number" step="any"></div>
+<div class="field" id="alert-tf-wrap"><label>Timeframe</label><select id="alert-tf"><option>5m</option><option selected>15m</option><option>1h</option><option>4h</option><option>1d</option></select></div>
+<div class="field"><label>&nbsp;</label><label style="display:flex;gap:8px;align-items:center;color:var(--text);margin:0"><input id="alert-repeat" type="checkbox" style="width:auto"> বারবার (১৫ মিনিট বিরতি)</label></div>
+</div>
+<div class="button-row" style="margin-top:12px;align-items:center"><button id="alert-add" class="button-primary">Create Alert</button><button id="alert-notif">🔔 নোটিফিকেশন চালু</button><button id="alert-test">টেস্ট</button><label style="display:flex;gap:6px;align-items:center;margin:0"><input id="alert-sound" type="checkbox" style="width:auto"> সাউন্ড</label></div>
+<div class="notice">Price ও 24h অ্যালার্ট লাইভ ডেটায় সাথে সাথে চেক হয়। RSI/EMA প্রতি মিনিটে শেষ বন্ধ ক্যান্ডেলে চেক হয়। অ্যালার্ট শুধু সাইট খোলা থাকলে কাজ করে।</div>
+<div id="alerts-list" style="margin-top:14px"></div>
+<h3 style="font-size:14px;margin:16px 0 6px">সাম্প্রতিক ট্রিগার</h3><div id="alert-log"></div>
+</section>
+
+<section id="settings" class="panel">
+<div class="section-head"><h2>Settings</h2></div>
+<div class="form-grid">
+<div class="field"><label>Balance (USDT)</label><input id="setting-balance" type="number" value="50"></div>
+<div class="field"><label>Active Chart Symbol (চার্ট অনুসরণ করে)</label><input id="setting-symbol" readonly></div>
+<div class="field"><label>Language</label><select id="setting-language"><option value="bn">বাংলা</option><option value="en">English</option></select></div>
+<div class="field"><label>Refresh Interval</label><select id="setting-refresh"><option value="15000">15s</option><option value="30000">30s</option><option value="60000">60s</option></select></div>
+</div>
+<div class="button-row" style="margin-top:12px"><button id="settings-save" class="button-primary">Save</button><button id="settings-reset" class="button-danger">Reset</button></div>
+</section>
+</main>
+</div>
+<div id="toasts" style="position:fixed;right:12px;bottom:12px;z-index:60;display:flex;flex-direction:column;gap:8px;max-width:min(340px,90vw)"></div>
+<footer class="footer">Abu Talab Bhuiyan · Pro Crypto Trading Terminal<br>শিক্ষামূলক টুল — আর্থিক পরামর্শ নয়
+<details style="max-width:640px;margin:10px auto 0;text-align:left"><summary style="cursor:pointer;text-align:center">শর্ত ও গোপনীয়তা</summary>
+<p><b>শর্ত:</b> এই টুল শুধু শিক্ষা ও বিশ্লেষণের জন্য। এখানকার কোনো তথ্য, স্কোর বা সংকেত বিনিয়োগ পরামর্শ নয়। ক্রিপ্টো ট্রেডিংয়ে পুরো পুঁজি হারানোর ঝুঁকি আছে। যেকোনো লাভ-ক্ষতির দায় ব্যবহারকারীর নিজের।</p>
+<p><b>গোপনীয়তা:</b> লগইন করলে আপনার ইমেইল এবং জার্নাল, ওয়াচলিস্ট, অ্যালার্ট ও সেটিংস Supabase-এ সংরক্ষিত হয় যাতে সব ডিভাইসে সিঙ্ক থাকে। অন্য কেউ আপনার ডেটা দেখতে পায় না। লগইন না করলে ডেটা শুধু আপনার ব্রাউজারে থাকে। কোনো Binance API Key এই সাইটে নেওয়া হয় না।</p></details></footer>
+</div>
+
+<div id="auth-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;align-items:center;justify-content:center;padding:16px">
+<div class="panel" style="width:min(380px,100%)">
+<div class="section-head"><h2>লগইন / রেজিস্টার</h2><button id="auth-close">✕</button></div>
+<div class="field"><label>ইমেইল</label><input id="auth-email" type="email" autocomplete="email"></div>
+<div class="field" style="margin-top:10px"><label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label><input id="auth-pass" type="password" autocomplete="current-password"></div>
+<div class="button-row" style="margin-top:12px"><button id="auth-login" class="button-primary">Login</button><button id="auth-signup">Register</button><button id="auth-reset">পাসওয়ার্ড ভুলে গেছি</button></div>
+<div id="auth-msg" class="notice"></div>
+<div class="notice" style="font-size:11px">Register করে আপনি নিচের "শর্ত ও গোপনীয়তা" মেনে নিচ্ছেন। এটি শিক্ষামূলক টুল, আর্থিক পরামর্শ নয়।</div>
+</div></div>
+<script src="app.js" defer></script>
+</body>
+</html>
