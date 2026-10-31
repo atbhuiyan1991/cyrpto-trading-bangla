@@ -1,0 +1,19 @@
+{
+  "name": "Abu Talab Bhuiyan | Pro Crypto Trading Terminal",
+  "short_name": "Crypto Terminal",
+  "description": "Crypto Trading Bangla - Professional Futures Trading Terminal",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0b0e11",
+  "theme_color": "#0b0e11",
+  "icons": [
+    {
+      "src": "my-logo2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
