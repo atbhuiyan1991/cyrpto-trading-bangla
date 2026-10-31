@@ -936,5 +936,18 @@ function init(){
 init();
 })();
 </script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(registration => {
+        console.log("PWA Service Worker Active:", registration.scope);
+      })
+      .catch(error => {
+        console.error("PWA Registration Failed:", error);
+      });
+  });
+}
+</script>
 </body>
 </html>
