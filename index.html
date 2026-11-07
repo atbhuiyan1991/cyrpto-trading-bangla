@@ -49,9 +49,176 @@ input,select,textarea{width:100%;background:var(--inp);border:1px solid var(--li
 .layout.rail{grid-template-columns:58px minmax(0,1fr)}.rail .sidebar{padding:8px}.rail .nt,.rail .nav .badge,.rail .promo,.rail .status{display:none}.rail .nav{justify-content:center;padding:9px 4px}.ni{display:inline-block;min-width:18px;text-align:center}
 @media(max-width:1100px){.layout{grid-template-columns:1fr}.layout.rail{grid-template-columns:1fr}.sidebar{display:none;position:static;max-height:none}.sidebar.open{display:flex}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.market-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.app{padding:9px}.cards{grid-template-columns:1fr}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid,.scenario-grid{grid-template-columns:1fr}.inline-fields,.journal-form{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-frame{height:360px}.search{width:100%}.result-grid{grid-template-columns:1fr}}
+/* =====================================
+NOVA LOGO OPENING ANIMATION
+Crypto Trading Terminal
+===================================== */
+
+#nova-splash {
+position: fixed;
+inset: 0;
+z-index: 99999;
+background: #0b0e11;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+overflow: hidden;
+animation: novaSplashExit .65s ease 1.9s forwards;
+}
+
+.nova-splash-content {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+gap: 17px;
+animation: novaContentIn 1s ease both;
+}
+
+.nova-logo-wrap {
+width: 125px;
+height: 125px;
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.nova-logo-ring {
+position: absolute;
+inset: 0;
+border: 3px solid transparent;
+border-top-color: #fcd535;
+border-right-color: #fcd535;
+border-radius: 50%;
+animation: novaRingRotate 1.4s linear infinite;
+filter: drop-shadow(0 0 7px #fcd535);
+}
+
+.nova-logo-ring::after {
+content: "";
+position: absolute;
+inset: 7px;
+border: 1px solid #0ecb81;
+border-left-color: transparent;
+border-radius: 50%;
+animation: novaRingRotate 2s linear infinite reverse;
+}
+
+.nova-splash-logo {
+width: 88px;
+height: 88px;
+object-fit: contain;
+border-radius: 14px;
+animation: novaLogoPulse 1.5s ease-in-out infinite;
+filter: drop-shadow(0 0 12px rgba(252,213,53,.45));
+}
+
+.nova-splash-title {
+color: #fcd535;
+font-size: 19px;
+font-weight: 800;
+letter-spacing: 2px;
+text-align: center;
+animation: novaTextIn 1s ease .3s both;
+}
+
+.nova-splash-subtitle {
+color: #848e9c;
+font-size: 10px;
+letter-spacing: 3px;
+text-align: center;
+animation: novaTextIn 1s ease .5s both;
+}
+
+.nova-loading {
+width: 145px;
+height: 3px;
+background: #202630;
+border-radius: 10px;
+overflow: hidden;
+margin-top: 10px;
+}
+
+.nova-loading-bar {
+width: 0;
+height: 100%;
+background: linear-gradient(90deg,#0ecb81,#fcd535);
+animation: novaProgress 1.65s ease forwards;
+}
+
+@keyframes novaRingRotate {
+to { transform: rotate(360deg); }
+}
+
+@keyframes novaLogoPulse {
+50% {
+transform: scale(1.07);
+filter: drop-shadow(0 0 19px rgba(14,203,129,.7));
+}
+}
+
+@keyframes novaContentIn {
+from { opacity: 0; transform: scale(.75); }
+to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes novaTextIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes novaProgress {
+to { width: 100%; }
+}
+
+@keyframes novaSplashExit {
+to {
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+#nova-splash,
+#nova-splash * {
+animation-duration: .01ms !important;
+animation-delay: 0ms !important;
+}
+}
 </style>
 </head>
 <body>
+<div id="nova-splash">
+<div class="nova-splash-content">
+
+<div class="nova-logo-wrap">
+<div class="nova-logo-ring"></div>
+
+<img
+src="./my-logo2.png"
+class="nova-splash-logo"
+alt="Crypto Trading Terminal Logo"
+>
+</div>
+
+<div class="nova-splash-title">
+ABU TALAB BHUIYAN
+</div>
+
+<div class="nova-splash-subtitle">
+CRYPTO FUTURES TERMINAL
+</div>
+
+<div class="nova-loading">
+<div class="nova-loading-bar"></div>
+</div>
+
+</div>
+</div>
+
 <div class="app">
 <header class="topbar">
 <div class="brand"><button id="nav-toggle" title="মেনু">☰</button><img src="./my-logo2.png" alt="" class="brand-logo"><div><h1>Abu Talab Bhuiyan</h1><p>CRYPTO FUTURES TERMINAL</p></div></div>
