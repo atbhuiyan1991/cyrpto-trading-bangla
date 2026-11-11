@@ -632,7 +632,7 @@ async function apRunOnce(){
   const tf=$('ap-tf').value, pool=apSymbolPool();
   apStats={scanned:0,ready:0,errors:0}; apResults.clear(); apPending.clear(); apInFlight=0; apRoundStarted=Date.now();
   $('ap-table').innerHTML='<tr><td colspan="9" class="empty">স্ক্যান চলছে…</td></tr>';
-  apQueue=pool.map((s,i)=>({id:s+'|'+tf+'|'+Date.now()+'-'+i,symbol:s,tf}));
+  apQueue=pool.map((s,i)=>({id:s+'|'+tf+'|'+Date.now()+'-'+i,symbol:s,tf,ex:EX}));
   $('ap-status').textContent='Running…';
   dispatchAp(); updateApProgress();
   const guard=setInterval(()=>{
