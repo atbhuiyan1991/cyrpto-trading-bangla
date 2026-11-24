@@ -179,7 +179,7 @@ function fibState(f, price) {
   return { r: r, ote: ote, zone: zone, fav: r >= 0.5 && r <= 0.786 };
 }
 
-const SIG = { minReady: 70, minWatch: 50, minRR: 1.5, minSlPct: 0.3, maxSlPct: 8, nearPct: 0.4, conflict: 8,
+const SIG = { minReady: 65, minWatch: 45, minRR: 1.5, minSlPct: 0.3, maxSlPct: 8, nearPct: 0.4, conflict: 8,
   // trader-process rules (set false/0 to switch one off)
   htfGate: true,          // 1h AND 4h both against the trade -> never READY
   pdGate: true,           // long only in the discount half of the swing range, short only in premium
