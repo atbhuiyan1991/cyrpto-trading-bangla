@@ -623,7 +623,7 @@ async function buildAI(){
   if(!(price>0)){ $('ai-output').innerHTML='<div class="warning">প্রাইস পাওয়া যায়নি।</div>'; return; }
   if(symbol!==selectedSymbol||tf!==selectedInterval) return;
   const mt=lastMTF&&lastMTF.sym===symbol?lastMTF:null, fu=lastFund&&lastFund.sym===symbol?lastFund:null;
-  const minScore=+($('ap-minscore')&&$('ap-minscore').value)||70;   // SAME Min Score as Autopilot
+  const minScore=+($('ap-minscore')&&$('ap-minscore').value)||65;   // SAME Min Score as Autopilot
   if(CTB.runSignal&&candles){
     const ltfTf=(CTB.LTF_MAP||{})[tf]||'', ltfOn=!!settings.ltfConfirm; let ltf=null;
     if(ltfOn&&ltfTf){ try{ ltf=await klines(symbol,ltfTf,200); }catch(e){ ltf=null; } if(symbol!==selectedSymbol||tf!==selectedInterval) return; }
@@ -796,7 +796,7 @@ async function apRunOnce(){
   if(apRoundActive){ toast('আগের round এখনো চলছে'); return; }
   const w=ensureApWorker();
   if(!w){ toast('Worker নেই, মেইন থ্রেডে চলবে'); return apRunOnceMain(); }
-  const tf=$('ap-tf').value, pool=apSymbolPool(), minScore=+$('ap-minscore').value||70;
+  const tf=$('ap-tf').value, pool=apSymbolPool(), minScore=+$('ap-minscore').value||65;
   apRoundId = 'r'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
   apStats={scanned:0,ready:0,errors:0}; apResults.clear(); apPending.clear(); apInFlight=0; apRoundStarted=Date.now(); apRoundActive=true;
   $('ap-table').innerHTML='<tr><td colspan="9" class="empty">স্ক্যান চলছে…</td></tr>';
@@ -821,7 +821,7 @@ async function apMtfMain(sym){
 async function apRunOnceMain(){
   if(apRoundActive) return;
   apRoundActive=true;
-  const tf=$('ap-tf').value, pool=apSymbolPool(), minScore=+$('ap-minscore').value||70;
+  const tf=$('ap-tf').value, pool=apSymbolPool(), minScore=+$('ap-minscore').value||65;
   apRoundId = 'r'+Date.now()+'-m';
   apStats={scanned:0,ready:0,errors:0}; apResults.clear();
   for(const s of pool){
